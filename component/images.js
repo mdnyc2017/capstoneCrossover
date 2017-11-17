@@ -2,13 +2,20 @@ import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
 import sha1 from 'sha1';
 import superagent from 'superagent';
+import {db} from '../fire'
 
 export default class Images extends Component{
     constructor() {
         super();
         this.state = {
-            imageUrl:[]
+            imageUrl:[],
+            images: []
         }
+    }
+    componentDidMount() {
+        db.collection('scenes').onSnapshot(snapshot => this.setState({
+            images: snapshot.docs
+        }))
     }
 
     uploadFile(files) { //plural files
@@ -76,17 +83,20 @@ export default class Images extends Component{
             this.setState({
                 imageUrl: [...this.state.imageUrl, newUrl]
             })
+            db.collection('scenes').doc().set({
+                imageUrl: newUrl
+            })
         })
     }
 
     render() {
-        const images = this.state.imageUrl.map((image, i) => {
+        const images = this.state.images.map((image, i) => {
             return(
                 <li key={i}>
-                    <img src={image} />
+                    <img src={image.data().imageUrl} />
                 </li>
             )
-        });
+        })
         return (
             <div>
                 <h1>Images go here!</h1>
