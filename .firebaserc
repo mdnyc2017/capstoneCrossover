@@ -1,5 +1,6 @@
 {
   "projects": {
-    "comic": "crossover-cf663"
+    "comic": "crossover-cf663",
+    "crossover": "crossover-cf663"
   }
 }
