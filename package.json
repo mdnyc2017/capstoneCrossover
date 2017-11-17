@@ -32,9 +32,14 @@
   },
   "dependencies": {
     "chokidar": "^1.7.0",
+    "cloudinary-react": "^1.0.4",
+    "dropzone": "^5.2.0",
     "firebase": "^4.6.2",
     "minimist": "^1.2.0",
     "react": "^16.1.0",
-    "react-dom": "^16.1.0"
+    "react-dom": "^16.1.0",
+    "react-dropzone": "^4.2.3",
+    "sha1": "^1.1.1",
+    "superagent": "^3.8.1"
   }
 }
