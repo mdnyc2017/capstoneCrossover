@@ -15,7 +15,7 @@ const Routes = (props) => (
      <Switch>
         <Route exact path='/stories' render={()=> <Stories currentUser={props.user} />} />
         <Route exact path='/stories/new' render={()=> <AddStory currentUser={props.user} />} />
-        <Route exact path='/stories/id' render={()=> <SingleStory currentUser={props.user} />} />
+        <Route exact path='/stories/:id' render={(newProps)=> <SingleStory currentUser={props.user} {...newProps} />} />
     </Switch>
   </Router>
 )
