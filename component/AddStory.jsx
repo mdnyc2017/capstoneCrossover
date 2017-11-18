@@ -100,7 +100,7 @@ export default class AddStory extends Component {
           </div>
         </form>
         {fireRedirect && (
-            <Redirect to={`/${this.state.id}`}/>
+            <Redirect to={`/stories/${this.state.id}`}/>
           )}
     </div>)
     }
