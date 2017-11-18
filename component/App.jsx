@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import firebase, {auth} from '~/fire';
-
+import Routes from './Routes'
 import Login from './Login'
 
 export const welcome = user => {
@@ -38,7 +38,9 @@ export const welcome = user => {
           <nav>
             <WhoAmI user={user} auth={auth}/>
           </nav>
-          <span className="whoami-user-name">{welcome(user)}</span>
+          <span className="whoami-user-name">{welcome(user)}
+          </span>
+          <Routes user={user}/>
         </div>)
     }
   }
