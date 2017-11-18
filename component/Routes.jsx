@@ -1,16 +1,18 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Stories from './Stories'
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {Router} from 'react-router';
+import Stories from './Stories';
+import createHistory from 'history/createBrowserHistory';
+import createMemoryHistory from 'history/createMemoryHistory';
 
-const Routes = (props) =>(
-   <Switch>
-       <Route exact path='/stories' render={(routeProps)=> <Stories user={props.user} />} />
-        
+const history = process.env.NODE_ENV === 'test' ? createMemoryHistory() : createHistory();
+
+const Routes = (props) => (
+   <Router history={history}>
+     <Switch>
+        <Route exact path='/stories' render={()=> <Stories currentUser={props.user} />} />
     </Switch>
-
-
-
+  </Router>
 )
-   
 
-export default Routes
+export default Routes;

@@ -35,6 +35,7 @@
     "cloudinary-react": "^1.0.4",
     "dropzone": "^5.2.0",
     "firebase": "^4.6.2",
+    "history": "^4.7.2",
     "minimist": "^1.2.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",

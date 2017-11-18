@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import firebase, {auth} from '~/fire';
+import { Switch, Route } from 'react-router-dom';
 import Routes from './Routes'
 import Login from './Login'
 
@@ -32,7 +33,6 @@ export const welcome = user => {
   
     render() {
       const {user} = this.state || {}
-      console.log(this.state);
       return (
         <div>
           <nav>
@@ -40,7 +40,7 @@ export const welcome = user => {
           </nav>
           <span className="whoami-user-name">{welcome(user)}
           </span>
-          <Routes user={user}/>
+          <Routes user={this.state}/>
         </div>)
     }
   }
