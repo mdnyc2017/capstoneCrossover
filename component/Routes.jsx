@@ -1,9 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {Router} from 'react-router';
-import Stories from './Stories';
 import createHistory from 'history/createBrowserHistory';
 import createMemoryHistory from 'history/createMemoryHistory';
+
+import Stories from './Stories';
+import AddStory from './AddStory';
+import SingleStory from './SingleStory';
 
 const history = process.env.NODE_ENV === 'test' ? createMemoryHistory() : createHistory();
 
@@ -11,6 +14,8 @@ const Routes = (props) => (
    <Router history={history}>
      <Switch>
         <Route exact path='/stories' render={()=> <Stories currentUser={props.user} />} />
+        <Route exact path='/stories/new' render={()=> <AddStory currentUser={props.user} />} />
+        <Route exact path='/stories/id' render={()=> <SingleStory currentUser={props.user} />} />
     </Switch>
   </Router>
 )
