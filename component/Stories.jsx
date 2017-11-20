@@ -20,7 +20,8 @@ export default class Stories extends Component {
 
     render() {
         if (!this.state.stories) return 'Loading...';
-        return this.state.stories.map(snapshot => <pre>Story: {JSON.stringify(snapshot.data(), 0, 2)}</pre>)
+        return this.state.stories.map(snapshot => 
+        <pre key={snapshot.id}>Story: {JSON.stringify(snapshot.data(), 0, 2)}</pre>)
     }
 }
 
