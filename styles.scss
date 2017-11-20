@@ -1,11 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Barrio');
+
 body {
     background-color: rgb(245, 80, 58);
+    .home-page {
+        font-family: 'Barrio', cursive;
+        text-align: center;
+        .home-page-top {
+            margin-top: -22px;
+            height: 10em;
+            color: rgb(255, 230, 0);
+            text-shadow: 4px 0 black, 0 2px black, 1px 0 black, 0 1px black;
+            background-image: url("https://www.verdict.co.uk/wp-content/uploads/2017/09/get-into-comic-books.jpg")
+        }
+    }    
     .story-thumbnail {
         margin-bottom: 50px;
         margin-top: 25px;
     }
     .navbar {
+        font-family: 'Barrio', cursive;
+        text-decoration: none;        
         margin: -8px;
+        text-align: center;            
         .navStyle {
             list-style-type: none;
             margin: 0;
@@ -14,6 +30,7 @@ body {
             background-color: rgba(251, 202, 43, 1);
         }
         .liStyle {
+            margin-left: 5em;
             float: left;
             color: white;
             text-align: center;
