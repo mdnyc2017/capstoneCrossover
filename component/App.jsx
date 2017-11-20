@@ -3,6 +3,9 @@ import firebase, {auth} from '~/fire';
 import { Switch, Route } from 'react-router-dom';
 import Routes from './Routes'
 import Login from './Login'
+import {Navbar} from './Navbar'
+
+
 
 export const welcome = user => {
     if (!user) return ''
@@ -10,16 +13,9 @@ export const welcome = user => {
     return 'Hello, ' + user.displayName || 'Hello, ' + user.email
   }
   
-  export const WhoAmI = ({user, auth}) =>
-    <div className="whoami">
-      { // If nobody is logged in, or the current user is anonymous,
-        (!user || user.isAnonymous)?
-        // ...then show signin links...
-        <Login />
-        /// ...otherwise, show a logout button.
-        : <button className='logout' onClick={() => auth.signOut()}>logout</button> }
-    </div>
   
+
+
   export default class App extends Component {
     state = {};
   
@@ -36,9 +32,10 @@ export const welcome = user => {
       return (
         <div>
           <nav>
-            <WhoAmI user={user} auth={auth}/>
+            <Navbar user={user} auth={auth}/>
           </nav>
-          <span className="whoami-user-name">{welcome(user)}
+          <br />
+          <span className="navBar-user-name">{welcome(user)}
           </span>
           <Routes user={this.state}/>
         </div>)
