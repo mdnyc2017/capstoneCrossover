@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <div>
+    <div className="home-page">
       <div>
         <h1>Crossover</h1>
       </div>

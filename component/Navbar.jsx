@@ -1,35 +1,14 @@
-import React, {Component} from 'react'
-import firebase, {auth} from '~/fire';
+import React, { Component } from 'react';
+import firebase, { auth } from '~/fire';
 import { Switch, Route, NavLink, HashRouter } from 'react-router-dom';
-import Routes from './Routes'
-import Login from './Login'
-import AddScene from './AddScene'
-import AddStory from './AddStory'
-import Stories from './Stories'
+import Routes from './Routes';
+import Login from './Login';
+import AddScene from './AddScene';
+import AddStory from './AddStory';
+import Stories from './Stories';
 
-const navStyle = {
-    listStyleType: 'none',
-    margin: '0',
-    padding: '0',
-    overflow: 'hidden',
-    backgroundColor: 'rgba(251, 202, 43, 1)'
-}
-
-const liStyle ={
-    float: 'left',
-    display: 'block',
-    color: 'white',
-    textAlign: 'center',
-    padding: '14px 16px',
-    textDecoration: 'none'
-}
-
-
-
-
-
-export const Navbar = ({user, auth}) =>
-<div>
+export const Navbar = ({ user, auth }) =>
+  (<div>
         <div>
             <div>
                 <ul className="header navStyle">
@@ -50,8 +29,7 @@ export const Navbar = ({user, auth}) =>
                     </ul>
             </div>
         </div>
-</div>
-
+</div>);
 
 
 // <div>
@@ -62,4 +40,4 @@ export const Navbar = ({user, auth}) =>
 // <Route path='/login' component={Login} />
 // </div>
 
-{/* <li style={liStyle}><a href='/addScene'>Add Scene</a></li> */}
+{ /* <li style={liStyle}><a href='/addScene'>Add Scene</a></li> */ }
