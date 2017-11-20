@@ -1,19 +1,32 @@
 body {
     background-color: rgb(245, 80, 58);
-    .navStyle {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: rgba(251, 202, 43, 1);
+    .story-thumbnail {
+        margin-bottom: 50px;
+        margin-top: 25px;
     }
-    .liStyle {
-        float: left;
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
+    .navbar {
+        margin: -8px;
+        .navStyle {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgba(251, 202, 43, 1);
+        }
+        .liStyle {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 1em 1em;
+            text-decoration: none;
+        }
+    }
+    .home-page {
+        border-style: solid;
+
+        border-color: red;
+        background-color:  rgb(253, 252, 252);
+        margin: 0 15em 0 15em;
     }
 }
 

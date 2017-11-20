@@ -25,7 +25,7 @@ export default class Stories extends Component {
             let id = story.data().id;
             let thumbnail = story.data().thumbnail || '/default.png';
 
-            return (<div style={{"marginBottom":"50px", "marginTop":"25px"}} key={id}>
+            return (<div className="story-thumbnail" key={id}>
             <img src={thumbnail} width="300px" />
             <a href={`/stories/${id}`}>
                 <h2>{story.data().title}</h2>
