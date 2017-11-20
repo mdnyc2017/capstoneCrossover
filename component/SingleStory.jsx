@@ -49,6 +49,7 @@ export default class SingleStory extends Component {
             <p>{this.state.storyDescription && this.state.storyDescription}</p>
             <div>{this.state.scenes.map(scene => <div key={scene.data().id}><img src={scene.data().imageUrl} /></div>
             )}</div>
+            <a href={`/stories/${this.state.storyId}/addscene`}><button>Add Scene</button></a>
         </div>)
     }
 }
