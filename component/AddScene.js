@@ -117,7 +117,14 @@ export default class AddScene extends Component{
                 id: key
             })
             .then(function() {
-                console.log("Scene successfully added to Story!");
+                console.log("Scene successfully added to story!");
+                db.collection("stories").doc(storyId).update({thumbnail: imageUrl})
+                .then(function() {
+                    console.log("Thumbnail successfully added to story!")
+                })
+                .catch(function(error) {
+                    console.error("Error adding story thumbnail: ", error);
+                })
             })
             .catch(function(error) {
                 console.error("Error adding scene to story: ", error);

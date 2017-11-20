@@ -6,7 +6,8 @@ export default class Stories extends Component {
         super();
         this.state = {
             user: {},
-            stories: []
+            stories: [],
+            scenes: []
         }
     }
     
@@ -20,8 +21,20 @@ export default class Stories extends Component {
 
     render() {
         if (!this.state.stories) return 'Loading...';
-        return this.state.stories.map(snapshot => 
-        <div key={snapshot.data().id}><a href={`/stories/${snapshot.data().id}`}><h2>{snapshot.data().title}</h2></a><p>{snapshot.data().description}</p></div>)
+        return this.state.stories.map(story => {
+            let id = story.data().id;
+            let thumbnail = story.data().thumbnail || '/default.png';
+
+            return (<div style={{"marginBottom":"50px", "marginTop":"25px"}} key={id}>
+            <img src={thumbnail} width="300px" />
+            <a href={`/stories/${id}`}>
+                <h2>{story.data().title}</h2>
+            </a>
+            <p>{story.data().description}</p>
+        </div>)
+        })
+        
     }
 }
 
+// <img src={`/stories/${snapshot.data().scenes[0].imageUrl}`} width="300px" />
