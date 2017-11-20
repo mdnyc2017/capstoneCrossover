@@ -14,7 +14,8 @@ export default class AddScene extends Component{
             imageUrl:"",
             image: {},
             id: '',
-            user: {}
+            user: {},
+            fireRedirect: false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -124,12 +125,13 @@ export default class AddScene extends Component{
         .catch(function(error) {
             console.error("Error creating scene: ", error);
         });
-
+        this.setState({fireRedirect: true})
         alert('image submitted!')
     }
 
     render() {
-        const image = this.state.imageUrl
+        const image = this.state.imageUrl;
+        const { fireRedirect } = this.state
         return (
             <div>
                 <div>
@@ -139,6 +141,9 @@ export default class AddScene extends Component{
                     image ? <button onClick={this.handleSubmit}>Save Image</button> : <div><h1>Image goes here!</h1><Dropzone 
                     onDrop={this.uploadFile.bind(this)}/> </div>
                 }
+                {   fireRedirect && (
+                    <Redirect to={`/stories/${this.state.storyId}`} />
+                )}
             </div>
         )
     }
