@@ -13,7 +13,7 @@ export const Navbar = ({ user, auth }) =>
             <div>
                 <ul className="header navStyle">
                 {/* link to home commented out as home component not ready yet */}
-                    <li className="liStyle">Home</li>
+                    <li className="liStyle"><a href='/'>Home</a></li>
                     <li className="liStyle"><a href='/stories/new'>Add Stories</a></li>
                     <li className="liStyle"><a href='/stories'>Stories</a></li>
                      {((!user || user.isAnonymous))
