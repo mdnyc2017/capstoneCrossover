@@ -29,21 +29,22 @@ const liStyle ={
 
 
 export const Navbar = ({user, auth}) =>
-<div className="navbar" >
+<div>
         <div>
             <div>
-                <ul className='header' style={navStyle}>
+                <ul className="header navStyle">
                 {/* link to home commented out as home component not ready yet */}
-                    <li style={liStyle}>Home</li>
-                    <li style={liStyle}><a href='/stories/new'>Add Stories</a></li>
-                    <li style={liStyle}><a href='/stories'>Stories</a></li>
+                    <li className="liStyle">Home</li>
+                    <li className="liStyle"><a href='/stories/new'>Add Stories</a></li>
+                    <li className="liStyle"><a href='/stories'>Stories</a></li>
                      {((!user || user.isAnonymous))
-                     ? <Login style={liStyle}>
+                     ? <Login className="liStyle">
                      Login with Google
                        </Login>
                      :
-                     <li style={liStyle}
-                     className='logout' onClick={() => auth.signOut()}>logout
+                     <li 
+                        className="logout liStyle" 
+                        onClick={() => auth.signOut()}>logout
                      </li>
                      }
                     </ul>
