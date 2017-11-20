@@ -8,12 +8,14 @@ import Stories from './Stories';
 import AddStory from './AddStory';
 import SingleStory from './SingleStory';
 import AddScene from './AddScene';
+import Home from './Home';
 
 const history = process.env.NODE_ENV === 'test' ? createMemoryHistory() : createHistory();
 
 const Routes = (props) => (
    <Router history={history}>
      <Switch>
+        <Route exact path='/' render={()=> <Home currentUser={props.user} />} />
         <Route exact path='/stories' render={()=> <Stories currentUser={props.user} />} />
         <Route exact path='/stories/new' render={()=> <AddStory currentUser={props.user} />} />
         <Route exact path='/stories/:id' render={(newProps)=> <SingleStory currentUser={props.user} {...newProps} />} />
