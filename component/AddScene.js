@@ -91,7 +91,7 @@ export default class AddScene extends Component{
             }
             const url = resp.body.url
             const ind = url.indexOf('upload/')
-            const newUrl = url.slice(0,ind+7) + 'w_300/e_cartoonify/' + url.slice(ind+7)
+            const newUrl = url.slice(0,ind+7) + 'w_800/e_cartoonify/' + url.slice(ind+7)
             this.setState({
                 imageUrl: newUrl
             })
@@ -113,7 +113,8 @@ export default class AddScene extends Component{
         })
         .then(function() {
             db.collection("stories").doc(storyId).collection("scenes").doc(key).set({
-                imageUrl
+                imageUrl,
+                id: key
             })
             .then(function() {
                 console.log("Scene successfully added to Story!");

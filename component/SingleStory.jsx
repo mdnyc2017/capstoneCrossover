@@ -38,7 +38,8 @@ export default class SingleStory extends Component {
         return (<div>
             <div>{"storyID: " + this.state.storyId + ", title: " + this.state.storyTitle + ", description: " + this.state.storyDescription}</div>
             <h4>Scene imageURLS:</h4>
-            <div>{this.state.scenes.map(scene => scene.data().imageUrl)}</div>
+            <div>{this.state.scenes.map(scene => <div key={scene.data().id}><img src={scene.data().imageUrl} /></div>
+            )}</div>
         </div>)
     }
 }
