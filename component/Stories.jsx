@@ -21,7 +21,7 @@ export default class Stories extends Component {
     render() {
         if (!this.state.stories) return 'Loading...';
         return this.state.stories.map(snapshot => 
-        <pre key={snapshot.data().id}>Story: {JSON.stringify(snapshot.data(), 0, 2)}</pre>)
+        <div key={snapshot.data().id}><a href={`/stories/${snapshot.data().id}`}><h2>{snapshot.data().title}</h2></a><p>{snapshot.data().description}</p></div>)
     }
 }
 
