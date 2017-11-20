@@ -4,6 +4,8 @@ import firebase, {auth} from '~/fire';
 const google = new firebase.auth.GoogleAuthProvider();
 // const facebook = new firebase.auth.FacebookAuthProvider();
 
+
+
 function Login(provider) {
     auth.signInWithPopup(provider);
 }
@@ -14,8 +16,8 @@ export default ({ auth }) =>
 // signInWithPopup will try to open a login popup, and if it's blocked, it'll redirect.
 
 (<div className="login">
-    <button className='google login'
-    onClick={() => Login(google)}>Login with Google</button>
+    <li className='google login'
+    onClick={() => Login(google)}>Login with Google</li>
 </div>)
 
 
