@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Passion+One|Permanent+Marker');
 @import 'home';
 
+//don't pollute your index.scss
+//class names should be kebab-cased always. 
 body {
     background-color: rgb(255, 45, 17);
     .story-thumbnail {

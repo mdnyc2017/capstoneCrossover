@@ -11,15 +11,23 @@ body {
     border-color: black;
     background-color:  rgb(253, 252, 252);
     margin: 0 15em 0 15em;
-    .home-page-top {
+    &-top {
         vertical-align: middle;
         line-height: 12.5em;
         font-size: 3vw;
         height: 12.5em;
         color: white;
         -webkit-text-stroke: 2.0px #000000;
-        background-image: url("https://www.verdict.co.uk/wp-content/uploads/2017/09/get-into-comic-books.jpg")
+        background-image: url("https://www.verdict.co.uk/wp-content/uploads/2017/09/get-into-comic-books.jpg");
+        &:hover {
+            color: rgb(255, 16, 16);            
+        }
     }
+    // .home-page-top {
+        
+    // }
+    //TEST OUT WHTHER WE CAN DO THAT
+    //check how we can reorganize this either by including in overhead styling or making unique class.
     .home-page-create, .home-page-collaborate, .home-page-combine {
         color: white;
         -webkit-text-stroke: 1.0px #000000;            
@@ -28,9 +36,7 @@ body {
         border-top-width: 2px;
         border-top-color: black;            
     }
-    .home-page-top:hover {
-        color: rgb(255, 16, 16);            
-    }
+    
     .home-page-create:hover, .home-page-collaborate:hover, .home-page-combine:hover {
         background-color: rgb(255, 16, 16);            
     }

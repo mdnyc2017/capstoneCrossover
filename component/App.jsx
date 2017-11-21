@@ -17,7 +17,9 @@ export const welcome = user => {
 
 
   export default class App extends Component {
-    state = {};
+    state = {
+      user: {} //always define what will be on state.
+    }
   
     componentDidMount() {
       this.unsubscribe = auth.onAuthStateChanged(user => this.setState({user}))
@@ -28,10 +30,14 @@ export const welcome = user => {
     }
   
     render() {
-      const {user} = this.state || {}
+      const {user} = this.state
       return (
-        <div>
-          <nav className="navbar">
+        //naming conventions for dom elements. 
+        //className = 'navbar'
+        //descendent = 'navbar-username'
+        //important to standardize naming conventions to descendent extensions.
+        <div className="navbar">
+          <nav className="navbar-nav">
             <Navbar user={user} auth={auth}/>
           </nav>
           <br />

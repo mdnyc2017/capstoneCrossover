@@ -16,7 +16,7 @@ export default ({ auth }) =>
 // signInWithPopup will try to open a login popup, and if it's blocked, it'll redirect.
 
 (<div className="login">
-    <li className='google login'
+    <li className='login-google' //be careful applying the same classname to descendents of a class. 
     onClick={() => Login(google)}>Login with Google</li>
 </div>)
 

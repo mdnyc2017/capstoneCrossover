@@ -26,9 +26,12 @@ export default class AddScene extends Component{
     // }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
+        console.log(nextProps) //don't commit code with console logs.
         this.setState({ user: nextProps.currentUser, storyId: this.props.match.params.id });
     }
+
+    //this needs to be put on server side.
+    //look at how we can deal with external apis via firebase.
 
     uploadFile(files) { //plural files
         const image = files[0]; //assuming we are uploading one file at a time;
@@ -107,22 +110,25 @@ export default class AddScene extends Component{
         const key = `${user.user.uid}${Date.now()}`
         const storyId = this.state.storyId
         const imageUrl = this.state.imageUrl
-        this.setState({id: key})
+        this.setState({id: key}) //this could cause a race condition with other setState
         db.collection('scenes').doc(key).set({
             imageUrl
         })
         .then(function() {
-            db.collection("stories").doc(storyId).collection("scenes").doc(key).set({
+            //I would suggest scenes to be keeping track of a storyId.
+            //Get Corey a good explanation why, please...
+            return db.collection("stories").doc(storyId).collection("scenes").doc(key).set({
                 imageUrl,
                 id: key
-            })
-            .then(function() {
+            }) // DO NOT NEST .thens...thats why you're using .then
+        .then(function() {
                 console.log("Scene successfully added to story!");
-                db.collection("stories").doc(storyId).update({thumbnail: imageUrl})
-                .then(function() {
-                    console.log("Thumbnail successfully added to story!")
-                })
-                .catch(function(error) {
+                return db.collection("stories").doc(storyId).update({thumbnail: imageUrl})
+        .then(function() {
+                console.log("Thumbnail successfully added to story!")
+                //probably set state here that could trigger redirect.
+            }) //associate specific error handling functions as second argument in .then
+        .catch(function(error) {
                     console.error("Error adding story thumbnail: ", error);
                 })
             })
@@ -147,7 +153,7 @@ export default class AddScene extends Component{
                 </div>
                 {
                     image ? <button onClick={this.handleSubmit}>Save Image</button> : <div><h1>Image goes here!</h1><Dropzone 
-                    onDrop={this.uploadFile.bind(this)}/> </div>
+                    onDrop={this.uploadFile.bind(this) /* please no */}/> </div>
                 }
                 {   fireRedirect && (
                     <Redirect to={`/stories/${this.state.storyId}`} />

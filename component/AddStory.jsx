@@ -36,14 +36,15 @@ export default class AddStory extends Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
         //defining our data that we want to submit to the db
         const user = this.state.user;
         const title = event.target.title.value;
         const description = event.target.description.value;
         const key = `${user.user.uid}${Date.now()}` //creates a unique ID because it's the user's id + the current time in unix code. The reason for setting this here is so that we can redirect to "/stories/key" and we already have the key available to us, rather than letting the DB create an ID for us
         this.setState({id: key}); //we also set the state to the key
-
-        event.preventDefault();
+        //only one setState per function.
+        
         //save story to stories collection in db
         db.collection("stories").doc(key).set({
             id: key,
