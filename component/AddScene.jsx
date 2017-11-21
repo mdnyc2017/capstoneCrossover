@@ -4,6 +4,7 @@ import sha1 from 'sha1';
 import superagent from 'superagent';
 import {db} from '../fire';
 import { Redirect } from 'react-router'; 
+import Canvas from './Canvas'
 
 
 export default class AddScene extends Component{
@@ -16,7 +17,8 @@ export default class AddScene extends Component{
             lineStrength: 20,
             colorReduction: 50,
             id: '',
-            user: {}
+            user: {},
+            canvasImages: []
         }
         this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -100,15 +102,13 @@ export default class AddScene extends Component{
 
     handleSubmitPreview(evt) {
         evt.preventDefault();
-        // this.setState({
-        //     previewUrl: `${url.slice(0,ind+7)}w_500/e_cartoonify:${this.state.lineStrength}:${this.state.colorReduction}${url.slice(ind+7)}`
-        // })
+        this.setState({
+            canvasImages: [...this.state.canvasImages, this.state.previewUrl]
+        })
     }
     handleChange(evt) {
         const url = this.state.imageUrl
         const ind = url.indexOf('upload/')
-        console.log('lineStrength', evt.target.value)
-        console.log(this.state.previewUrl)
         this.setState({
           [evt.target.name]: evt.target.value,
           previewUrl: `${url.slice(0,ind+7)}w_500/e_cartoonify:${this.state.lineStrength}:${this.state.colorReduction}${url.slice(ind+7)}`
@@ -122,7 +122,6 @@ export default class AddScene extends Component{
 
     render() {
         const image = this.state.previewUrl
-        //const previewImage = this.state.previewUrl
         return (
             <div>
                 <div><h1>Image goes here!</h1>
@@ -138,6 +137,8 @@ export default class AddScene extends Component{
                                 <input 
                                     className="form-field" 
                                     type="number"
+                                    min='0'
+                                    max='100'
                                     value={this.state.lineStrength} 
                                     name="lineStrength" type="number" 
                                     onChange={this.handleChange}
@@ -145,17 +146,19 @@ export default class AddScene extends Component{
                                 <input 
                                     className="form-field"
                                     type="number"
+                                    min='0'
+                                    max='100'
                                     value={this.state.colorReduction} 
                                     name="colorReduction" 
                                     onChange={this.handleChange}
                                 />
+                                <button type="submit">Add to Canvas</button>
                             </form>
-                            <button type="submit">Apply Changes</button>
                             </div>
                     :
                     <span></span>
             }
-
+            <Canvas style={{"background-color": "white"}} images={this.state.canvasImages}/>
             </div>
         )
     }
