@@ -12,12 +12,14 @@ export default class AddScene extends Component{
         this.state = {
             storyId: "",
             imageUrl:"",
-            image: {},
+            previewUrl: "",
+            lineStrength: "",
+            colorReduction: "",
             id: '',
-            user: {},
-            fireRedirect: false
+            user: {}
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     // componentDidMount() {
     //     db.collection('scenes').onSnapshot(snapshot => this.setState({
@@ -91,7 +93,7 @@ export default class AddScene extends Component{
             }
             const url = resp.body.url
             const ind = url.indexOf('upload/')
-            const newUrl = url.slice(0,ind+7) + 'w_800/e_cartoonify/' + url.slice(ind+7)
+            const newUrl = `${url.slice(0,ind+7)}w_500/e_cartoonify:${this.state.lineStrength}:${this.state.colorReduction}${url.slice(ind+7)}`
             this.setState({
                 imageUrl: newUrl
             })
@@ -102,57 +104,69 @@ export default class AddScene extends Component{
     //     imageUrl: this.state.imageUrl
     // })
 
-    handleSubmit() {
-        const user = this.state.user
-        const key = `${user.user.uid}${Date.now()}`
-        const storyId = this.state.storyId
-        const imageUrl = this.state.imageUrl
-        this.setState({id: key})
-        db.collection('scenes').doc(key).set({
-            imageUrl
-        })
-        .then(function() {
-            db.collection("stories").doc(storyId).collection("scenes").doc(key).set({
-                imageUrl,
-                id: key
-            })
-            .then(function() {
-                console.log("Scene successfully added to story!");
-                db.collection("stories").doc(storyId).update({thumbnail: imageUrl})
-                .then(function() {
-                    console.log("Thumbnail successfully added to story!")
-                })
-                .catch(function(error) {
-                    console.error("Error adding story thumbnail: ", error);
-                })
-            })
-            .catch(function(error) {
-                console.error("Error adding scene to story: ", error);
-            });
-        })
-        .catch(function(error) {
-            console.error("Error creating scene: ", error);
-        });
-        this.setState({fireRedirect: true})
-        alert('image submitted!')
+    handleSubmitPreview(e) {
+        console.log(e.target.value)
     }
-
+    handleChange(evt) {
+        console.log(evt.target.value)
+        this.setState({
+          [evt.target.name]: evt.target.value
+        });
+      }
     render() {
-        const image = this.state.imageUrl;
-        const { fireRedirect } = this.state
+        const image = this.state.imageUrl
         return (
             <div>
                 <div>
                     <img src={image} /> 
                 </div>
                 {
-                    image ? <button onClick={this.handleSubmit}>Save Image</button> : <div><h1>Image goes here!</h1><Dropzone 
+                    image ? <button onClick={this.handleSubmitPreview}>Save Image</button> : <div><h1>Image goes here!</h1><Dropzone 
                     onDrop={this.uploadFile.bind(this)}/> </div>
                 }
-                {   fireRedirect && (
-                    <Redirect to={`/stories/${this.state.storyId}`} />
-                )}
+                <form onSubmit={this.handleSubmitPreview}>
+                    <input 
+                        className="form-field" 
+                        type="number"
+                        value={this.state.lineStrength} 
+                        name="lineStrength" type="number" 
+                        onChange={this.handleChange}
+                    />
+                    <input 
+                        className="form-field"
+                        type="number"
+                        value={this.state.colorReduction} 
+                        name="colorReduction" 
+                        onChange={this.handleChange}
+                    />
+                </form>
+                <button type="submit">Apply Changes</button>
             </div>
         )
     }
 }
+
+// const user = this.state.user
+// const key = `${user.user.uid}${Date.now()}`
+// const storyId = this.state.storyId
+// const imageUrl = this.state.imageUrl
+// this.setState({id: key})
+        // db.collection('scenes').doc(key).set({
+        //     imageUrl
+        // })
+        // .then(function() {
+        //     db.collection("stories").doc(storyId).collection("scenes").doc(key).set({
+        //         imageUrl
+        //     })
+        //     .then(function() {
+        //         console.log("Scene successfully added to Story!");
+        //     })
+        //     .catch(function(error) {
+        //         console.error("Error adding scene to story: ", error);
+        //     });
+        // })
+        // .catch(function(error) {
+        //     console.error("Error creating scene: ", error);
+        // });
+
+        // alert('image submitted!')
