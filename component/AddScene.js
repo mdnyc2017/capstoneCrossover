@@ -12,12 +12,14 @@ export default class AddScene extends Component{
         this.state = {
             storyId: "",
             imageUrl:"",
-            image: {},
+            previewUrl: "",
+            lineStrength: 20,
+            colorReduction: 50,
             id: '',
-            user: {},
-            fireRedirect: false
+            user: {}
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -84,49 +86,94 @@ export default class AddScene extends Component{
             }
             const url = resp.body.url
             const ind = url.indexOf('upload/')
-            const newUrl = url.slice(0,ind+7) + 'w_800/e_cartoonify/' + url.slice(ind+7)
+            const newUrl = `${url.slice(0,ind+7)}w_500/e_cartoonify:${this.state.lineStrength}:${this.state.colorReduction}${url.slice(ind+7)}`
             this.setState({
-                imageUrl: newUrl
+                imageUrl: url,
+                previewUrl: newUrl
             })
         })
     }
 
-    // handleSubmit(event) {
-    //     event.preventDefault();
-    //     const user = this.state.user
-    //     const key = `${user.user.uid}${Date.now()}`
-    //     const storyId = this.state.storyId
-    //     const imageUrl = this.state.imageUrl
+    // db.collection('scenes').doc().set({
+    //     imageUrl: this.state.imageUrl
+    // })
 
-    //     db.collection('scenes').doc(key).set({
-    //         imageUrl
-    //     })
-    //     .then(() => db.collection('stories').doc(storyId).collection('scenes').doc(key).set({
-    //             imageUrl,
-    //             id: key
-    //         })
-    //     )
-    //     .then(() => db.collection('stories').doc(storyId).update({thumbnail: imageUrl}))
-    //     .then(() => this.setState({fireRedirect: true, id: key}))
-    //     .catch((error) => console.error('Error creating scene: ', error));
-    // }
+    handleSubmitPreview(evt) {
+        evt.preventDefault();
+        // this.setState({
+        //     previewUrl: `${url.slice(0,ind+7)}w_500/e_cartoonify:${this.state.lineStrength}:${this.state.colorReduction}${url.slice(ind+7)}`
+        // })
+    }
+    handleChange(evt) {
+        const url = this.state.imageUrl
+        const ind = url.indexOf('upload/')
+        console.log('lineStrength', evt.target.value)
+        console.log(this.state.previewUrl)
+        this.setState({
+          [evt.target.name]: evt.target.value,
+          previewUrl: `${url.slice(0,ind+7)}w_500/e_cartoonify:${this.state.lineStrength}:${this.state.colorReduction}${url.slice(ind+7)}`
+        });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+    }
 
     render() {
-        const image = this.state.imageUrl;
-        const { fireRedirect } = this.state
+        const image = this.state.previewUrl
+        //const previewImage = this.state.previewUrl
         return (
             <div>
+                <div><h1>Image goes here!</h1>
+                <Dropzone
+                    onDrop={this.uploadFile.bind(this)}/> </div>
                 <div>
                     <img src={image} /> 
                 </div>
                 {
-                    image ? <button onClick={this.handleSubmit}>Save Image</button> : <div><h1>Image goes here!</h1><Dropzone 
-                    onDrop={this.uploadFile.bind(this)}/> </div>
-                }
-                {   fireRedirect && (
-                    <Redirect to={`/stories/${this.state.storyId}`} />
-                )}
+                    image ? 
+                            <div>
+                                <form onSubmit={this.handleSubmitPreview}>
+                                <input 
+                                    className="form-field" 
+                                    type="number"
+                                    value={this.state.lineStrength} 
+                                    name="lineStrength" type="number" 
+                                    onChange={this.handleChange}
+                                />
+                                <input 
+                                    className="form-field"
+                                    type="number"
+                                    value={this.state.colorReduction} 
+                                    name="colorReduction" 
+                                    onChange={this.handleChange}
+                                />
+                            </form>
+                            <button type="submit">Apply Changes</button>
+                            </div>
+                    :
+                    <span></span>
+            }
+
             </div>
         )
     }
 }
+
+        // const user = this.state.user
+        // const key = `${user.user.uid}${Date.now()}`
+        // const storyId = this.state.storyId
+        // const imageUrl = this.state.previewUrl
+
+        // db.collection('scenes').doc(key).set({
+        //     imageUrl
+        // })
+        // .then(() => db.collection('stories').doc(storyId).collection('scenes').doc(key).set({
+        //         imageUrl,
+        //         id: key
+        //     })
+        // )
+        // .then(() => db.collection('stories').doc(storyId).update({thumbnail: imageUrl}))
+        // .then(() => this.setState({fireRedirect: true, id: key}))
+        // .catch((error) => console.error('Error creating scene: ', error));
