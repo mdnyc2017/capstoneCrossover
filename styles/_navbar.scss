@@ -10,7 +10,10 @@ body {
         margin: 0;
         padding: 0;
         overflow: hidden;
-        background-color: rgb(255, 230, 0);   
+        background-color: rgb(255, 230, 0);  
+        :hover {
+          background-color: rgb(0, 140, 255);
+        } 
     }
     &-li {
       float: left;
@@ -22,9 +25,6 @@ body {
         text-decoration: none;
         color: rgb(0, 140, 255);
       }
-      :hover {
-        background-color: rgb(0, 140, 255);
-        }
     }
   }
 }

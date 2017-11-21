@@ -6,9 +6,15 @@ export default function Home() {
       <div className="home-page-top">
         Crossover
       </div>
-      <div className="home-page-create">CREATE</div>
-      <div className="home-page-collaborate">COLLABORATE</div>
-      <div className="home-page-combine">COMBINE</div>
+      <div className="home-page-create">
+        <div className="home-page-create-b">CREATE</div>
+      </div>
+      <div className="home-page-collaborate">
+        <div className="home-page-collaborate-b">COLLABORATE</div>
+      </div>
+      <div className="home-page-combine">
+        <div className="home-page-combine-b">COMBINE</div>
+      </div>
     </div>
   );
 }
