@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Barrio');
 @import url('https://fonts.googleapis.com/css?family=Passion+One|Permanent+Marker');
 @import 'home';
+@import 'navbar';
 
 body {
     background-color: rgb(255, 45, 17);
@@ -8,26 +9,11 @@ body {
         margin-bottom: 50px;
         margin-top: 25px;
     }
-    .navbar {
-        font-family: 'Passion One', cursive;        
-        text-decoration: none;        
-        margin: -8px;
-        text-align: center;            
-        .navStyle {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: rgb(255, 230, 0);   
-        }
-        .liStyle {
-            margin-left: 5em;
-            float: left;
-            color: white;
-            text-align: center;
-            padding: 1em 1em;
-            text-decoration: none;
-        }
+    .page {
+        position: relative;
+        margin: 0 auto;
+        height: 100%;
+        width: 100%;
     }
 }
 
