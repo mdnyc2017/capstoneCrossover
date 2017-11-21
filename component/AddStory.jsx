@@ -36,43 +36,32 @@ export default class AddStory extends Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
+
         //defining our data that we want to submit to the db
         const user = this.state.user;
         const title = event.target.title.value;
         const description = event.target.description.value;
-        const key = `${user.user.uid}${Date.now()}` //creates a unique ID because it's the user's id + the current time in unix code. The reason for setting this here is so that we can redirect to "/stories/key" and we already have the key available to us, rather than letting the DB create an ID for us
-        this.setState({id: key}); //we also set the state to the key
+        const key = `${user.user.uid}${Date.now()}` //creates a unique ID of user's id + the current time in unix code. Purpose: so we can redirect to "/stories/key" and already have the key available to us
 
-        event.preventDefault();
         //save story to stories collection in db
-        db.collection("stories").doc(key).set({
+        db.collection('stories').doc(key).set({
             id: key,
             title: title,
             description: description
         })
-        .then(function() {
-            console.log("Story successfully created!", user.user.uid);
-
-            //save story to user>stories collection in db
-            db.collection("users").doc(user.user.uid).collection("stories").doc(key).set({
+        //save story to user>stories collection in db
+        .then(() => db.collection('users').doc(user.user.uid).collection('stories').doc(key).set({
                 id: key,
                 title: title,
                 description: description
             })
-            .then(function() {
-                console.log("Story successfully added to user!");
-            })
-            .catch(function(error) {
-                console.error("Error adding story to user: ", error);
-            });
-        })
-        .catch(function(error) {
-            console.error("Error creating story: ", error);
-        });
-
+        )
         //finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
-        this.setState({ fireRedirect: true })
-        console.log("addstory user Id from state*****", this.state.user)
+        .then(() => this.setState({ id: key, fireRedirect: true }))
+        .catch((error) =>
+            console.error('Error creating story: ', error)
+        )
     }
 
     render() {
