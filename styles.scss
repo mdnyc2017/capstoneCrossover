@@ -13,9 +13,45 @@ body {
             font-size: 3vw;
             height: 12.5em;
             margin-top: -60px;            
-            color: rgb(255, 230, 0);
+            color: white;
             -webkit-text-stroke: 2.0px #000000;
             background-image: url("https://www.verdict.co.uk/wp-content/uploads/2017/09/get-into-comic-books.jpg")
+        }
+        .home-page-create {
+            color: white;
+            -webkit-text-stroke: 1.0px #000000;            
+            background-color: rgb(255, 231, 16);
+            border-top-style: solid;
+            border-top-width: 2px;
+            border-top-color: black;            
+        }
+        .home-page-collaborate {
+            color: white;  
+            -webkit-text-stroke: 1.0px #000000;                        
+            background-color: rgb(255, 230, 0);
+            border-top-style: solid;
+            border-top-width: 2px;
+            border-top-color: black;                
+        }
+        .home-page-combine {
+            color: white;    
+            -webkit-text-stroke: 1.0px #000000;                        
+            background-color: rgb(255, 230, 0);   
+            border-top-style: solid;
+            border-top-width: 2px;
+            border-top-color: black;             
+        }
+        .home-page-top:hover {
+            color: rgb(255, 16, 16);            
+        }
+        .home-page-create:hover {
+            background-color: rgb(255, 16, 16);            
+        }
+        .home-page-collaborate:hover {
+            background-color: rgb(255, 16, 16);            
+        }
+        .home-page-combine:hover {
+            background-color: rgb(255, 16, 16);            
         }
     }    
     .story-thumbnail {
@@ -32,7 +68,7 @@ body {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: rgba(251, 202, 43, 1);
+            background-color: rgb(255, 230, 0);   
         }
         .liStyle {
             margin-left: 5em;
@@ -45,8 +81,7 @@ body {
     }
     .home-page {
         border-style: solid;
-
-        border-color: red;
+        border-color: black;
         background-color:  rgb(253, 252, 252);
         margin: 0 15em 0 15em;
     }
