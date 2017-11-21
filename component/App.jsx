@@ -36,7 +36,7 @@ export const welcome = user => {
     render() {
       const {user} = this.state || {}
       return (
-        <div>
+        <div className="page">
           <nav>
             <Navbar user={user} auth={auth}/>
           </nav>

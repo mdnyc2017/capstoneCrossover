@@ -17,7 +17,11 @@ body {
         height: 70vh;
         color: white;
         -webkit-text-stroke: 2.0px #000000;        
-        background-image: url("https://www.verdict.co.uk/wp-content/uploads/2017/09/get-into-comic-books.jpg")
+        background-image: url("https://www.verdict.co.uk/wp-content/uploads/2017/09/get-into-comic-books.jpg");
+        &:hover {
+            color: rgb(255, 16, 16);  
+            
+        }
     }
     &-create, &-collaborate, &-combine {
         color: white;
@@ -25,10 +29,7 @@ body {
         background-color: rgb(255, 231, 16);
         border-top-style: solid;
         border-top-width: 2px;
-        border-top-color: black;      
-    }
-    &-top:hover {
-        color: rgb(255, 16, 16);  
+        border-top-color: black;   
     }
     &-create:hover, &-collaborate:hover, &-combine:hover {
         background-color: rgb(255, 16, 16);            

@@ -1,8 +1,6 @@
 body {
   .navbar {
     font-family: 'Passion One', cursive;        
-    text-decoration: none;        
-    margin: -8px;
     text-align: center;            
     &-ul {
         list-style-type: none;
@@ -12,12 +10,18 @@ body {
         background-color: rgb(255, 230, 0);   
     }
     &-li {
-        margin-left: 5em;
-        float: left;
-        color: white;
-        text-align: center;
-        padding: 1em 1em;
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 1em 1em;
+      text-decoration: none;
+      :link {
         text-decoration: none;
+        color: rgb(0, 140, 255);
+      }
+      :hover {
+        background-color: rgb(0, 140, 255);
+        }
     }
   }
 }
