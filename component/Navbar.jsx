@@ -8,28 +8,27 @@ import AddStory from './AddStory';
 import Stories from './Stories';
 
 export const Navbar = ({ user, auth }) =>
-  (<div>
-        <div>
-            <div>
-                <ul className="header navStyle">
-                {/* link to home commented out as home component not ready yet */}
-                    <li className="liStyle"><a href='/'>Home</a></li>
-                    <li className="liStyle"><a href='/stories/new'>Add Stories</a></li>
-                    <li className="liStyle"><a href='/stories'>Stories</a></li>
-                     {((!user || user.isAnonymous))
-                     ? <Login className="liStyle">
-                     Login with Google
-                       </Login>
-                     :
-                     <li 
-                        className="logout liStyle" 
-                        onClick={() => auth.signOut()}>logout
-                     </li>
-                     }
-                    </ul>
-            </div>
-        </div>
-</div>);
+  (
+    <div className="navbar">
+        <ul className="navbar-ul">
+        {/* link to home commented out as home component not ready yet */}
+        <li className="navbar-li"><a href="/">Home</a></li>
+        <li className="navbar-li"><a href="/stories/new">Add Stories</a></li>
+        <li className="navbar-li"><a href="/stories">Stories</a></li>
+        {((!user || user.isAnonymous))
+            ? <Login className="navbar-li">
+            Login with Google
+                </Login>
+            :
+            <li
+                className="navbar-li"
+                onClick={() => auth.signOut()}
+            >logout
+            </li>
+            }
+        </ul>
+    </div>
+  );
 
 
 // <div>
