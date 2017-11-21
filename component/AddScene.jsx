@@ -158,7 +158,7 @@ export default class AddScene extends Component{
                     :
                     <span></span>
             }
-            <Canvas style={{"background-color": "white"}} images={this.state.canvasImages}/>
+            <Canvas images={this.state.canvasImages}/>
             </div>
         )
     }
