@@ -8,11 +8,6 @@ export default class Canvas extends Component {
       super(props);
       this.state = {
         color: 'green',
-        xTop: 5,
-        yTop: 5,
-        xBottom: 60,
-        yBottom: 80,
-        draggable: true,
         image: null,
         canvasImages: []
       }
@@ -22,24 +17,43 @@ export default class Canvas extends Component {
       this.handleMouseOver = this.handleMouseOver.bind(this);
       this.anchorHandleMouseDownTouchStartStart = this.anchorHandleMouseDownTouchStartStart.bind(this);
       this.anchorHandleDragEnd = this.anchorHandleDragEnd.bind(this);
+      this.prepareComponentState = this.prepareComponentState.bind(this);
+    }
+
+    componentWillMount() {
+      console.log("WILLMOUNT this.props: ", this.props)
+      this.prepareComponentState(this.props);
+    }
+    
+    componentWillReceiveProps(nextProps) {
+      console.log("RECEIVEPROPS this.props: ", this.props)
+      console.log("RECEIVEPROPS nextProps: ", nextProps)
+      if (nextProps.images.length && nextProps.images.length !== this.props.images.length) {
+        this.prepareComponentState(nextProps);
+      }
+    }
+    
+    prepareComponentState(props) {
+      //set data on state/template
+      // var currentResponses = this.state.candidatesResponses.filter(function (elem) {
+      //   return elem.questionId === props.currentQuestion.id;
+      // });
+      props.images.forEach(imageUrl => {
+        const newImage = new window.Image();
+        newImage.src = imageUrl
+        this.state.canvasImages.push({
+                image: newImage,
+                xTop: 5,
+                yTop: 5,
+                xBottom: 80,
+                yBottom: 80,
+                draggable: true
+            }
+        )
+    })
     }
 
    
-     componentDidMount() {
-        this.props.images.forEach(imageUrl => {
-            const newImage = new window.Image();
-            newImage.src = imageUrl
-            this.setState({
-                canvasImages: [...this.state.canvasImages, {
-                    image: newImage,
-                    xTop: 5,
-                    yTop: 5,
-                    xBottom: 80,
-                    yBottom: 80
-                }]
-            })
-        })
-    } 
     
   
     handleClick() {
@@ -90,7 +104,7 @@ export default class Canvas extends Component {
           fill="white"
         >
           <Circle
-            //fill="black"
+            fill="black"
             x={this.state.xBottom}
             y={this.state.yBottom}
             ref={anchor => { this.anchor = anchor; }}
