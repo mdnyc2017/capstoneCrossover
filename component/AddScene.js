@@ -19,14 +19,8 @@ export default class AddScene extends Component{
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-    // componentDidMount() {
-    //     db.collection('scenes').onSnapshot(snapshot => this.setState({
-    //         images: snapshot.docs
-    //     }))
-    // }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         this.setState({ user: nextProps.currentUser, storyId: this.props.match.params.id });
     }
 
@@ -68,7 +62,7 @@ export default class AddScene extends Component{
         }
 
         //********************READY TO UPLOAD FILE USING ABOVE INFORMATION **********************/
-        //i am using superagent because i was having difficulty using axios
+        //I am using superagent because i was having difficulty using axios
         //superagent documentation isn't difficult to understand 
         //https://visionmedia.github.io/superagent/ ---reference if notes aren't clear
 
@@ -86,7 +80,6 @@ export default class AddScene extends Component{
         
         uploadRequest.end((err, resp) => { //'end' sends the request
             if(err){
-                console.log(err, null)
                 return
             }
             const url = resp.body.url
@@ -98,44 +91,25 @@ export default class AddScene extends Component{
         })
     }
 
-    // db.collection('scenes').doc().set({
-    //     imageUrl: this.state.imageUrl
-    // })
+    // handleSubmit(event) {
+    //     event.preventDefault();
+    //     const user = this.state.user
+    //     const key = `${user.user.uid}${Date.now()}`
+    //     const storyId = this.state.storyId
+    //     const imageUrl = this.state.imageUrl
 
-    handleSubmit() {
-        const user = this.state.user
-        const key = `${user.user.uid}${Date.now()}`
-        const storyId = this.state.storyId
-        const imageUrl = this.state.imageUrl
-        this.setState({id: key})
-        db.collection('scenes').doc(key).set({
-            imageUrl
-        })
-        .then(function() {
-            db.collection("stories").doc(storyId).collection("scenes").doc(key).set({
-                imageUrl,
-                id: key
-            })
-            .then(function() {
-                console.log("Scene successfully added to story!");
-                db.collection("stories").doc(storyId).update({thumbnail: imageUrl})
-                .then(function() {
-                    console.log("Thumbnail successfully added to story!")
-                })
-                .catch(function(error) {
-                    console.error("Error adding story thumbnail: ", error);
-                })
-            })
-            .catch(function(error) {
-                console.error("Error adding scene to story: ", error);
-            });
-        })
-        .catch(function(error) {
-            console.error("Error creating scene: ", error);
-        });
-        this.setState({fireRedirect: true})
-        alert('image submitted!')
-    }
+    //     db.collection('scenes').doc(key).set({
+    //         imageUrl
+    //     })
+    //     .then(() => db.collection('stories').doc(storyId).collection('scenes').doc(key).set({
+    //             imageUrl,
+    //             id: key
+    //         })
+    //     )
+    //     .then(() => db.collection('stories').doc(storyId).update({thumbnail: imageUrl}))
+    //     .then(() => this.setState({fireRedirect: true, id: key}))
+    //     .catch((error) => console.error('Error creating scene: ', error));
+    // }
 
     render() {
         const image = this.state.imageUrl;

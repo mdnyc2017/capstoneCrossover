@@ -17,7 +17,13 @@ export const welcome = user => {
 
 
   export default class App extends Component {
-    state = {};
+    constructor(props) {
+      super();
+      this.state = {
+        user: {}
+      };
+    }
+    
   
     componentDidMount() {
       this.unsubscribe = auth.onAuthStateChanged(user => this.setState({user}))
