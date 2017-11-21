@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Barrio');
+@import url('https://fonts.googleapis.com/css?family=Passion+One|Permanent+Marker');
 
 body {
     background-color: rgb(245, 80, 58);
     .home-page {
-        font-family: 'Barrio', cursive;
+        font-family: 'Permanent Marker', cursive;
         text-align: center;
+        position: relative;
         .home-page-top {
-            margin-top: -22px;
-            height: 10em;
+            vertical-align: middle;
+            line-height: 12.5em;
+            font-size: 3vw;
+            height: 12.5em;
+            margin-top: -60px;            
             color: rgb(255, 230, 0);
-            text-shadow: 4px 0 black, 0 2px black, 1px 0 black, 0 1px black;
+            -webkit-text-stroke: 2.0px #000000;
             background-image: url("https://www.verdict.co.uk/wp-content/uploads/2017/09/get-into-comic-books.jpg")
         }
     }    
@@ -18,7 +23,7 @@ body {
         margin-top: 25px;
     }
     .navbar {
-        font-family: 'Barrio', cursive;
+        font-family: 'Passion One', cursive;        
         text-decoration: none;        
         margin: -8px;
         text-align: center;            
