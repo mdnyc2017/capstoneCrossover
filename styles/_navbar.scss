@@ -1,7 +1,10 @@
 body {
   .navbar {
+    background-image: url("http://uploads.neatorama.com/images/posts/972/90/90972/1466168848-2.jpg");
     font-family: 'Passion One', cursive;        
-    text-align: center;            
+    text-align: center;  
+    border-style: solid;
+    border-color: black;          
     &-ul {
         list-style-type: none;
         margin: 0;
