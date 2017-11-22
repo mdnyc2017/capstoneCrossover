@@ -3,6 +3,7 @@
 @import 'home';
 @import 'navbar';
 @import 'homeImages';
+// import Canvas.state.color as $selectedColor from './components/Canvas'
 
 body {
     margin: 0;
@@ -18,8 +19,38 @@ body {
         width: 100%;
     }
 
-    .konvajs-content {
+    .canvas-white > .konvajs-content {
         background: white;
+    }
+
+    .canvas-pinkdots > .konvajs-content {
+        background: url('/pinkdots.jpg');
+        background-size: cover;
+    }
+
+    .canvas-bluedots > .konvajs-content {
+        background: url('/bluedots.jpg');
+        background-size: cover;
+    }
+
+    .canvas-purpledots > .konvajs-content {
+        background: url('/purpledots.jpg');
+        background-size: cover;
+    }
+
+    .canvas-orangedots > .konvajs-content {
+        background: url('/orangedots.jpg');
+        background-size: cover;
+    }
+
+    .canvas-redyellowdots > .konvajs-content {
+        background: url('/redyellowdots.jpg');
+        background-size: cover;
+    }
+
+    .canvas-crazy > .konvajs-content {
+        background: url('/crazy.jpg');
+        background-size: cover;
     }
 }
 
