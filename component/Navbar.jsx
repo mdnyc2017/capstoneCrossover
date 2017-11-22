@@ -16,14 +16,17 @@ export const Navbar = ({ user, auth }) =>
         <li className="navbar-li"><a href="/stories/new">Add Stories</a></li>
         <li className="navbar-li"><a href="/stories">Stories</a></li>
         {((!user || user.isAnonymous))
-            ? <Login className="navbar-li">
-            Login with Google
+            ? <li className="navbar-li">
+                <Login>
+                    Login with Google
                 </Login>
+            </li>
+                
             :
             <li
                 className="navbar-li"
                 onClick={() => auth.signOut()}
-            >logout
+            >Logout
             </li>
             }
         </ul>
