@@ -15,11 +15,13 @@ export default class SingleStory extends Component {
     }
 
     componentDidMount() {
+        //Get Scenes
         db.collection('stories').doc(this.props.match.params.id).collection('scenes')
         .onSnapshot(snapshot => this.setState({
             scenes: snapshot.docs
         }))
-                
+        
+        //Get Story info
         db.collection('stories').doc(this.props.match.params.id)
         .onSnapshot(snapshot => this.setState({
             storyTitle: snapshot.data().title,
@@ -28,14 +30,16 @@ export default class SingleStory extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //we set the user on state to the current user & the storyId to the id in the URL path
+        //We set the user on state to the current user & the storyId to the id in the URL path
         this.setState({ user: nextProps.currentUser, storyId: this.props.match.params.id });
 
+        //Get Scenes
         db.collection('stories').doc(this.props.match.params.id).collection('scenes')
         .onSnapshot(snapshot => this.setState({
             scenes: snapshot.docs
         }))
         
+        //Get Story info
         db.collection('stories').doc(this.props.match.params.id)
         .onSnapshot(snapshot => this.setState({
             storyTitle: snapshot.data().title,

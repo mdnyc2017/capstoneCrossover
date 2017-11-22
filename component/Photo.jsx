@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {Layer, Rect, Stage, Group, Image, Circle } from 'react-konva';
+import {Group, Image, Circle } from 'react-konva';
 import Konva from 'konva'
 
 export default class Photo extends Component {
@@ -11,24 +10,56 @@ export default class Photo extends Component {
         yTop: 5,
         xBottom: 80,
         yBottom: 80,
-        draggable: true
+        draggable: true,
+        fill: 'transparent'
       }
-      this.handleDragEnd = this.handleDragEnd.bind(this);
-      this.handleDragMove = this.handleDragMove.bind(this);
-      this.handleMouseOver = this.handleMouseOver.bind(this);
-      this.anchorHandleMouseDownTouchStartStart = this.anchorHandleMouseDownTouchStartStart.bind(this);
-      this.anchorHandleDragEnd = this.anchorHandleDragEnd.bind(this);
 
+      this.handleDragMoveTopLeft = this.handleDragMoveTopLeft.bind(this);
+      this.handleDragMoveTopRight = this.handleDragMoveTopRight.bind(this);
+      this.handleDragMoveBottomLeft = this.handleDragMoveBottomLeft.bind(this);
+      this.handleDragMoveBottomRight = this.handleDragMoveBottomRight.bind(this);
+      this.circleShow = this.circleShow.bind(this);
+      this.circleHide = this.circleHide.bind(this);
     }
 
-    // componentWillReceiveProps() {
-    //     this.setState({imageUrl: this.props.imageUrl})
-    // }
-  
-    handleDragMove(e) {
+    //Resizing Options:
+    handleDragMoveTopLeft(e) {
       const { x, y } = (e.target instanceof Konva.Circle) ?
         e.target.attrs : // circle
-        e.target.children[1].attrs; // rect
+        e.target.children[1].attrs; // image
+      this.setState({
+        xTop: x,
+        yTop: y
+      });
+      this.anchor.moveToTop();
+    }
+
+    handleDragMoveTopRight(e) {
+      const { x, y } = (e.target instanceof Konva.Circle) ?
+        e.target.attrs :
+        e.target.children[1].attrs;
+      this.setState({
+        xBottom: x,
+        yTop: y
+      });
+      this.anchor.moveToTop();
+    }
+
+    handleDragMoveBottomLeft(e) {
+      const { x, y } = (e.target instanceof Konva.Circle) ?
+        e.target.attrs :
+        e.target.children[1].attrs;
+      this.setState({
+        xTop: x,
+        yBottom: y
+      });
+      this.anchor.moveToTop();
+    }
+  
+    handleDragMoveBottomRight(e) {
+      const { x, y } = (e.target instanceof Konva.Circle) ?
+        e.target.attrs :
+        e.target.children[1].attrs;
       this.setState({
         xBottom: x,
         yBottom: y
@@ -36,54 +67,78 @@ export default class Photo extends Component {
       this.anchor.moveToTop();
     }
 
-    handleDragEnd(e) {
+    //Toggling Show/Hide resize circle guides
+    circleShow() {
+      this.setState({fill: 'grey'})
     }
-  
-  
-    handleMouseOver(e) {
-      //console.log('mouseover', e);
-    }
-  
-    anchorHandleMouseDownTouchStartStart(e) {
-      //console.log('anchorHandleMouseDownTouchStartStart');
-      // this.setState({draggable: false});
-    }
-  
-    anchorHandleDragEnd(e) {
-      //console.log('anchorHandleDragEnd');
-      // this.setState({draggable: true});
+
+    circleHide() {
+      this.setState({fill: 'transparent'})
     }
   
     render() {
-        const image = new window.Image();
-        image.src = this.props.imageUrl;
-        return (
-          <Group
-          onDragEnd={this.handleDragEnd}
-          onDragMove={this.handleDragMove}
-          onMouseOver={this.handleMouseOver}
-          draggable={this.state.draggable}
-        >
-          <Circle
-            fill="black"
+      const image = new window.Image();
+      image.src = this.props.imageUrl;
+
+      return (
+        <Group draggable={this.state.draggable}>
+          <Circle //bottom-right resize guide
+            fill={this.state.fill}
+            onDragMove={this.handleDragMoveBottomRight}
+            onMouseOver={this.circleShow}
+            onMouseOut={this.circleHide}
             x={this.state.xBottom}
             y={this.state.yBottom}
             ref={anchor => { this.anchor = anchor; }}
-            onMouseDown={this.anchorHandleMouseDownTouchStartStart}
-            onTouchStart={this.anchorHandleMouseDownTouchStartStart}
             radius={10}
             zIndex={1}
             draggable
           />
-            <Image
-                image={image}
-                x={this.state.xTop}
-                y={this.state.yTop}
-                width={Math.abs(this.state.xTop - this.state.xBottom)}
-                height={Math.abs(this.state.yTop - this.state.yBottom)}
-                zIndex={0}
-            />
-          </Group>
-        )
+          <Circle //bottom-left resize guide
+            fill={this.state.fill}
+            onDragMove={this.handleDragMoveBottomLeft}
+            onMouseOver={this.circleShow}
+            onMouseOut={this.circleHide}
+            x={this.state.xTop}
+            y={this.state.yBottom}
+            ref={anchor => { this.anchor = anchor; }}
+            radius={10}
+            zIndex={1}
+            draggable
+          />
+          <Circle //top-right resize guide
+            fill={this.state.fill}
+            onDragMove={this.handleDragMoveTopRight}
+            onMouseOver={this.circleShow}
+            onMouseOut={this.circleHide}
+            x={this.state.xBottom}
+            y={this.state.yTop}
+            ref={anchor => { this.anchor = anchor; }}
+            radius={10}
+            zIndex={1}
+            draggable
+          />
+          <Circle //top-left resize guide
+            fill={this.state.fill}
+            onDragMove={this.handleDragMoveTopLeft}
+            onMouseOver={this.circleShow}
+            onMouseOut={this.circleHide}
+            x={this.state.xTop}
+            y={this.state.yTop}
+            ref={anchor => { this.anchor = anchor; }}
+            radius={10}
+            zIndex={1}
+            draggable
+          />
+          <Image //image added by user
+            image={image}
+            x={this.state.xTop}
+            y={this.state.yTop}
+            width={Math.abs(this.state.xTop - this.state.xBottom)}
+            height={Math.abs(this.state.yTop - this.state.yBottom)}
+            zIndex={0}
+          />
+        </Group>
+      )
     }
   }
