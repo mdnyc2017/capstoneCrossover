@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {Layer, Rect, Stage, Group, Image, Circle } from 'react-konva';
+import {Layer, Stage} from 'react-konva';
 import Konva from 'konva';
 import Photo from './Photo';
 
@@ -12,6 +11,7 @@ export default class Canvas extends Component {
       }
       this.convertImg =this.convertImg.bind(this)
     }
+
 
    
     componentWillReceiveProps(nextProps) {
