@@ -14,11 +14,11 @@ const history = createHistory();
 const Routes = (props) => (
    <Router history={history}>
      <Switch>
-        <Route exact path='/' render={()=> <Home currentUser={props.user} />} />
-        <Route exact path='/stories' render={()=> <Stories currentUser={props.user} />} />
-        <Route exact path='/stories/new' render={()=> <AddStory currentUser={props.user} />} />
-        <Route exact path='/stories/:id' render={(newProps)=> <SingleStory currentUser={props.user} {...newProps} />} />
-        <Route exact path='/stories/:id/addscene' render={(newProps) =><AddScene currentUser={props.user} {...newProps}/>} />
+        <Route exact path="/" render={()=> <Home currentUser={props.user} />} />
+        <Route exact path="/stories" render={() => <Stories currentUser={props.user} />} />
+        <Route exact path="/stories/new" render={() => <AddStory currentUser={props.user} />} />
+        <Route exact path="/stories/:id" render={(newProps) => <SingleStory currentUser={props.user} {...newProps} />} />
+        <Route exact path="/stories/:id/addscene" render={(newProps) => <AddScene currentUser={props.user} {...newProps} />} />
     </Switch>
   </Router>
 )

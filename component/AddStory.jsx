@@ -16,48 +16,44 @@ export default class AddStory extends Component {
         this.handleChangeDescription = this.handleChangeDescription.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
-    // componentDidMount() {
-    //     db.collection('stories').onSnapshot(snapshot => this.setState({stories: snapshot.docs}))
-    // }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ user: nextProps.currentUser });  
+        this.setState({ user: nextProps.currentUser });
     }
 
     handleChangeTitle(event) {
-        //changes the state's titleInput as user types
+        //Changes the state's titleInput as user types
         this.setState({titleInput: event.target.value})
     }
 
     handleChangeDescription(event) {
-        //changes the state's descriptionInput as user types
+        //Changes the state's descriptionInput as user types
         this.setState({descriptionInput: event.target.value})
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
-        //defining our data that we want to submit to the db
+        //Defining our data that we want to submit to the db
         const user = this.state.user;
         const title = event.target.title.value;
         const description = event.target.description.value;
-        const key = `${user.user.uid}${Date.now()}` //creates a unique ID of user's id + the current time in unix code. Purpose: so we can redirect to "/stories/key" and already have the key available to us
+        const key = `${user.user.uid}${Date.now()}` //Creates a unique ID of user's id + the current time in unix code. Purpose: so we can redirect to "/stories/key" and already have the key available to us
 
-        //save story to stories collection in db
+        //Save story to stories collection in db
         db.collection('stories').doc(key).set({
             id: key,
             title: title,
             description: description
         })
-        //save story to user>stories collection in db
+        //Save story to user>stories collection in db
         .then(() => db.collection('users').doc(user.user.uid).collection('stories').doc(key).set({
                 id: key,
                 title: title,
                 description: description
             })
         )
-        //finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
+        //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
         .then(() => this.setState({ id: key, fireRedirect: true }))
         .catch((error) =>
             console.error('Error creating story: ', error)
@@ -65,7 +61,7 @@ export default class AddStory extends Component {
     }
 
     render() {
-        //grab current status of fireRedirect (true or false)
+        //Grab current status of fireRedirect (true or false)
         const { fireRedirect } = this.state
         
         return (<div className="add-story-main">

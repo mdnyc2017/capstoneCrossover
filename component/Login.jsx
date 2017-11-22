@@ -11,6 +11,9 @@ function Login(provider) {
 
 auth.onAuthStateChanged(console.log);
 
+
+
+
 export default ({ auth }) =>
 // signInWithPopup will try to open a login popup, and if it's blocked, it'll redirect.
 
