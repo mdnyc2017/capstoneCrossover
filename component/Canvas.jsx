@@ -10,6 +10,7 @@ export default class Canvas extends Component {
       this.state = {
         canvasImages: []
       }
+      this.convertImg =this.convertImg.bind(this)
     }
 
    
@@ -18,12 +19,17 @@ export default class Canvas extends Component {
           canvasImages: nextProps.images
       })
     }
-  
+
+    convertImg(e) {
+      e.preventDefault();
+      console.log(this)
+    }
   
     render() {
-        console.log(this.state.canvasImages)
       return (
-        <Stage width={1000} height={500}>
+        <div id="konva">
+        <form onSubmit={this.convertImg}>
+        <Stage width={1000} height={500} >
         <Layer>
           {this.state.canvasImages && this.state.canvasImages.map(imageUrl => {
               return (
@@ -31,6 +37,9 @@ export default class Canvas extends Component {
           })}
         </Layer>
       </Stage>
+      <button type='submit'>Submit Image!</button>
+      </form>
+      </div>
       );
     }
   }
