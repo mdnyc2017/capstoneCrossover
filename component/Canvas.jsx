@@ -7,8 +7,10 @@ export default class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      canvasImages: []
+      canvasImages: [],
+      background: 'canvas-white'
     }
+    this.changeBackgroundColor = this.changeBackgroundColor.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -17,14 +19,29 @@ export default class Canvas extends Component {
     })
   }
 
+  changeBackgroundColor(e) {
+    this.setState({background: e.target.value})
+  }
+
   render() {
     return (
-      <Stage width={1000} height={500}>
-      <Layer>
-        {this.state.canvasImages && this.state.canvasImages.map(imageUrl => <Photo key={imageUrl} imageUrl={imageUrl} /> ) //New Photo component for each user-uploaded image
-        }
-      </Layer>
-    </Stage>
+      <div>
+        <Stage width={1000} height={500} className={this.state.background} >
+          <Layer>
+            {this.state.canvasImages && this.state.canvasImages.map(imageUrl => <Photo key={imageUrl} imageUrl={imageUrl} /> ) //New Photo component for each user-uploaded image
+            }
+          </Layer>
+        </Stage>
+        <select onChange={this.changeBackgroundColor}>
+            <option value="canvas-white" selected="selected">White</option>
+            <option value="canvas-pinkdots">Pink Dots</option>
+            <option value="canvas-bluedots">Blue Dots</option>
+            <option value="canvas-orangedots">Orange Dots</option>
+            <option value="canvas-purpledots">Purple Dots</option>
+            <option value="canvas-redyellowdots">Red & Yellow Dots</option>
+            <option value="canvas-crazy">Crazy Pattern</option>
+        </select>
+    </div>
     );
   }
 }
