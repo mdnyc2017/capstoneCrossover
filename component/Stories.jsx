@@ -10,20 +10,20 @@ export default class Stories extends Component {
             scenes: []
         }
     }
-    
+
     componentDidMount() {
         db.collection('stories').onSnapshot(snapshot => this.setState({stories: snapshot.docs}))
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ user: nextProps.currentUser });  
+        this.setState({ user: nextProps.currentUser });
       }
 
     render() {
         if (!this.state.stories) return 'Loading...';
         return this.state.stories.map(story => {
             let id = story.data().id;
-            let thumbnail = story.data().thumbnail || '/default.png';
+            let thumbnail = story.data().thumbnail || '/default.png'; //default image if no scenes exist
 
             return (<div className="story-thumbnail" key={id}>
             <img src={thumbnail} width="300px" />
@@ -33,8 +33,5 @@ export default class Stories extends Component {
             <p>{story.data().description}</p>
         </div>)
         })
-        
     }
 }
-
-// <img src={`/stories/${snapshot.data().scenes[0].imageUrl}`} width="300px" />
