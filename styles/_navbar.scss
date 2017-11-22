@@ -1,32 +1,33 @@
 body {
   .navbar {
     position: relative;
-    box-shadow: 0px 3px 5px #000000;    
+    box-shadow: 0px 3px 5px #000000;  
+    z-index: 1;  
+    width: 100%;
     background-image: url("http://uploads.neatorama.com/images/posts/972/90/90972/1466168848-2.jpg");
     font-family: 'Passion One', cursive;        
     text-align: center;  
     border-bottom-style: solid;
-    border-bottom-color: black;          
+    border-bottom-color: black;   
     &-ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
-        background-color: rgb(255, 230, 0);  
+        background-color: rgb(255,247,1); 
         :hover {
           background-color: rgb(0, 140, 255);
+          color: white;
         } 
     }
     &-li {
       float: left;
-      color: white;
+      color: rgb(34, 74, 255);
+      -webkit-text-stroke: 0.25px #000000; 
+      font-size: 1.25em;             
       text-align: center;
-      padding: 1em 1em;
+      padding: 0.5em 1em 0.5em 1em;
       text-decoration: none;
-      :link {
-        text-decoration: none;
-        color: rgb(0, 140, 255);
-      }
     }
   }
 }

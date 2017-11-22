@@ -11,24 +11,21 @@ export const Navbar = ({ user, auth }) =>
   (
     <div className="navbar">
         <ul className="navbar-ul">
-        {/* link to home commented out as home component not ready yet */}
-        <li className="navbar-li"><a href="/">Home</a></li>
-        <li className="navbar-li"><a href="/stories/new">Add Stories</a></li>
-        <li className="navbar-li"><a href="/stories">Stories</a></li>
-        {((!user || user.isAnonymous))
-            ? <li className="navbar-li">
-                <Login>
-                    Login with Google
-                </Login>
-            </li>
-                
-            :
-            <li
-                className="navbar-li"
-                onClick={() => auth.signOut()}
-            >Logout
-            </li>
-            }
+        <a href="/"><li className="navbar-li">Home</li></a>
+        <a href="/stories/new"><li className="navbar-li">Add Stories</li></a>
+        <a href="/stories"><li className="navbar-li">Stories</li></a>
+                {((!user || user.isAnonymous))
+                    ? 
+                        <Login>
+                            Login with Google
+                        </Login>
+                    :
+                    <li
+                        className="navbar-li"
+                        onClick={() => auth.signOut()}
+                    >Logout
+                    </li>
+                }
         </ul>
     </div>
   );
