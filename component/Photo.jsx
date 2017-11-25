@@ -8,8 +8,8 @@ export default class Photo extends Component {
       this.state = {
         xTop: 5,
         yTop: 5,
-        xBottom: 80,
-        yBottom: 80,
+        xBottom: 280,
+        yBottom: 280,
         draggable: true,
         fill: 'transparent'
       }
@@ -20,6 +20,12 @@ export default class Photo extends Component {
       this.handleDragMoveBottomRight = this.handleDragMoveBottomRight.bind(this);
       this.circleShow = this.circleShow.bind(this);
       this.circleHide = this.circleHide.bind(this);
+    }
+
+    componentDidMount() {
+      const image = new window.Image();
+      image.src = this.props.imageUrl;
+      this.setState({xTop: 0, yTop: 0, xBottom: image.width, yBottom: image.height})
     }
 
     //Resizing Options:
@@ -91,7 +97,7 @@ export default class Photo extends Component {
             y={this.state.yBottom}
             ref={anchor => { this.anchor = anchor; }}
             radius={10}
-            zIndex={1}
+            zIndex={this.props.zIndex}
             draggable
           />
           <Circle //bottom-left resize guide
@@ -103,7 +109,7 @@ export default class Photo extends Component {
             y={this.state.yBottom}
             ref={anchor => { this.anchor = anchor; }}
             radius={10}
-            zIndex={1}
+            zIndex={this.props.zIndex}
             draggable
           />
           <Circle //top-right resize guide
@@ -115,7 +121,7 @@ export default class Photo extends Component {
             y={this.state.yTop}
             ref={anchor => { this.anchor = anchor; }}
             radius={10}
-            zIndex={1}
+            zIndex={this.props.zIndex}
             draggable
           />
           <Circle //top-left resize guide
@@ -127,16 +133,18 @@ export default class Photo extends Component {
             y={this.state.yTop}
             ref={anchor => { this.anchor = anchor; }}
             radius={10}
-            zIndex={1}
+            zIndex={this.props.zIndex}
             draggable
           />
           <Image //image added by user
             image={image}
+            onMouseOver={this.circleShow}
+            onMouseOut={this.circleHide}
             x={this.state.xTop}
             y={this.state.yTop}
             width={Math.abs(this.state.xTop - this.state.xBottom)}
             height={Math.abs(this.state.yTop - this.state.yBottom)}
-            zIndex={0}
+            zIndex={this.props.zIndex}
           />
         </Group>
       )
