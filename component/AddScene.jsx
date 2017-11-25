@@ -22,6 +22,7 @@ export default class AddScene extends Component{
         }
         this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleAddOverlay = this.handleAddOverlay.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -97,6 +98,12 @@ export default class AddScene extends Component{
         })
     }
 
+    handleAddOverlay(image) {
+        this.setState({
+            canvasImages: [...this.state.canvasImages, image]
+        })
+    }
+
     handleChange(evt) {
         const url = this.state.imageUrl
         const ind = url.indexOf('upload/')
@@ -144,11 +151,25 @@ export default class AddScene extends Component{
                                     onChange={this.handleChange}
                                 />
                                 <button type="submit">Add to Canvas</button>
-                            </form>
+                                </form>
                             </div>
                     : <span />
             }
             <Canvas images={this.state.canvasImages} />
+            <div className="overlay-options">
+                <img src="/captionbox.png" onClick={() => this.handleAddOverlay('/captionbox.png')} width="100px" />
+                <img src="/quote1.png" onClick={() => this.handleAddOverlay('/quote1.png')} width="100px" />
+                <img src="/quote2.png" onClick={() => this.handleAddOverlay('/quote2.png')} width="100px" />
+                <img src="/quote3.png" onClick={() => this.handleAddOverlay('/quote3.png')} width="100px" />
+                <img src="/quote4.png" onClick={() => this.handleAddOverlay('/quote4.png')} width="100px" />
+                <img src="/quote5.png" onClick={() => this.handleAddOverlay('/quote5.png')} width="100px" />
+                <img src="/quote6.png" onClick={() => this.handleAddOverlay('/quote6.png')} width="100px" />
+                <img src="/quote7.png" onClick={() => this.handleAddOverlay('/quote7.png')} width="100px" />
+                <img src="/quote8.png" onClick={() => this.handleAddOverlay('/quote8.png')} width="100px" />
+                <img src="/quote9.png" onClick={() => this.handleAddOverlay('/quote9.png')} width="100px" />
+                <img src="/quote10.png" onClick={() => this.handleAddOverlay('/quote10.png')} width="100px" />
+                <img src="/quote11.png" onClick={() => this.handleAddOverlay('/quote11.png')} width="100px" />
+            </div>
             </div>
         )
     }

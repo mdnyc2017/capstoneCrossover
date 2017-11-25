@@ -28,12 +28,12 @@ export default class Canvas extends Component {
       <div>
         <Stage width={1000} height={500} className={this.state.background} >
           <Layer>
-            {this.state.canvasImages && this.state.canvasImages.map(imageUrl => <Photo key={imageUrl} imageUrl={imageUrl} /> ) //New Photo component for each user-uploaded image
+            {this.state.canvasImages && this.state.canvasImages.map((imageUrl, index) => <Photo key={imageUrl} imageUrl={imageUrl} zIndex={index} /> ) //New Photo component for each user-uploaded image
             }
           </Layer>
         </Stage>
-        <select onChange={this.changeBackgroundColor}>
-            <option value="canvas-white" selected="selected">White</option>
+        <select defaultValue="canvas-white" onChange={this.changeBackgroundColor}>
+            <option value="canvas-white">White</option>
             <option value="canvas-pinkdots">Pink Dots</option>
             <option value="canvas-bluedots">Blue Dots</option>
             <option value="canvas-orangedots">Orange Dots</option>
