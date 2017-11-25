@@ -3,16 +3,16 @@ import { Group, Image, Circle } from "react-konva";
 import Konva from "konva";
 
 export default class Photo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      xTop: 5,
-      yTop: 5,
-      xBottom: 80,
-      yBottom: 80,
-      draggable: true,
-      fill: "transparent"
-    };
+    constructor(props) {
+      super(props);
+      this.state = {
+        xLeft: 5,
+        yTop: 5,
+        xRight: 280,
+        yBottom: 280,
+        draggable: true,
+        fill: 'transparent'
+      }
 
     this.handleDragMoveTopLeft = this.handleDragMoveTopLeft.bind(this);
     this.handleDragMoveTopRight = this.handleDragMoveTopRight.bind(this);
@@ -22,6 +22,10 @@ export default class Photo extends Component {
     this.circleHide = this.circleHide.bind(this);
   }
 
+  componentWillReceiveProps() {
+    this.setState({xLeft: 0, yTop: 0, xRight: this.props.image.width, yBottom: this.props.image.height})
+  }
+
   //Resizing Options:
   handleDragMoveTopLeft(e) {
     const { x, y } =
@@ -29,8 +33,8 @@ export default class Photo extends Component {
         ? e.target.attrs // circle
         : e.target.children[1].attrs; // image
     this.setState({
-      xTop: x,
-      yTop: y
+      xLeft: (x >= this.state.xRight) ? this.state.xRight : x,
+      yTop: (y >= this.state.yBottom) ? this.state.yBottom : y
     });
     this.anchor.moveToTop();
   }
@@ -41,8 +45,8 @@ export default class Photo extends Component {
         ? e.target.attrs
         : e.target.children[1].attrs;
     this.setState({
-      xBottom: x,
-      yTop: y
+      xRight: (x <= this.state.xLeft) ? this.state.xLeft : x,
+      yTop: (y >= this.state.yBottom) ? this.state.yBottom : y
     });
     this.anchor.moveToTop();
   }
@@ -53,8 +57,8 @@ export default class Photo extends Component {
         ? e.target.attrs
         : e.target.children[1].attrs;
     this.setState({
-      xTop: x,
-      yBottom: y
+      xLeft: (x >= this.state.xRight) ? this.state.xRight : x,
+      yBottom: (y <= this.state.yTop) ? this.state.yTop : y
     });
     this.anchor.moveToTop();
   }
@@ -65,8 +69,8 @@ export default class Photo extends Component {
         ? e.target.attrs
         : e.target.children[1].attrs;
     this.setState({
-      xBottom: x,
-      yBottom: y
+      xRight: (x <= this.state.xLeft) ? this.state.xLeft : x,
+      yBottom: (y <= this.state.yTop) ? this.state.yTop : y
     });
     this.anchor.moveToTop();
   }
@@ -81,77 +85,68 @@ export default class Photo extends Component {
   }
 
   render() {
-    // const image = new window.Image();
-    // image.crossOrigin="Anonymous"
-    // image.src = this.props.imageUrl;
-    // console.log('image', image)
     return (
-      <Group draggable={this.state.draggable}>
-        <Circle //bottom-right resize guide
-          fill={this.state.fill}
-          onDragMove={this.handleDragMoveBottomRight}
-          onMouseOver={this.circleShow}
-          onMouseOut={this.circleHide}
-          x={this.state.xBottom}
-          y={this.state.yBottom}
-          ref={anchor => {
-            this.anchor = anchor;
-          }}
-          radius={10}
-          zIndex={1}
-          draggable
-        />
-        <Circle //bottom-left resize guide
-          fill={this.state.fill}
-          onDragMove={this.handleDragMoveBottomLeft}
-          onMouseOver={this.circleShow}
-          onMouseOut={this.circleHide}
-          x={this.state.xTop}
-          y={this.state.yBottom}
-          ref={anchor => {
-            this.anchor = anchor;
-          }}
-          radius={10}
-          zIndex={1}
-          draggable
-        />
-        <Circle //top-right resize guide
-          fill={this.state.fill}
-          onDragMove={this.handleDragMoveTopRight}
-          onMouseOver={this.circleShow}
-          onMouseOut={this.circleHide}
-          x={this.state.xBottom}
-          y={this.state.yTop}
-          ref={anchor => {
-            this.anchor = anchor;
-          }}
-          radius={10}
-          zIndex={1}
-          draggable
-        />
-        <Circle //top-left resize guide
-          fill={this.state.fill}
-          onDragMove={this.handleDragMoveTopLeft}
-          onMouseOver={this.circleShow}
-          onMouseOut={this.circleHide}
-          x={this.state.xTop}
-          y={this.state.yTop}
-          ref={anchor => {
-            this.anchor = anchor;
-          }}
-          radius={10}
-          zIndex={1}
-          draggable
-        />
-        <Image //image added by user
-          image={this.props.image}
-          x={this.state.xTop}
-          y={this.state.yTop}
-          width={Math.abs(this.state.xTop - this.state.xBottom)}
-          height={Math.abs(this.state.yTop - this.state.yBottom)}
-          zIndex={0}
-        />
-      </Group>
-    );
-  }
+    <Group 
+      draggable={this.state.draggable}
+    >
+      <Circle //bottom-right resize guide
+        fill={this.state.fill}
+        onDragMove={this.handleDragMoveBottomRight}
+        onMouseOver={this.circleShow}
+        onMouseOut={this.circleHide}
+        x={this.state.xRight}
+        y={this.state.yBottom}
+        ref={anchor => { this.anchor = anchor; }}
+        radius={10}
+        zIndex={this.props.zIndex + 1}
+        draggable
+      />
+      <Circle //bottom-left resize guide
+        fill={this.state.fill}
+        onDragMove={this.handleDragMoveBottomLeft}
+        onMouseOver={this.circleShow}
+        onMouseOut={this.circleHide}
+        x={this.state.xLeft}
+        y={this.state.yBottom}
+        ref={anchor => { this.anchor = anchor; }}
+        radius={10}
+        zIndex={this.props.zIndex + 1}
+        draggable
+      />
+      <Circle //top-right resize guide
+        fill={this.state.fill}
+        onDragMove={this.handleDragMoveTopRight}
+        onMouseOver={this.circleShow}
+        onMouseOut={this.circleHide}
+        x={this.state.xRight}
+        y={this.state.yTop}
+        ref={anchor => { this.anchor = anchor; }}
+        radius={10}
+        zIndex={this.props.zIndex + 1}
+        draggable
+      />
+      <Circle //top-left resize guide
+        fill={this.state.fill}
+        onDragMove={this.handleDragMoveTopLeft}
+        onMouseOver={this.circleShow}
+        onMouseOut={this.circleHide}
+        x={this.state.xLeft}
+        y={this.state.yTop}
+        ref={anchor => { this.anchor = anchor; }}
+        radius={10}
+        zIndex={this.props.zIndex + 1}
+        draggable
+      />
+      <Image //image added by user
+        image={this.props.image}
+        onMouseOver={this.circleShow}
+        onMouseOut={this.circleHide}
+        x={this.state.xLeft}
+        y={this.state.yTop}
+        width={Math.abs(this.state.xRight - this.state.xLeft)}
+        height={Math.abs(this.state.yBottom - this.state.yTop)}
+        zIndex={this.props.zIndex}
+      />
+    </Group>
+  )}
 }

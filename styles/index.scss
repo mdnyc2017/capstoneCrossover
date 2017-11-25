@@ -3,6 +3,8 @@
 @import 'home';
 @import 'navbar';
 @import 'homeImages';
+@import 'canvas';
+// import Canvas.state.color as $selectedColor from './components/Canvas'
 
 body {
     margin: 0;
@@ -16,10 +18,6 @@ body {
         margin: 0 auto;
         height: 100%;
         width: 100%;
-    }
-
-    .konvajs-content {
-        background: white;
     }
 }
 

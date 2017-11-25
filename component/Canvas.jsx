@@ -12,10 +12,12 @@ export default class Canvas extends Component {
       canvasImages: [],
       canvasUrl: "",
       user: {},
-      storyId: ""
-    };
+      storyId: "",
+      background: 'canvas-white'
+    }
     this.uploadToCloudinary = this.uploadToCloudinary.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
+    this.changeBackgroundColor = this.changeBackgroundColor.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -53,7 +55,7 @@ export default class Canvas extends Component {
         db
           .collection("scenes")
           .doc(key)
-          .set({ imageUrl: this.state.canvasUrl })
+          .set({ imageUrl: imageUrl })
       )
       .then(() =>
         db
@@ -61,13 +63,13 @@ export default class Canvas extends Component {
           .doc(storyId)
           .collection("scenes")
           .doc(key)
-          .set({ imageUrl: this.state.canvasUrl, id: key, random: "check" })
+          .set({ imageUrl: imageUrl, id: key, random: "check" })
       )
       .then(() =>
         db
           .collection("stories")
           .doc(storyId)
-          .update({ thumbnail: this.state.canvasUrl })
+          .update({ thumbnail: imageUrl })
       )
       .catch(error => console.error("Error creating scene: ", error));
   }
@@ -78,34 +80,47 @@ export default class Canvas extends Component {
   }
 
   //stage and layer are part of react-konva library. creates a canvas to use in react.
+  changeBackgroundColor(e) {
+    this.setState({background: e.target.value})
+  }
+
   render() {
-    // console.log(
-    //   "from render",
-    //   this.state.currentUser,
-    //   this.state.storyId,
-    //   this.props
-    // );
     return (
       <div id="konva">
         <Stage
           width={1000}
           height={500}
+          className={this.state.background}
           ref={node => {
             this.stageRef = node;
           }}
         >
           <Layer>
-            {this.props.images &&
-              this.props.images.map(imageUrl => {
+            {this.state.canvasImages &&
+              this.state.canvasImages.map((imageUrl, index) => {
+                let date = Date.now();
+                let uniqueNum = Math.random() * 100;
                 const image = new window.Image();
-                image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tained canvas error.
+                // image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tained canvas error.
                 image.src = imageUrl;
-                return (
-                  <Photo key={imageUrl} imageUrl={imageUrl} image={image} />
-                );
-              })}
+                return (<Photo
+                  key={`${imageUrl}${date}${uniqueNum}`}
+                  // imageUrl={imageUrl}
+                  image={image}
+                  zIndex={index}
+                   />)
+            })}
           </Layer>
         </Stage>
+        <select defaultValue="canvas-white" onChange={this.changeBackgroundColor}>
+          <option value="canvas-white">White</option>
+          <option value="canvas-pinkdots">Pink Dots</option>
+          <option value="canvas-bluedots">Blue Dots</option>
+          <option value="canvas-orangedots">Orange Dots</option>
+          <option value="canvas-purpledots">Purple Dots</option>
+          <option value="canvas-redyellowdots">Red & Yellow Dots</option>
+          <option value="canvas-crazy">Crazy Pattern</option>
+        </select>
         <button type="submit" onClick={this.uploadToCloudinary}>
           Submit Image!
         </button>
@@ -113,39 +128,3 @@ export default class Canvas extends Component {
     );
   }
 }
-
-// db.collection('scenes').doc(key).set({
-//     imageUrl
-// })
-// .then(() => db.collection('stories').doc(storyId).collection('scenes').doc(key).set({
-//         imageUrl,
-//         id: key
-//     })
-// )
-// .then(() => db.collection('stories').doc(storyId).update({thumbnail: imageUrl}))
-// .then(() => this.setState({fireRedirect: true, id: key}))
-// .catch((error) => console.error('Error creating scene: ', error));
-
-// db
-// .collection("scenes")
-// .doc(key)
-// .set({ imageUrl })
-// .then(() =>
-//   db
-//     .collection("stories")
-//     .doc(storyId)
-//     .collection("scenes")
-//     .doc(key)
-//     .set({
-//       imageUrl,
-//       id: key,
-//       random: "check"
-//     })
-// )
-// .then(() =>
-//   db
-//     .collection("stories")
-//     .doc(storyId)
-//     .update({ thumbnail: imageUrl })
-// )
-// .catch(error => console.error("Error creating scene: ", error));
