@@ -22,8 +22,10 @@ export default class Photo extends Component {
     this.circleHide = this.circleHide.bind(this);
   }
 
-  componentWillReceiveProps() {
-    this.setState({xLeft: 0, yTop: 0, xRight: this.props.image.width, yBottom: this.props.image.height})
+  componentDidMount() {
+    const image = new window.Image();
+    image.src = this.props.imageUrl;
+    this.setState({xLeft: 0, yTop: 0, xRight: image.width, yBottom: image.height})
   }
 
   //Resizing Options:
@@ -85,10 +87,11 @@ export default class Photo extends Component {
   }
 
   render() {
+    const image = new window.Image()
+    image.src = this.props.imageUrl;
+
     return (
-    <Group 
-      draggable={this.state.draggable}
-    >
+    <Group draggable={this.state.draggable} >
       <Circle //bottom-right resize guide
         fill={this.state.fill}
         onDragMove={this.handleDragMoveBottomRight}
@@ -138,7 +141,7 @@ export default class Photo extends Component {
         draggable
       />
       <Image //image added by user
-        image={this.props.image}
+        image={image}
         onMouseOver={this.circleShow}
         onMouseOut={this.circleHide}
         x={this.state.xLeft}
