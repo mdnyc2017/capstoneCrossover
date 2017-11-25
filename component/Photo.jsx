@@ -25,7 +25,7 @@ export default class Photo extends Component {
   componentDidMount() {
     const image = new window.Image();
     image.src = this.props.imageUrl;
-    this.setState({xLeft: 0, yTop: 0, xRight: image.width, yBottom: image.height})
+    this.setState({xLeft: 0, yTop: 0, xRight: this.props.image.width, yBottom: this.props.image.height})
   }
 
   //Resizing Options:
@@ -87,7 +87,8 @@ export default class Photo extends Component {
   }
 
   render() {
-    const image = new window.Image()
+    const image = new window.Image();
+    image.crossOrigin = "Anonymous";
     image.src = this.props.imageUrl;
 
     return (
@@ -101,7 +102,7 @@ export default class Photo extends Component {
         y={this.state.yBottom}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zIndex + 1}
+        zIndex={this.props.zindex + 2}
         draggable
       />
       <Circle //bottom-left resize guide
@@ -113,7 +114,7 @@ export default class Photo extends Component {
         y={this.state.yBottom}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zIndex + 1}
+        zIndex={this.props.zindex + 2}
         draggable
       />
       <Circle //top-right resize guide
@@ -125,7 +126,7 @@ export default class Photo extends Component {
         y={this.state.yTop}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zIndex + 1}
+        zIndex={this.props.zindex + 2}
         draggable
       />
       <Circle //top-left resize guide
@@ -137,18 +138,18 @@ export default class Photo extends Component {
         y={this.state.yTop}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zIndex + 1}
+        zIndex={this.props.zindex + 2}
         draggable
       />
       <Image //image added by user
-        image={image}
+        image={this.props.image}
         onMouseOver={this.circleShow}
         onMouseOut={this.circleHide}
         x={this.state.xLeft}
         y={this.state.yTop}
         width={Math.abs(this.state.xRight - this.state.xLeft)}
         height={Math.abs(this.state.yBottom - this.state.yTop)}
-        zIndex={this.props.zIndex}
+        zIndex={this.props.zindex}
       />
     </Group>
   )}

@@ -107,20 +107,20 @@ export default class AddScene extends Component {
   handleSubmitPreview(evt) {
     evt.preventDefault();
     let self = this;
-    // setTimeout(() => {
-      this.setState({
-        canvasImages: [...this.state.canvasImages, this.state.previewUrl]
+    setTimeout(() => {
+      self.setState({
+        canvasImages: [...self.state.canvasImages, self.state.previewUrl]
       });
-    // }, 1000);
+    }, 10);
   }
 
   handleAddOverlay(image) {
     let self = this;
-    // setTimeout(() => {
-        this.setState({
-            canvasImages: [...this.state.canvasImages, image]
+    setTimeout(() => {
+        self.setState({
+            canvasImages: [...self.state.canvasImages, image]
         })
-    // }, 1000);
+    }, 10);
   }
 
   handleChange(evt) {

@@ -97,16 +97,14 @@ export default class Canvas extends Component {
           <Layer>
             {this.state.canvasImages &&
               this.state.canvasImages.map((imageUrl, index) => {
-                let date = Date.now();
-                let uniqueNum = Math.random() * 100;
-                // const image = new window.Image();
-                // image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tained canvas error.
-                // image.src = imageUrl;
+                const image = new window.Image();
+                image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tainted canvas error.
+                image.src = imageUrl;
                 return (<Photo
-                  key={`${imageUrl}${date}${uniqueNum}`}
+                  key={`${imageUrl}${index}`}
                   imageUrl={imageUrl}
-                  // image={image}
-                  zIndex={index}
+                  image={image}
+                  zindex={index}
                    />)
             })}
           </Layer>
