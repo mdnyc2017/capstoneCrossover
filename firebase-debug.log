@@ -1,0 +1,119 @@
+[debug] [2017-11-25T05:49:11.348Z] ----------------------------------------------------------------------
+[debug] [2017-11-25T05:49:11.350Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /Users/noorulainkhaliq/Desktop/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-25T05:49:11.350Z] CLI Version:   3.14.0
+[debug] [2017-11-25T05:49:11.350Z] Platform:      darwin
+[debug] [2017-11-25T05:49:11.350Z] Node Version:  v8.9.1
+[debug] [2017-11-25T05:49:11.351Z] Time:          Sat Nov 25 2017 00:49:11 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:11.351Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-25T05:49:11.360Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-25T05:49:11.361Z] > authorizing via signed-in user
+[debug] [2017-11-25T05:49:11.362Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Sat Nov 25 2017 00:49:11 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:42.221Z] Error: getaddrinfo ENOTFOUND admin.firebase.com admin.firebase.com:443
+    at errnoException (dns.js:50:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:92:26)
+[error] 
+[error] Error: Server Error. getaddrinfo ENOTFOUND admin.firebase.com admin.firebase.com:443
+[debug] [2017-11-25T05:49:50.475Z] ----------------------------------------------------------------------
+[debug] [2017-11-25T05:49:50.477Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /Users/noorulainkhaliq/Desktop/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-25T05:49:50.478Z] CLI Version:   3.14.0
+[debug] [2017-11-25T05:49:50.478Z] Platform:      darwin
+[debug] [2017-11-25T05:49:50.478Z] Node Version:  v8.9.1
+[debug] [2017-11-25T05:49:50.479Z] Time:          Sat Nov 25 2017 00:49:50 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:50.479Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-25T05:49:50.488Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-25T05:49:50.488Z] > authorizing via signed-in user
+[debug] [2017-11-25T05:49:50.489Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Sat Nov 25 2017 00:49:50 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:50.806Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T05:49:50.807Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Sat Nov 25 2017 00:49:50 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:51.169Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/noorulainkhaliq/Desktop/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-25T05:49:51.569Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Sat Nov 25 2017 00:49:51 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:51.569Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Sat Nov 25 2017 00:49:51 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:51.570Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Sat Nov 25 2017 00:49:51 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:52.871Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T05:49:52.871Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Sat Nov 25 2017 00:49:52 GMT-0500 (EST)
+[debug] [2017-11-25T05:49:52.894Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T05:49:52.939Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T05:49:53.332Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: helloWorld: http://localhost:5001/crossover-cf663/us-central1/helloWorld
+[info] Shutting down...
+[debug] [2017-11-25T17:15:55.956Z] Error: write EPIPE
+    at _errnoException (util.js:1024:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:867:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-25T17:15:55.959Z] Error: write EPIPE
+    at _errnoException (util.js:1024:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:867:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-25T17:15:59.323Z] ----------------------------------------------------------------------
+[debug] [2017-11-25T17:15:59.326Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /Users/noorulainkhaliq/Desktop/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-25T17:15:59.326Z] CLI Version:   3.14.0
+[debug] [2017-11-25T17:15:59.326Z] Platform:      darwin
+[debug] [2017-11-25T17:15:59.326Z] Node Version:  v8.9.1
+[debug] [2017-11-25T17:15:59.335Z] Time:          Sat Nov 25 2017 12:15:59 GMT-0500 (EST)
+[debug] [2017-11-25T17:15:59.335Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-25T17:15:59.344Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-25T17:15:59.344Z] > authorizing via signed-in user
+[debug] [2017-11-25T17:15:59.345Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-11-25T17:15:59.346Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/sl-VH0syL2_cxPTfD_UC7-QgUVUkRxvQrtd5Wardesk',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Nov 25 2017 12:15:59 GMT-0500 (EST)
+[debug] [2017-11-25T17:15:59.498Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T17:15:59.507Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Sat Nov 25 2017 12:15:59 GMT-0500 (EST)
+[debug] [2017-11-25T17:16:00.302Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T17:16:00.303Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Sat Nov 25 2017 12:16:00 GMT-0500 (EST)
+[debug] [2017-11-25T17:16:00.857Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/noorulainkhaliq/Desktop/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-25T17:16:01.326Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Sat Nov 25 2017 12:16:01 GMT-0500 (EST)
+[debug] [2017-11-25T17:16:01.327Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Sat Nov 25 2017 12:16:01 GMT-0500 (EST)
+[debug] [2017-11-25T17:16:01.327Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Sat Nov 25 2017 12:16:01 GMT-0500 (EST)
+[debug] [2017-11-25T17:16:01.626Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T17:16:01.627Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Sat Nov 25 2017 12:16:01 GMT-0500 (EST)
+[debug] [2017-11-25T17:16:01.672Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T17:16:01.689Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-25T17:16:02.143Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: helloWorld: http://localhost:5001/crossover-cf663/us-central1/helloWorld
+[info] Shutting down...
+[debug] [2017-11-25T18:00:58.074Z] Error: write EPIPE
+    at _errnoException (util.js:1024:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:867:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-25T18:00:58.076Z] Error: write EPIPE
+    at _errnoException (util.js:1024:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:867:14)
+[error] 
+[error] Error: An unexpected error has occurred.

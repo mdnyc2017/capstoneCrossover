@@ -102,6 +102,7 @@ export default class AddScene extends Component {
     });
   }
 
+  //delay in loading image in chrome and firefox but not in safari
   handleSubmitPreview(evt) {
     evt.preventDefault();
     let self = this;
@@ -109,7 +110,7 @@ export default class AddScene extends Component {
       self.setState({
         canvasImages: [...self.state.canvasImages, self.state.previewUrl]
       });
-    }, 0);
+    }, 10);
   }
 
   handleChange(evt) {
@@ -163,25 +164,12 @@ export default class AddScene extends Component {
         ) : (
           <span />
         )}
-        <Canvas images={this.state.canvasImages} />
+        <Canvas
+          images={this.state.canvasImages}
+          currentUser={this.state.user}
+          storyId={this.state.storyId}
+        />
       </div>
     );
   }
 }
-
-// const user = this.state.user
-// const key = `${user.user.uid}${Date.now()}`
-// const storyId = this.state.storyId
-// const imageUrl = this.state.previewUrl
-
-// db.collection('scenes').doc(key).set({
-//     imageUrl
-// })
-// .then(() => db.collection('stories').doc(storyId).collection('scenes').doc(key).set({
-//         imageUrl,
-//         id: key
-//     })
-// )
-// .then(() => db.collection('stories').doc(storyId).update({thumbnail: imageUrl}))
-// .then(() => this.setState({fireRedirect: true, id: key}))
-// .catch((error) => console.error('Error creating scene: ', error));
