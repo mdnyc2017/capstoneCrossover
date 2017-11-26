@@ -5,6 +5,13 @@ import superagent from 'superagent';
 import Canvas from './Canvas';
 import 'react-tabs/style/react-tabs.scss';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Patrick Hand', 'Gloria Hallelujah', 'Coming Soon', 'Annie Use Your Telescope', 'Schoolbell', 'Patrick Hand SC', 'Walter Turncoat', 'Short Stack', 'Pangolin', 'Sriracha', 'Dekko', 'Kavivanar']
+  }
+});
 
 
 export default class AddScene extends Component {
@@ -20,6 +27,8 @@ export default class AddScene extends Component {
       user: {},
       canvasImages: [],
       typedText: '',
+      fontFamily: 'Patrick Hand',
+      fontSize: 40,
       canvasText: [],
       background: '#ffffff'
     };
@@ -29,6 +38,8 @@ export default class AddScene extends Component {
     this.changeBackgroundColor = this.changeBackgroundColor.bind(this);
     this.handleAddText = this.handleAddText.bind(this);
     this.handleTyping = this.handleTyping.bind(this);
+    this.handleFontFamily = this.handleFontFamily.bind(this);
+    this.handleFontSize = this.handleFontSize.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -133,17 +144,29 @@ export default class AddScene extends Component {
         })
     }, 10);
   }
-  
+
   handleTyping(event) {
     this.setState({
       typedText: event.target.value
     })
   }
 
+  handleFontFamily(event) {
+    this.setState({
+      fontFamily: event.target.value
+    })
+  }
+
+  handleFontSize(event) {
+    this.setState({
+      fontSize: event.target.value
+    })
+  }
+
   handleAddText(event) {
     event.preventDefault();
     this.setState({
-        canvasText: [...this.state.canvasText, this.state.typedText]
+        canvasText: [...this.state.canvasText, {text: this.state.typedText, fontFamily: this.state.fontFamily, fontSize: this.state.fontSize}]
     })
   }
 
@@ -161,7 +184,7 @@ export default class AddScene extends Component {
 
   render() {
     const image = this.state.previewUrl; //If there is a previewUrl we will render it below and supply a form to edit degree of cartoonify effect
-
+    console.log(this.state.fontSize)
     return (
       <div className="addscene">
         <div className="addscene-dropzone">
@@ -238,10 +261,28 @@ export default class AddScene extends Component {
               </div>
             </TabPanel>
             <TabPanel className="addscene-tabs-panel">
+              <h4>Size:</h4>
+              <input type="number" min="0" value={this.state.fontSize} onChange={this.handleFontSize} />
+              <h4>Font:</h4>
               <form onSubmit={this.handleAddText}>
-                <input type="text" value={this.state.typedText} onChange={this.handleTyping} />
+                <select defaultValue="Patrick Hand" onChange={this.handleFontFamily}>
+                  <option value="Annie Use Your Telescope">Annie Use Your Telescope</option>
+                  <option value="Coming Soon">Coming Soon</option>
+                  <option value="Dekko">Dekko</option>
+                  <option value="Gloria Hallelujah">Gloria Hallelujah</option>
+                  <option value="Kavivanar">Kavivanar</option>
+                  <option value="Pangolin">Pangolin</option>
+                  <option value="Patrick Hand">Patrick Hand</option>
+                  <option value="Patrick Hand SC">Patrick Hand SC</option>
+                  <option value="Schoolbell">Schoolbell</option>
+                  <option value="Short Stack">Short Stack</option>
+                  <option value="Sriracha">Sriracha</option>
+                  <option value="Walter Turncoat">Walter Turncoat</option>
+                </select>
+                <textarea placeholder="Enter text here" rows="4" cols="50" value={this.state.typedText} onChange={this.handleTyping} />
                 <button type="submit">Submit</button>
               </form>
+              <div className="text-preview"><p style={{fontSize: `${this.state.fontSize}px`, fontFamily: this.state.fontFamily}}>{this.state.typedText || 'Preview'}</p></div>
           </TabPanel>
           </Tabs>
         </div>

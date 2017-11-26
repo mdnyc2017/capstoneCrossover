@@ -5,9 +5,10 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Patrick Hand']
+    families: ['Patrick Hand', 'Gloria Hallelujah', 'Coming Soon', 'Annie Use Your Telescope', 'Schoolbell', 'Patrick Hand SC', 'Walter Turncoat', 'Short Stack', 'Pangolin', 'Sriracha', 'Dekko', 'Kavivanar']
   }
 });
+
 
 export default class Photo extends Component {
     constructor(props) {
@@ -19,7 +20,8 @@ export default class Photo extends Component {
         yBottom: 280,
         draggable: true,
         fill: 'transparent',
-        fontSize: 60,
+        // font: 'Patrick Hand',
+        // fontSize: 60,
         wrap: 'word'
       }
 
@@ -138,10 +140,10 @@ export default class Photo extends Component {
         draggable
       />
       <Text
-        text={this.props.text}
-        fontSize={this.state.fontSize}
+        text={this.props.text.text}
+        fontSize={this.props.text.fontSize}
         wrap={this.state.wrap}
-        fontFamily="Patrick Hand"
+        fontFamily={this.props.text.fontFamily}
         fill="black"
         onMouseOver={this.circleShow}
         onMouseOut={this.circleHide}
