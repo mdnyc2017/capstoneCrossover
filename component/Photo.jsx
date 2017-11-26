@@ -20,12 +20,21 @@ export default class Photo extends Component {
     this.handleDragMoveBottomRight = this.handleDragMoveBottomRight.bind(this);
     this.circleShow = this.circleShow.bind(this);
     this.circleHide = this.circleHide.bind(this);
+    this.updateXandY = this.updateXandY.bind(this);
   }
 
-  componentDidMount() {
+  updateXandY() {
     const image = new window.Image();
     image.src = this.props.imageUrl;
     this.setState({xLeft: 0, yTop: 0, xRight: this.props.image.width, yBottom: this.props.image.height})
+  }
+
+  componentDidMount() {
+    this.updateXandY()
+  }
+
+  componentWillReceiveProps() {
+    this.updateXandY()
   }
 
   //Resizing Options:
@@ -102,7 +111,7 @@ export default class Photo extends Component {
         y={this.state.yBottom}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zindex + 2}
+        zIndex={this.props.zindex}
         draggable
       />
       <Circle //bottom-left resize guide
@@ -114,7 +123,7 @@ export default class Photo extends Component {
         y={this.state.yBottom}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zindex + 2}
+        zIndex={this.props.zindex}
         draggable
       />
       <Circle //top-right resize guide
@@ -126,7 +135,7 @@ export default class Photo extends Component {
         y={this.state.yTop}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zindex + 2}
+        zIndex={this.props.zindex}
         draggable
       />
       <Circle //top-left resize guide
@@ -138,7 +147,7 @@ export default class Photo extends Component {
         y={this.state.yTop}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zindex + 2}
+        zIndex={this.props.zindex}
         draggable
       />
       <Image //image added by user

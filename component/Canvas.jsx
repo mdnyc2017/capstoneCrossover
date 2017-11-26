@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Layer, Stage, Image } from 'react-konva';
+import { Layer, Stage, Image, Rect } from 'react-konva';
 import Konva from 'konva';
 import Photo from './Photo';
 import axios from 'axios';
 import { db } from '../fire';
 import { Redirect } from 'react-router';
+// import ColorPicker from 'react-color-picker'
+// import 'react-color-picker/index.css'
 
 export default class Canvas extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ export default class Canvas extends Component {
       canvasUrl: '',
       user: {},
       storyId: '',
-      background: 'canvas-white',
+      background: 'ffffff',
       fireRedirect: false
     }
     this.uploadToCloudinary = this.uploadToCloudinary.bind(this);
@@ -30,15 +32,29 @@ export default class Canvas extends Component {
     });
   }
 
-  changeBackgroundColor(e) {
-    this.setState({background: e.target.value})
+  // componentWillReceiveProps(nextProps) {
+  //   let imageUrl = nextProps.images[nextProps.images.length]
+  //   const img = new window.Image();
+  //   img.crossOrigin = "Anonymous";
+  //   img.onload = () =>
+  //       this.setState({
+  //         canvasImages: [...this.state.canvasImages, img]
+  //       });
+  //   img.src = imageUrl;
+  //   this.setState({
+  //     user: nextProps.currentUser,
+  //     storyId: nextProps.storyId
+  //   });
+  // }
+
+  changeBackgroundColor(event) {
+    this.setState({background: event.target.value})
   }
 
   uploadFile(dataUrl) {
     const user = this.state.user;
     const key = `${user.user.uid}${Date.now()}`;
     const storyId = this.state.storyId;
-    // const imageUrl = this.state.canvasUrl;
     //this function uploads image to cloudinary
     const cloudName = 'noorulain';
     const cloudPreset = 'pvfhdtk2';
@@ -100,29 +116,26 @@ export default class Canvas extends Component {
           }}
         >
           <Layer>
+            <Rect
+              width={1000}
+              height={500}
+              zindex={-1}
+              fill={this.state.background} />
             {this.state.canvasImages &&
               this.state.canvasImages.map((imageUrl, index) => {
                 const image = new window.Image();
                 image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tainted canvas error.
                 image.src = imageUrl;
                 return (<Photo
-                  key={`${imageUrl}${index}`}
-                  imageUrl={imageUrl}
+                  key={`${image.src}${index}`}
+                  imageUrl={image.src}
                   image={image}
                   zindex={index}
                    />)
             })}
           </Layer>
         </Stage>
-        <select defaultValue="canvas-white" onChange={this.changeBackgroundColor}>
-          <option value="canvas-white">White</option>
-          <option value="canvas-pinkdots">Pink Dots</option>
-          <option value="canvas-bluedots">Blue Dots</option>
-          <option value="canvas-orangedots">Orange Dots</option>
-          <option value="canvas-purpledots">Purple Dots</option>
-          <option value="canvas-redyellowdots">Red & Yellow Dots</option>
-          <option value="canvas-crazy">Crazy Pattern</option>
-        </select>
+        <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} />
         <button type="submit" onClick={this.uploadToCloudinary}>
           Submit Image!
         </button>
@@ -131,3 +144,37 @@ export default class Canvas extends Component {
     );
   }
 }
+
+// .canvas-white > .konvajs-content {
+//   background: white;
+// }
+
+// .canvas-pinkdots > .konvajs-content {
+//   background: url('/pinkdots.jpg');
+//   background-size: cover;
+// }
+
+// .canvas-bluedots > .konvajs-content {
+//   background: url('/bluedots.jpg');
+//   background-size: cover;
+// }
+
+// .canvas-purpledots > .konvajs-content {
+//   background: url('/purpledots.jpg');
+//   background-size: cover;
+// }
+
+// .canvas-orangedots > .konvajs-content {
+//   background: url('/orangedots.jpg');
+//   background-size: cover;
+// }
+
+// .canvas-redyellowdots > .konvajs-content {
+//   background: url('/redyellowdots.jpg');
+//   background-size: cover;
+// }
+
+// .canvas-crazy > .konvajs-content {
+//   background: url('/crazy.jpg');
+//   background-size: cover;
+// }
