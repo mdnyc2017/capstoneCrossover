@@ -1,33 +1,16 @@
-// .canvas-white > .konvajs-content {
-//     background: white;
-// }
+/* ------------ Editing the Canvas ------------- */
+.addscene-editcanvas {
+    display: flex;
+}
 
-// .canvas-pinkdots > .konvajs-content {
-//     background: url('/pinkdots.jpg');
-//     background-size: cover;
-// }
 
-// .canvas-bluedots > .konvajs-content {
-//     background: url('/bluedots.jpg');
-//     background-size: cover;
-// }
 
-// .canvas-purpledots > .konvajs-content {
-//     background: url('/purpledots.jpg');
-//     background-size: cover;
-// }
+.overlay-options {
+    display: flex;
+    flex-wrap: wrap;
 
-// .canvas-orangedots > .konvajs-content {
-//     background: url('/orangedots.jpg');
-//     background-size: cover;
-// }
-
-// .canvas-redyellowdots > .konvajs-content {
-//     background: url('/redyellowdots.jpg');
-//     background-size: cover;
-// }
-
-// .canvas-crazy > .konvajs-content {
-//     background: url('/crazy.jpg');
-//     background-size: cover;
-// }
+    img {
+        width: 33%;
+        height: 33%;
+    }
+}
