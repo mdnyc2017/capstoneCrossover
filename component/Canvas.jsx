@@ -4,6 +4,7 @@ import Konva from 'konva';
 import Photo from './Photo';
 import axios from 'axios';
 import { db } from '../fire';
+import { Redirect } from 'react-router';
 
 export default class Canvas extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export default class Canvas extends Component {
       canvasUrl: '',
       user: {},
       storyId: '',
-      background: 'canvas-white'
+      background: 'canvas-white',
+      fireRedirect: false
     }
     this.uploadToCloudinary = this.uploadToCloudinary.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
@@ -36,7 +38,7 @@ export default class Canvas extends Component {
     const user = this.state.user;
     const key = `${user.user.uid}${Date.now()}`;
     const storyId = this.state.storyId;
-    const imageUrl = this.state.canvasUrl;
+    // const imageUrl = this.state.canvasUrl;
     //this function uploads image to cloudinary
     const cloudName = 'noorulain';
     const cloudPreset = 'pvfhdtk2';
@@ -59,7 +61,7 @@ export default class Canvas extends Component {
         db
           .collection('scenes')
           .doc(key)
-          .set({ imageUrl: imageUrl })
+          .set({ imageUrl: this.state.canvasUrl })
       )
       .then(() =>
         db
@@ -67,23 +69,26 @@ export default class Canvas extends Component {
           .doc(storyId)
           .collection('scenes')
           .doc(key)
-          .set({ imageUrl: imageUrl, id: key, random: 'check' })
+          .set({ imageUrl: this.state.canvasUrl, id: key, random: 'check' })
       )
       .then(() =>
         db
           .collection('stories')
           .doc(storyId)
-          .update({ thumbnail: imageUrl })
+          .update({ thumbnail: this.state.canvasUrl })
       )
+      .then(() => this.setState({ fireRedirect: true }))
       .catch(error => console.error('Error creating scene: ', error));
   }
 
   uploadToCloudinary() {
     const image = this.stageRef.getStage().toDataURL('image/png');
+    console.log(image);
     this.uploadFile(image);
   }
 
   render() {
+    const { fireRedirect } = this.state;
     return (
       <div>
         <Stage
@@ -121,6 +126,7 @@ export default class Canvas extends Component {
         <button type="submit" onClick={this.uploadToCloudinary}>
           Submit Image!
         </button>
+        {fireRedirect && <Redirect to={`/stories/${this.state.storyId}`} />}
       </div>
     );
   }
