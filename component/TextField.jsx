@@ -20,8 +20,6 @@ export default class Photo extends Component {
         yBottom: 280,
         draggable: true,
         fill: 'transparent',
-        // font: 'Patrick Hand',
-        // fontSize: 60,
         wrap: 'word'
       }
 
