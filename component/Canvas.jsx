@@ -2,30 +2,30 @@ import React, { Component } from 'react';
 import { Layer, Stage, Image, Rect } from 'react-konva';
 import Konva from 'konva';
 import Photo from './Photo';
+import TextField from './TextField';
 import axios from 'axios';
 import { db } from '../fire';
 import { Redirect } from 'react-router';
-// import ColorPicker from 'react-color-picker'
-// import 'react-color-picker/index.css'
 
 export default class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
       canvasImages: [],
+      canvasText: [],
       canvasUrl: '',
       user: {},
       storyId: '',
-      background: 'ffffff',
+      background: '#ffffff',
       fireRedirect: false
     }
     this.uploadToCloudinary = this.uploadToCloudinary.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
-    this.changeBackgroundColor = this.changeBackgroundColor.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
+      canvasText: nextProps.text,
       canvasImages: nextProps.images, //these are images URLs
       user: nextProps.currentUser,
       storyId: nextProps.storyId
@@ -46,10 +46,6 @@ export default class Canvas extends Component {
   //     storyId: nextProps.storyId
   //   });
   // }
-
-  changeBackgroundColor(event) {
-    this.setState({background: event.target.value})
-  }
 
   uploadFile(dataUrl) {
     const user = this.state.user;
@@ -120,22 +116,30 @@ export default class Canvas extends Component {
               width={1000}
               height={500}
               zindex={-1}
-              fill={this.state.background} />
+              fill={this.props.background} />
             {this.state.canvasImages &&
               this.state.canvasImages.map((imageUrl, index) => {
                 const image = new window.Image();
+                const arrIndex = index;
                 image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tainted canvas error.
                 image.src = imageUrl;
                 return (<Photo
-                  key={`${image.src}${index}`}
+                  key={`${image.src}${arrIndex}`}
                   imageUrl={image.src}
                   image={image}
                   zindex={index}
                    />)
             })}
+            {this.state.canvasText &&
+              this.state.canvasText.map((text, index) => {
+                const arrIndex = index;
+                return (<TextField
+                  key={`${text}${arrIndex}`}
+                  text={text}
+                   />)
+            })}
           </Layer>
         </Stage>
-        <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} />
         <button type="submit" onClick={this.uploadToCloudinary}>
           Submit Image!
         </button>
@@ -145,36 +149,3 @@ export default class Canvas extends Component {
   }
 }
 
-// .canvas-white > .konvajs-content {
-//   background: white;
-// }
-
-// .canvas-pinkdots > .konvajs-content {
-//   background: url('/pinkdots.jpg');
-//   background-size: cover;
-// }
-
-// .canvas-bluedots > .konvajs-content {
-//   background: url('/bluedots.jpg');
-//   background-size: cover;
-// }
-
-// .canvas-purpledots > .konvajs-content {
-//   background: url('/purpledots.jpg');
-//   background-size: cover;
-// }
-
-// .canvas-orangedots > .konvajs-content {
-//   background: url('/orangedots.jpg');
-//   background-size: cover;
-// }
-
-// .canvas-redyellowdots > .konvajs-content {
-//   background: url('/redyellowdots.jpg');
-//   background-size: cover;
-// }
-
-// .canvas-crazy > .konvajs-content {
-//   background: url('/crazy.jpg');
-//   background-size: cover;
-// }

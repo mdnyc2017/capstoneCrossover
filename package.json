@@ -50,10 +50,12 @@
     "react-konva": "^1.6.3",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-tabs": "^2.1.1",
     "sass-loader": "^6.0.6",
     "sha1": "^1.1.1",
     "style-loader": "^0.19.0",
     "superagent": "^3.8.1",
-    "url-escape-tag": "^1.0.0"
+    "url-escape-tag": "^1.0.0",
+    "webfontloader": "^1.6.28"
   }
 }

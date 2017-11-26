@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import sha1 from 'sha1';
 import superagent from 'superagent';
-import { db } from '../fire';
-import { Redirect } from 'react-router';
 import Canvas from './Canvas';
+import 'react-tabs/style/react-tabs.scss';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
 
 export default class AddScene extends Component {
   constructor(props) {
@@ -17,11 +18,17 @@ export default class AddScene extends Component {
       colorReduction: 50,
       id: '',
       user: {},
-      canvasImages: []
+      canvasImages: [],
+      typedText: '',
+      canvasText: [],
+      background: '#ffffff'
     };
     this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleAddOverlay = this.handleAddOverlay.bind(this);    
+    this.handleAddOverlay = this.handleAddOverlay.bind(this);
+    this.changeBackgroundColor = this.changeBackgroundColor.bind(this);
+    this.handleAddText = this.handleAddText.bind(this);
+    this.handleTyping = this.handleTyping.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,6 +36,10 @@ export default class AddScene extends Component {
       user: nextProps.currentUser,
       storyId: this.props.match.params.id
     });
+  }
+
+  changeBackgroundColor(event) {
+    this.setState({background: event.target.value})
   }
 
   uploadFile(files) {
@@ -122,6 +133,19 @@ export default class AddScene extends Component {
         })
     }, 10);
   }
+  
+  handleTyping(event) {
+    this.setState({
+      typedText: event.target.value
+    })
+  }
+
+  handleAddText(event) {
+    event.preventDefault();
+    this.setState({
+        canvasText: [...this.state.canvasText, this.state.typedText]
+    })
+  }
 
   handleChange(evt) {
     // evt.preventDefault();
@@ -139,16 +163,18 @@ export default class AddScene extends Component {
     const image = this.state.previewUrl; //If there is a previewUrl we will render it below and supply a form to edit degree of cartoonify effect
 
     return (
-      <div>
-        <div>
+      <div className="addscene">
+        <div className="addscene-dropzone">
           <h1>Image goes here!</h1>
           <Dropzone onDrop={this.uploadFile.bind(this)} />
         </div>
-        <div>
+
+        <div className="addscene-preview">
           <img src={image} />
         </div>
+
         {image ? (
-          <div>
+          <div className="addscene-editpreview">
             <form onSubmit={this.handleSubmitPreview}>
               <input
                 className="form-field"
@@ -174,24 +200,50 @@ export default class AddScene extends Component {
         ) : (
           <span />
         )}
-        <Canvas
-          images={this.state.canvasImages}
-          currentUser={this.state.user}
-          storyId={this.state.storyId}
-        />
-        <div className="overlay-options">
-            <img src="/captionbox.png" onClick={() => this.handleAddOverlay('/captionbox.png')} width="100px" />
-            <img src="/quote1.png" onClick={() => this.handleAddOverlay('/quote1.png')} width="100px" />
-            <img src="/quote2.png" onClick={() => this.handleAddOverlay('/quote2.png')} width="100px" />
-            <img src="/quote3.png" onClick={() => this.handleAddOverlay('/quote3.png')} width="100px" />
-            <img src="/quote4.png" onClick={() => this.handleAddOverlay('/quote4.png')} width="100px" />
-            <img src="/quote5.png" onClick={() => this.handleAddOverlay('/quote5.png')} width="100px" />
-            <img src="/quote6.png" onClick={() => this.handleAddOverlay('/quote6.png')} width="100px" />
-            <img src="/quote7.png" onClick={() => this.handleAddOverlay('/quote7.png')} width="100px" />
-            <img src="/quote8.png" onClick={() => this.handleAddOverlay('/quote8.png')} width="100px" />
-            <img src="/quote9.png" onClick={() => this.handleAddOverlay('/quote9.png')} width="100px" />
-            <img src="/quote10.png" onClick={() => this.handleAddOverlay('/quote10.png')} width="100px" />
-            <img src="/quote11.png" onClick={() => this.handleAddOverlay('/quote11.png')} width="100px" />
+        <div className="addscene-editcanvas">
+          <div className="addscene-canvas">
+            <Canvas
+              images={this.state.canvasImages}
+              text={this.state.canvasText}
+              currentUser={this.state.user}
+              storyId={this.state.storyId}
+              background={this.state.background}
+            />
+          </div>
+
+          <Tabs className="addscene-tabs">
+            <TabList className="tabs-list">
+              <Tab className="tabs-title">Background</Tab>
+              <Tab className="tabs-title">Quote & Caption Bubbles</Tab>
+              <Tab className="tabs-title">Text</Tab>
+            </TabList>
+      
+            <TabPanel className="addscene-tabs-panel">
+              <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} />
+            </TabPanel>
+            <TabPanel className="addscene-tabs-panel">
+              <div className="overlay-options">
+                <img src="/captionbox.png" onClick={() => this.handleAddOverlay('/captionbox.png')} />
+                <img src="/quote1.png" onClick={() => this.handleAddOverlay('/quote1.png')} />
+                <img src="/quote2.png" onClick={() => this.handleAddOverlay('/quote2.png')} />
+                <img src="/quote3.png" onClick={() => this.handleAddOverlay('/quote3.png')} />
+                <img src="/quote4.png" onClick={() => this.handleAddOverlay('/quote4.png')} />
+                <img src="/quote5.png" onClick={() => this.handleAddOverlay('/quote5.png')} />
+                <img src="/quote6.png" onClick={() => this.handleAddOverlay('/quote6.png')} />
+                <img src="/quote7.png" onClick={() => this.handleAddOverlay('/quote7.png')} />
+                <img src="/quote8.png" onClick={() => this.handleAddOverlay('/quote8.png')} />
+                <img src="/quote9.png" onClick={() => this.handleAddOverlay('/quote9.png')} />
+                <img src="/quote10.png" onClick={() => this.handleAddOverlay('/quote10.png')} />
+                <img src="/quote11.png" onClick={() => this.handleAddOverlay('/quote11.png')} />
+              </div>
+            </TabPanel>
+            <TabPanel className="addscene-tabs-panel">
+              <form onSubmit={this.handleAddText}>
+                <input type="text" value={this.state.typedText} onChange={this.handleTyping} />
+                <button type="submit">Submit</button>
+              </form>
+          </TabPanel>
+          </Tabs>
         </div>
       </div>
     );
