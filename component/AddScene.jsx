@@ -90,11 +90,11 @@ export default class AddScene extends Component {
     }, 10);
   }
 
-  handleAddOverlay(image) {
+  handleAddOverlay(imageUrl) {
     let self = this;
     setTimeout(() => {
       self.setState({
-        canvasImages: [...self.state.canvasImages, image]
+        canvasImages: [...self.state.canvasImages, imageUrl]
       });
     }, 10);
   }
@@ -147,31 +147,40 @@ export default class AddScene extends Component {
           </div>
 
           <div className="addscene-edit-preview">
+            {image ? <h3>Preview:</h3> : <span />}
             <img src={image} />
           </div>
 
           {image ? (
             <div className="addscene-edit-cartoonify">
               <form onSubmit={this.handleSubmitPreview}>
-                <input
-                  className="form-field"
-                  type="number"
-                  min="0"
-                  max="100"
-                  value={this.state.lineStrength}
-                  name="lineStrength"
-                  onChange={this.handleChange}
-                />
-                <input
-                  className="form-field"
-                  type="number"
-                  min="0"
-                  max="100"
-                  value={this.state.colorReduction}
-                  name="colorReduction"
-                  onChange={this.handleChange}
-                />
-                <button type="submit">Add to Canvas</button>
+                <div className="addscene-edit-cartoonify-fields">
+                  <div>
+                    <span>Line Strength</span>
+                    <input
+                      className="form-field"
+                      type="number"
+                      min="0"
+                      max="100"
+                      value={this.state.lineStrength}
+                      name="lineStrength"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div>
+                    <span>Color Reduction</span>
+                    <input
+                      className="form-field"
+                      type="number"
+                      min="0"
+                      max="100"
+                      value={this.state.colorReduction}
+                      name="colorReduction"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </div>
+                <button className="addscene-edit-cartoonify-button" type="submit">Add to Canvas</button>
               </form>
             </div>
           ) : (
@@ -183,12 +192,12 @@ export default class AddScene extends Component {
             <Tabs className="addscene-edit-canvas-tabs">
               <TabList className="addscene-edit-canvas-tabs-list">
                 <Tab className="addscene-edit-canvas-tabs-title">Background</Tab>
-                <Tab className="addscene-edit-canvas-tabs-title">Quote & Caption Bubbles</Tab>
+                <Tab className="addscene-edit-canvas-tabs-title">Bubbles</Tab>
                 <Tab className="addscene-edit-canvas-tabs-title">Text</Tab>
               </TabList>
 
               <TabPanel className="addscene-edit-canvas-tabs-panel">
-                <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} />
+                <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} /><span>Select a background color</span>
               </TabPanel>
               <TabPanel className="addscene-edit-canvas-tabs-panel">
                 <div className="addscene-edit-canvas-tabs-overlay">
@@ -233,6 +242,7 @@ export default class AddScene extends Component {
             </Tabs>
           </div>
         </div>
+
         <div className="addscene-canvas">
           <Canvas
             images={this.state.canvasImages}

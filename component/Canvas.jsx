@@ -94,16 +94,19 @@ export default class Canvas extends Component {
   }
 
   uploadToCloudinary() {
+    let confirmation = confirm("Are you sure you're ready to add your scene?")
     const image = this.stageRef.getStage().toDataURL("image/png");
-    this.uploadFile(image);
+    if (confirmation) {
+      this.uploadFile(image);
+    }
   }
 
   render() {
     const { fireRedirect } = this.state;
     return (
       <div>
-        <button type="submit" onClick={this.uploadToCloudinary}>
-          Submit Image!
+        <button className="canvas-button" type="submit" onClick={this.uploadToCloudinary}>
+          Add Scene to Story
         </button>
         <Stage
           width={900}
