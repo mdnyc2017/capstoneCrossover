@@ -37,7 +37,6 @@ export default class App extends Component {
           <Navbar user={user} auth={auth} />
         </nav>
         <br />
-        <span className="navBar-user-name">{welcome(user)}</span>
         <Routes user={this.state} />
       </div>
     );
