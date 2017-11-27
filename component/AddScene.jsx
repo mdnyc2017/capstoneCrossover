@@ -240,7 +240,7 @@ export default class AddScene extends Component {
               <Tab className="tabs-title">Quote & Caption Bubbles</Tab>
               <Tab className="tabs-title">Text</Tab>
             </TabList>
-      
+
             <TabPanel className="addscene-tabs-panel">
               <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} />
             </TabPanel>
