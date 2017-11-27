@@ -39,7 +39,7 @@ export default class AddStory extends Component {
     const title = event.target.title.value;
     const description = event.target.description.value;
     const key = `${user.user.uid}${Date.now()}`; //Creates a unique ID of user's id + the current time in unix code. Purpose: so we can redirect to "/stories/key" and already have the key available to us
-
+    this.setState({id: key})
     //Save story to stories collection in db
     db
       .collection("stories")
@@ -63,7 +63,7 @@ export default class AddStory extends Component {
           })
       )
       //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
-      .then(() => this.setState({ id: key, fireRedirect: true }))
+      .then(() => this.setState({ fireRedirect: true }))
       .catch(error => console.error("Error creating story: ", error));
   }
 
