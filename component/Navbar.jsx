@@ -31,7 +31,7 @@ export const Navbar = ({ user, auth }) =>
           Stories
         </li>
       </a>
-      <li className="navbar-li" onClick={() => auth.signOut()}>
+      <li className="navbar-li-r" onClick={() => auth.signOut()}>
         Logout
       </li>
     </ul>
