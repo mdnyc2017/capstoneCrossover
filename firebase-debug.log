@@ -1,45 +1,62 @@
-[debug] [2017-11-27T20:06:44.585Z] ----------------------------------------------------------------------
-[debug] [2017-11-27T20:06:44.588Z] Command:       /usr/bin/node /home/mario/Fullstack/FS-Senior/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
-[debug] [2017-11-27T20:06:44.588Z] CLI Version:   3.14.0
-[debug] [2017-11-27T20:06:44.588Z] Platform:      linux
-[debug] [2017-11-27T20:06:44.588Z] Node Version:  v8.5.0
-[debug] [2017-11-27T20:06:44.589Z] Time:          Mon Nov 27 2017 15:06:44 GMT-0500 (EST)
-[debug] [2017-11-27T20:06:44.589Z] ----------------------------------------------------------------------
+[debug] [2017-11-27T20:22:28.010Z] ----------------------------------------------------------------------
+[debug] [2017-11-27T20:22:28.012Z] Command:       /usr/bin/node /home/mario/Fullstack/FS-Senior/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-27T20:22:28.012Z] CLI Version:   3.14.0
+[debug] [2017-11-27T20:22:28.012Z] Platform:      linux
+[debug] [2017-11-27T20:22:28.012Z] Node Version:  v8.5.0
+[debug] [2017-11-27T20:22:28.013Z] Time:          Mon Nov 27 2017 15:22:28 GMT-0500 (EST)
+[debug] [2017-11-27T20:22:28.013Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-11-27T20:06:44.605Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-11-27T20:06:44.605Z] > authorizing via signed-in user
-[debug] [2017-11-27T20:06:44.608Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2017-11-27T20:06:44.608Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/d7ke8y3l2kw02gqy9X-QTrZwoKBZ0zu_VsQ-UVOyHws',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Mon Nov 27 2017 15:06:44 GMT-0500 (EST)
-[debug] [2017-11-27T20:06:44.757Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-27T20:06:44.764Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
- Mon Nov 27 2017 15:06:44 GMT-0500 (EST)
-[debug] [2017-11-27T20:06:45.504Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-27T20:06:45.505Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
- Mon Nov 27 2017 15:06:45 GMT-0500 (EST)
-[debug] [2017-11-27T20:06:45.915Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T20:22:28.022Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-27T20:22:28.022Z] > authorizing via signed-in user
+[debug] [2017-11-27T20:22:28.024Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Mon Nov 27 2017 15:22:28 GMT-0500 (EST)
+[debug] [2017-11-27T20:22:28.521Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T20:22:28.524Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Mon Nov 27 2017 15:22:28 GMT-0500 (EST)
+[debug] [2017-11-27T20:23:08.765Z] ----------------------------------------------------------------------
+[debug] [2017-11-27T20:23:08.767Z] Command:       /usr/bin/node /home/mario/Fullstack/FS-Senior/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-27T20:23:08.768Z] CLI Version:   3.14.0
+[debug] [2017-11-27T20:23:08.768Z] Platform:      linux
+[debug] [2017-11-27T20:23:08.768Z] Node Version:  v8.5.0
+[debug] [2017-11-27T20:23:08.768Z] Time:          Mon Nov 27 2017 15:23:08 GMT-0500 (EST)
+[debug] [2017-11-27T20:23:08.768Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-27T20:23:08.777Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-27T20:23:08.778Z] > authorizing via signed-in user
+[debug] [2017-11-27T20:23:08.779Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Mon Nov 27 2017 15:23:08 GMT-0500 (EST)
+[debug] [2017-11-27T20:23:09.289Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T20:23:09.291Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Mon Nov 27 2017 15:23:09 GMT-0500 (EST)
+[debug] [2017-11-27T20:24:09.603Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/home/mario/Fullstack/FS-Senior/capstoneCrossover'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2017-11-27T20:06:46.674Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
- Mon Nov 27 2017 15:06:46 GMT-0500 (EST)
-[debug] [2017-11-27T20:06:46.675Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
- Mon Nov 27 2017 15:06:46 GMT-0500 (EST)
-[debug] [2017-11-27T20:06:46.675Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
- Mon Nov 27 2017 15:06:46 GMT-0500 (EST)
-[debug] [2017-11-27T20:06:47.245Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-27T20:06:47.245Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
- Mon Nov 27 2017 15:06:47 GMT-0500 (EST)
-[debug] [2017-11-27T20:06:47.655Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T20:24:09.855Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Mon Nov 27 2017 15:24:09 GMT-0500 (EST)
+[debug] [2017-11-27T20:24:09.855Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Mon Nov 27 2017 15:24:09 GMT-0500 (EST)
+[debug] [2017-11-27T20:24:09.856Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Mon Nov 27 2017 15:24:09 GMT-0500 (EST)
+[debug] [2017-11-27T20:24:10.586Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T20:24:10.589Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T20:24:10.590Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Mon Nov 27 2017 15:24:10 GMT-0500 (EST)
+[debug] [2017-11-27T20:24:10.713Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T20:24:11.207Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
 
-[debug] [2017-11-27T20:06:51.955Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-27T20:06:57.075Z] <<< HTTP RESPONSE 200
 [info] ✔  functions: helloWorld: http://localhost:5001/crossover-cf663/us-central1/helloWorld
 [info] Shutting down...
+[debug] [2017-11-27T21:08:01.891Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-27T21:08:01.931Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
