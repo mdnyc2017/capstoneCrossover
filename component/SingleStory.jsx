@@ -80,7 +80,7 @@ export default class SingleStory extends Component {
             </div>
           ))}
         </div>
-        <a href={`/stories/${this.state.storyId}/addscene`}>
+        <a href={`/stories/${this.props.match.params.id}/addscene`}>
           <button>Add Scene</button>
         </a>
       </div>

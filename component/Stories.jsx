@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import firebase, { db, auth } from "~/fire";
 
 
-
-
 export default class Stories extends Component {
   constructor(props) {
     super();
@@ -14,6 +12,7 @@ export default class Stories extends Component {
       userId: ''
     };
   }
+  
   componentDidMount(props) {
     
     // db
@@ -37,29 +36,29 @@ export default class Stories extends Component {
   render() {
     console.log('at render, this.state.userId is: ', this.state.userId)
     
-      db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({ 
+    db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({ 
             stories: snapshot.docs, 
           }));
 
-
-
     if (!this.state.stories) return "Loading...";
-
-
-    return this.state.stories
     
-    
-    .map(story => {
+    return this.state.stories.map(story => {
       let id = story.data().id;
       let thumbnail = story.data().thumbnail || "/default.png"; //default image if no scenes exist
 
       return (
-        <div className="story-thumbnail" key={id}>
-          <img src={thumbnail} width="300px" />
+        <div className="story-list" key={id}>
           <a href={`/stories/${id}`}>
-            <h2>{story.data().title}</h2>
+            <img className="story-thumbnail" src={thumbnail} width="300px" />
           </a>
-          <p>{story.data().description}</p>
+          <div className="story-content">
+            <h2 className="story-title">
+          <a href={`/stories/${id}`}>
+            {story.data().title}
+          </a>
+            </h2>
+            <p className="story-description">{story.data().description}</p>
+          </div>
         </div>
       );
     });

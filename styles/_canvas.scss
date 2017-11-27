@@ -1,33 +1,69 @@
-// .canvas-white > .konvajs-content {
-//     background: white;
-// }
+/* ------------ Editing the Canvas ------------- */
+.addscene-editcanvas {
+    display: flex;
+}
 
-// .canvas-pinkdots > .konvajs-content {
-//     background: url('/pinkdots.jpg');
-//     background-size: cover;
-// }
+.overlay-options {
+    display: flex;
+    flex-wrap: wrap;
 
-// .canvas-bluedots > .konvajs-content {
-//     background: url('/bluedots.jpg');
-//     background-size: cover;
-// }
+    img {
+        width: 33%;
+        height: 33%;
+    }
+}
 
-// .canvas-purpledots > .konvajs-content {
-//     background: url('/purpledots.jpg');
-//     background-size: cover;
-// }
+/* ------------ Text Fonts & Preview ------------- */
+@import url('https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Coming+Soon|Dekko|Gloria+Hallelujah|Kavivanar|Pangolin|Patrick+Hand|Patrick+Hand+SC|Schoolbell|Short+Stack|Sriracha|Walter+Turncoat');
 
-// .canvas-orangedots > .konvajs-content {
-//     background: url('/orangedots.jpg');
-//     background-size: cover;
-// }
+.text-preview {
+    width: 275px;
+}
 
-// .canvas-redyellowdots > .konvajs-content {
-//     background: url('/redyellowdots.jpg');
-//     background-size: cover;
-// }
+.annie-use-your-telescope {
+    font-family: 'Annie Use Your Telescope';
+}
 
-// .canvas-crazy > .konvajs-content {
-//     background: url('/crazy.jpg');
-//     background-size: cover;
-// }
+.coming-soon {
+    font-family: 'Coming Soon';
+}
+
+.dekko {
+    font-family: 'Dekko';
+}
+
+.gloria-hallelujah {
+    font-family: 'Gloria Hallelujah';
+}
+
+.kavivanar {
+    font-family: 'Kavivanar';
+}
+
+.pangolin {
+    font-family: 'Pangolin';
+}
+
+.patrick-hand {
+    font-family: 'Patrick Hand';
+}
+
+.patrick-hand-sc {
+    font-family: 'Patrick Hand SC';
+}
+
+.schoolbell {
+    font-family: 'Schoolbell';
+}
+
+.short-stack {
+    font-family: 'Short Stack';
+}
+
+.sriracha {
+    font-family: 'Sriracha';
+}
+
+.walter-turncoat {
+    font-family: 'Walter Turncoat';
+}
