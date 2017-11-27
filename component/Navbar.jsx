@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import firebase, { auth } from "~/fire";
-import Login from "./Login";
+import React from 'react';
+import Login from './Login';
 
 
 export const Navbar = ({ user, auth }) =>  
-(  <div className="navbar"> 
+(  <div className="navbar">
     {!user || user.isAnonymous ? (
     <ul className="navbar-ul">
       <li className="navbar-li">
