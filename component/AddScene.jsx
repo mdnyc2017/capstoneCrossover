@@ -3,15 +3,28 @@ import Dropzone from "react-dropzone";
 import superagent from "superagent";
 import { db } from "../fire";
 import { Redirect } from "react-router";
-import sha1 from 'sha1';
-import Canvas from './Canvas';
-import 'react-tabs/style/react-tabs.scss';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import WebFont from 'webfontloader';
+import sha1 from "sha1";
+import Canvas from "./Canvas";
+import "react-tabs/style/react-tabs.scss";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import WebFont from "webfontloader";
 
 WebFont.load({
   google: {
-    families: ['Patrick Hand', 'Gloria Hallelujah', 'Coming Soon', 'Annie Use Your Telescope', 'Schoolbell', 'Patrick Hand SC', 'Walter Turncoat', 'Short Stack', 'Pangolin', 'Sriracha', 'Dekko', 'Kavivanar']
+    families: [
+      "Patrick Hand",
+      "Gloria Hallelujah",
+      "Coming Soon",
+      "Annie Use Your Telescope",
+      "Schoolbell",
+      "Patrick Hand SC",
+      "Walter Turncoat",
+      "Short Stack",
+      "Pangolin",
+      "Sriracha",
+      "Dekko",
+      "Kavivanar"
+    ]
   }
 });
 
@@ -27,11 +40,11 @@ export default class AddScene extends Component {
       id: "",
       user: {},
       canvasImages: [],
-      typedText: '',
-      fontFamily: 'Patrick Hand',
+      typedText: "",
+      fontFamily: "Patrick Hand",
       fontSize: 40,
       canvasText: [],
-      background: '#ffffff'
+      background: "#ffffff"
     };
     this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -51,13 +64,13 @@ export default class AddScene extends Component {
   }
 
   changeBackgroundColor(event) {
-    this.setState({background: event.target.value})
+    this.setState({ background: event.target.value });
   }
 
   uploadFile(files) {
     const image = files[0];
 
-    const url = "http://localhost:5001/crossover-cf663/us-central1/helloWorld"; //cloud func location
+    const url = "http://localhost:5001/crossover-cf663/us-central1/uploadImage"; //cloud func location
 
     let uploadRequest = superagent.post(url);
     uploadRequest.attach("file", image);
@@ -102,26 +115,33 @@ export default class AddScene extends Component {
   handleTyping(event) {
     this.setState({
       typedText: event.target.value
-    })
+    });
   }
 
   handleFontFamily(event) {
     this.setState({
       fontFamily: event.target.value
-    })
+    });
   }
 
   handleFontSize(event) {
     this.setState({
       fontSize: event.target.value
-    })
+    });
   }
 
   handleAddText(event) {
     event.preventDefault();
     this.setState({
-        canvasText: [...this.state.canvasText, {text: this.state.typedText, fontFamily: this.state.fontFamily, fontSize: this.state.fontSize}]
-    })
+      canvasText: [
+        ...this.state.canvasText,
+        {
+          text: this.state.typedText,
+          fontFamily: this.state.fontFamily,
+          fontSize: this.state.fontSize
+        }
+      ]
+    });
   }
 
   handleChange(evt) {
@@ -138,7 +158,7 @@ export default class AddScene extends Component {
 
   render() {
     const image = this.state.previewUrl; //If there is a previewUrl we will render it below and supply a form to edit degree of cartoonify effect
-    console.log(this.state.fontSize)
+    console.log(this.state.fontSize);
     return (
       <div className="addscene">
         <div className="addscene-dropzone">
@@ -197,31 +217,81 @@ export default class AddScene extends Component {
             </TabList>
 
             <TabPanel className="addscene-tabs-panel">
-              <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} />
+              <input
+                type="color"
+                value={this.state.background}
+                onChange={this.changeBackgroundColor}
+              />
             </TabPanel>
             <TabPanel className="addscene-tabs-panel">
               <div className="overlay-options">
-                <img src="/captionbox.png" onClick={() => this.handleAddOverlay('/captionbox.png')} />
-                <img src="/quote1.png" onClick={() => this.handleAddOverlay('/quote1.png')} />
-                <img src="/quote2.png" onClick={() => this.handleAddOverlay('/quote2.png')} />
-                <img src="/quote3.png" onClick={() => this.handleAddOverlay('/quote3.png')} />
-                <img src="/quote4.png" onClick={() => this.handleAddOverlay('/quote4.png')} />
-                <img src="/quote5.png" onClick={() => this.handleAddOverlay('/quote5.png')} />
-                <img src="/quote6.png" onClick={() => this.handleAddOverlay('/quote6.png')} />
-                <img src="/quote7.png" onClick={() => this.handleAddOverlay('/quote7.png')} />
-                <img src="/quote8.png" onClick={() => this.handleAddOverlay('/quote8.png')} />
-                <img src="/quote9.png" onClick={() => this.handleAddOverlay('/quote9.png')} />
-                <img src="/quote10.png" onClick={() => this.handleAddOverlay('/quote10.png')} />
-                <img src="/quote11.png" onClick={() => this.handleAddOverlay('/quote11.png')} />
+                <img
+                  src="/captionbox.png"
+                  onClick={() => this.handleAddOverlay("/captionbox.png")}
+                />
+                <img
+                  src="/quote1.png"
+                  onClick={() => this.handleAddOverlay("/quote1.png")}
+                />
+                <img
+                  src="/quote2.png"
+                  onClick={() => this.handleAddOverlay("/quote2.png")}
+                />
+                <img
+                  src="/quote3.png"
+                  onClick={() => this.handleAddOverlay("/quote3.png")}
+                />
+                <img
+                  src="/quote4.png"
+                  onClick={() => this.handleAddOverlay("/quote4.png")}
+                />
+                <img
+                  src="/quote5.png"
+                  onClick={() => this.handleAddOverlay("/quote5.png")}
+                />
+                <img
+                  src="/quote6.png"
+                  onClick={() => this.handleAddOverlay("/quote6.png")}
+                />
+                <img
+                  src="/quote7.png"
+                  onClick={() => this.handleAddOverlay("/quote7.png")}
+                />
+                <img
+                  src="/quote8.png"
+                  onClick={() => this.handleAddOverlay("/quote8.png")}
+                />
+                <img
+                  src="/quote9.png"
+                  onClick={() => this.handleAddOverlay("/quote9.png")}
+                />
+                <img
+                  src="/quote10.png"
+                  onClick={() => this.handleAddOverlay("/quote10.png")}
+                />
+                <img
+                  src="/quote11.png"
+                  onClick={() => this.handleAddOverlay("/quote11.png")}
+                />
               </div>
             </TabPanel>
             <TabPanel className="addscene-tabs-panel">
               <h4>Size:</h4>
-              <input type="number" min="0" value={this.state.fontSize} onChange={this.handleFontSize} />
+              <input
+                type="number"
+                min="0"
+                value={this.state.fontSize}
+                onChange={this.handleFontSize}
+              />
               <h4>Font:</h4>
               <form onSubmit={this.handleAddText}>
-                <select defaultValue="Patrick Hand" onChange={this.handleFontFamily}>
-                  <option value="Annie Use Your Telescope">Annie Use Your Telescope</option>
+                <select
+                  defaultValue="Patrick Hand"
+                  onChange={this.handleFontFamily}
+                >
+                  <option value="Annie Use Your Telescope">
+                    Annie Use Your Telescope
+                  </option>
                   <option value="Coming Soon">Coming Soon</option>
                   <option value="Dekko">Dekko</option>
                   <option value="Gloria Hallelujah">Gloria Hallelujah</option>
@@ -234,11 +304,26 @@ export default class AddScene extends Component {
                   <option value="Sriracha">Sriracha</option>
                   <option value="Walter Turncoat">Walter Turncoat</option>
                 </select>
-                <textarea placeholder="Enter text here" rows="4" cols="50" value={this.state.typedText} onChange={this.handleTyping} />
+                <textarea
+                  placeholder="Enter text here"
+                  rows="4"
+                  cols="50"
+                  value={this.state.typedText}
+                  onChange={this.handleTyping}
+                />
                 <button type="submit">Submit</button>
               </form>
-              <div className="text-preview"><p style={{fontSize: `${this.state.fontSize}px`, fontFamily: this.state.fontFamily}}>{this.state.typedText || 'Preview'}</p></div>
-          </TabPanel>
+              <div className="text-preview">
+                <p
+                  style={{
+                    fontSize: `${this.state.fontSize}px`,
+                    fontFamily: this.state.fontFamily
+                  }}
+                >
+                  {this.state.typedText || "Preview"}
+                </p>
+              </div>
+            </TabPanel>
           </Tabs>
         </div>
       </div>
