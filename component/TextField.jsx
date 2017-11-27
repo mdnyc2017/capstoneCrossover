@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { Group, Image, Circle } from "react-konva";
+import { Group, Circle, Text } from "react-konva";
 import Konva from "konva";
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Patrick Hand', 'Gloria Hallelujah', 'Coming Soon', 'Annie Use Your Telescope', 'Schoolbell', 'Patrick Hand SC', 'Walter Turncoat', 'Short Stack', 'Pangolin', 'Sriracha', 'Dekko', 'Kavivanar']
+  }
+});
+
 
 export default class Photo extends Component {
     constructor(props) {
@@ -11,7 +19,8 @@ export default class Photo extends Component {
         xRight: 280,
         yBottom: 280,
         draggable: true,
-        fill: 'transparent'
+        fill: 'transparent',
+        wrap: 'word'
       }
 
     this.handleDragMoveTopLeft = this.handleDragMoveTopLeft.bind(this);
@@ -20,21 +29,6 @@ export default class Photo extends Component {
     this.handleDragMoveBottomRight = this.handleDragMoveBottomRight.bind(this);
     this.circleShow = this.circleShow.bind(this);
     this.circleHide = this.circleHide.bind(this);
-    this.updateXandY = this.updateXandY.bind(this);
-  }
-
-  updateXandY() {
-    const image = new window.Image();
-    image.src = this.props.imageUrl;
-    this.setState({xLeft: 0, yTop: 0, xRight: this.props.image.width, yBottom: this.props.image.height})
-  }
-
-  componentDidMount() {
-    this.updateXandY()
-  }
-
-  componentWillReceiveProps() {
-    this.updateXandY()
   }
 
   //Resizing Options:
@@ -96,9 +90,6 @@ export default class Photo extends Component {
   }
 
   render() {
-    const image = new window.Image();
-    image.crossOrigin = "Anonymous";
-    image.src = this.props.imageUrl;
 
     return (
     <Group draggable={this.state.draggable} >
@@ -111,7 +102,6 @@ export default class Photo extends Component {
         y={this.state.yBottom}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zindex}
         draggable
       />
       <Circle //bottom-left resize guide
@@ -123,7 +113,6 @@ export default class Photo extends Component {
         y={this.state.yBottom}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zindex}
         draggable
       />
       <Circle //top-right resize guide
@@ -135,7 +124,6 @@ export default class Photo extends Component {
         y={this.state.yTop}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zindex}
         draggable
       />
       <Circle //top-left resize guide
@@ -147,18 +135,20 @@ export default class Photo extends Component {
         y={this.state.yTop}
         ref={anchor => { this.anchor = anchor; }}
         radius={10}
-        zIndex={this.props.zindex}
         draggable
       />
-      <Image //image added by user
-        image={this.props.image}
+      <Text
+        text={this.props.text.text}
+        fontSize={this.props.text.fontSize}
+        wrap={this.state.wrap}
+        fontFamily={this.props.text.fontFamily}
+        fill="black"
         onMouseOver={this.circleShow}
         onMouseOut={this.circleHide}
         x={this.state.xLeft}
         y={this.state.yTop}
         width={Math.abs(this.state.xRight - this.state.xLeft)}
         height={Math.abs(this.state.yBottom - this.state.yTop)}
-        zIndex={this.props.zindex}
       />
     </Group>
   )}
