@@ -4,7 +4,6 @@ import superagent from "superagent";
 import { db } from "../fire";
 import { Redirect } from "react-router";
 import sha1 from 'sha1';
-import superagent from 'superagent';
 import Canvas from './Canvas';
 import 'react-tabs/style/react-tabs.scss';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
