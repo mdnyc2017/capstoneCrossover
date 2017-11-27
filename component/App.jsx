@@ -19,7 +19,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = auth.onAuthStateChanged(user => this.setState({ user }));
+    this.unsubscribe = auth.onAuthStateChanged(user => {
+      console.log(user);
+      this.setState({ user });
+    });
   }
 
   componentWillUnmount() {

@@ -18,7 +18,7 @@ export default class Canvas extends Component {
       storyId: '',
       background: '#ffffff',
       fireRedirect: false
-    }
+    };
     this.uploadToCloudinary = this.uploadToCloudinary.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
   }
@@ -52,17 +52,17 @@ export default class Canvas extends Component {
     const key = `${user.user.uid}${Date.now()}`;
     const storyId = this.state.storyId;
     //this function uploads image to cloudinary
-    const cloudName = 'noorulain';
-    const cloudPreset = 'pvfhdtk2';
+    const cloudName = "noorulain";
+    const cloudPreset = "pvfhdtk2";
     var url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
     //construct a set of key/value pairs representing form fields and their values -- which can then be easily sent
     //with the request.
     const fd = new FormData();
-    fd.append('upload_preset', cloudPreset);
-    fd.append('file', dataUrl);
+    fd.append("upload_preset", cloudPreset);
+    fd.append("file", dataUrl);
     return axios
       .post(url, fd, {
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        headers: { "X-Requested-With": "XMLHttpRequest" }
       })
       .then(response =>
         this.setState({
@@ -71,31 +71,30 @@ export default class Canvas extends Component {
       )
       .then(() =>
         db
-          .collection('scenes')
+          .collection("scenes")
           .doc(key)
           .set({ imageUrl: this.state.canvasUrl })
       )
       .then(() =>
         db
-          .collection('stories')
+          .collection("stories")
           .doc(storyId)
-          .collection('scenes')
+          .collection("scenes")
           .doc(key)
-          .set({ imageUrl: this.state.canvasUrl, id: key, random: 'check' })
+          .set({ imageUrl: this.state.canvasUrl, id: key, random: "check" })
       )
       .then(() =>
         db
-          .collection('stories')
+          .collection("stories")
           .doc(storyId)
           .update({ thumbnail: this.state.canvasUrl })
       )
       .then(() => this.setState({ fireRedirect: true }))
-      .catch(error => console.error('Error creating scene: ', error));
+      .catch(error => console.error("Error creating scene: ", error));
   }
 
   uploadToCloudinary() {
-    const image = this.stageRef.getStage().toDataURL('image/png');
-    console.log(image);
+    const image = this.stageRef.getStage().toDataURL("image/png");
     this.uploadFile(image);
   }
 
