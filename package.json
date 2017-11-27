@@ -33,6 +33,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chokidar": "^1.7.0",
+    "cloudinary": "^1.9.1",
     "cloudinary-react": "^1.0.4",
     "cors": "^2.8.4",
     "css-loader": "^0.28.7",
