@@ -141,107 +141,108 @@ export default class AddScene extends Component {
     console.log(this.state.fontSize)
     return (
       <div className="addscene">
-        <div className="addscene-dropzone">
-          <h1>Image goes here!</h1>
-          <Dropzone onDrop={this.uploadFile.bind(this)} />
-        </div>
-
-        <div className="addscene-preview">
-          <img src={image} />
-        </div>
-
-        {image ? (
-          <div className="addscene-editpreview">
-            <form onSubmit={this.handleSubmitPreview}>
-              <input
-                className="form-field"
-                type="number"
-                min="0"
-                max="100"
-                value={this.state.lineStrength}
-                name="lineStrength"
-                onChange={this.handleChange}
-              />
-              <input
-                className="form-field"
-                type="number"
-                min="0"
-                max="100"
-                value={this.state.colorReduction}
-                name="colorReduction"
-                onChange={this.handleChange}
-              />
-              <button type="submit">Add to Canvas</button>
-            </form>
-          </div>
-        ) : (
-          <span />
-        )}
-
-        <div className="addscene-editcanvas">
-          <div className="addscene-canvas">
-            <Canvas
-              images={this.state.canvasImages}
-              text={this.state.canvasText}
-              currentUser={this.state.user}
-              storyId={this.state.storyId}
-              background={this.state.background}
-            />
+        <div className="addscene-edit">
+          <div className="addscene-edit-dropzone">
+            <Dropzone onDrop={this.uploadFile.bind(this)}><h2 className="addscene-edit-dropzone-text">Add an Image</h2></Dropzone>
           </div>
 
-          <Tabs className="addscene-tabs">
-            <TabList className="tabs-list">
-              <Tab className="tabs-title">Background</Tab>
-              <Tab className="tabs-title">Quote & Caption Bubbles</Tab>
-              <Tab className="tabs-title">Text</Tab>
-            </TabList>
+          <div className="addscene-edit-preview">
+            <img src={image} />
+          </div>
 
-            <TabPanel className="addscene-tabs-panel">
-              <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} />
-            </TabPanel>
-            <TabPanel className="addscene-tabs-panel">
-              <div className="overlay-options">
-                <img src="/captionbox.png" onClick={() => this.handleAddOverlay('/captionbox.png')} />
-                <img src="/quote1.png" onClick={() => this.handleAddOverlay('/quote1.png')} />
-                <img src="/quote2.png" onClick={() => this.handleAddOverlay('/quote2.png')} />
-                <img src="/quote3.png" onClick={() => this.handleAddOverlay('/quote3.png')} />
-                <img src="/quote4.png" onClick={() => this.handleAddOverlay('/quote4.png')} />
-                <img src="/quote5.png" onClick={() => this.handleAddOverlay('/quote5.png')} />
-                <img src="/quote6.png" onClick={() => this.handleAddOverlay('/quote6.png')} />
-                <img src="/quote7.png" onClick={() => this.handleAddOverlay('/quote7.png')} />
-                <img src="/quote8.png" onClick={() => this.handleAddOverlay('/quote8.png')} />
-                <img src="/quote9.png" onClick={() => this.handleAddOverlay('/quote9.png')} />
-                <img src="/quote10.png" onClick={() => this.handleAddOverlay('/quote10.png')} />
-                <img src="/quote11.png" onClick={() => this.handleAddOverlay('/quote11.png')} />
-              </div>
-            </TabPanel>
-            <TabPanel className="addscene-tabs-panel">
-              <h4>Size:</h4>
-              <input type="number" min="0" value={this.state.fontSize} onChange={this.handleFontSize} />
-              <h4>Font:</h4>
-              <form onSubmit={this.handleAddText}>
-                <select defaultValue="Patrick Hand" onChange={this.handleFontFamily}>
-                  <option value="Annie Use Your Telescope">Annie Use Your Telescope</option>
-                  <option value="Coming Soon">Coming Soon</option>
-                  <option value="Dekko">Dekko</option>
-                  <option value="Gloria Hallelujah">Gloria Hallelujah</option>
-                  <option value="Kavivanar">Kavivanar</option>
-                  <option value="Pangolin">Pangolin</option>
-                  <option value="Patrick Hand">Patrick Hand</option>
-                  <option value="Patrick Hand SC">Patrick Hand SC</option>
-                  <option value="Schoolbell">Schoolbell</option>
-                  <option value="Short Stack">Short Stack</option>
-                  <option value="Sriracha">Sriracha</option>
-                  <option value="Walter Turncoat">Walter Turncoat</option>
-                </select>
-                <textarea placeholder="Enter text here" rows="4" cols="50" value={this.state.typedText} onChange={this.handleTyping} />
-                <button type="submit">Submit</button>
+          {image ? (
+            <div className="addscene-edit-cartoonify">
+              <form onSubmit={this.handleSubmitPreview}>
+                <input
+                  className="form-field"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={this.state.lineStrength}
+                  name="lineStrength"
+                  onChange={this.handleChange}
+                />
+                <input
+                  className="form-field"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={this.state.colorReduction}
+                  name="colorReduction"
+                  onChange={this.handleChange}
+                />
+                <button type="submit">Add to Canvas</button>
               </form>
-              <div className="text-preview"><p style={{fontSize: `${this.state.fontSize}px`, fontFamily: this.state.fontFamily}}>{this.state.typedText || 'Preview'}</p></div>
-          </TabPanel>
-          </Tabs>
+            </div>
+          ) : (
+            <span />
+          )}
+
+          <div className="addscene-edit-canvas">
+
+            <Tabs className="addscene-edit-canvas-tabs">
+              <TabList className="addscene-edit-canvas-tabs-list">
+                <Tab className="addscene-edit-canvas-tabs-title">Background</Tab>
+                <Tab className="addscene-edit-canvas-tabs-title">Quote & Caption Bubbles</Tab>
+                <Tab className="addscene-edit-canvas-tabs-title">Text</Tab>
+              </TabList>
+
+              <TabPanel className="addscene-edit-canvas-tabs-panel">
+                <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} />
+              </TabPanel>
+              <TabPanel className="addscene-edit-canvas-tabs-panel">
+                <div className="addscene-edit-canvas-tabs-overlay">
+                  <img src="/captionbox.png" onClick={() => this.handleAddOverlay('/captionbox.png')} />
+                  <img src="/quote1.png" onClick={() => this.handleAddOverlay('/quote1.png')} />
+                  <img src="/quote2.png" onClick={() => this.handleAddOverlay('/quote2.png')} />
+                  <img src="/quote3.png" onClick={() => this.handleAddOverlay('/quote3.png')} />
+                  <img src="/quote4.png" onClick={() => this.handleAddOverlay('/quote4.png')} />
+                  <img src="/quote5.png" onClick={() => this.handleAddOverlay('/quote5.png')} />
+                  <img src="/quote6.png" onClick={() => this.handleAddOverlay('/quote6.png')} />
+                  <img src="/quote7.png" onClick={() => this.handleAddOverlay('/quote7.png')} />
+                  <img src="/quote8.png" onClick={() => this.handleAddOverlay('/quote8.png')} />
+                  <img src="/quote9.png" onClick={() => this.handleAddOverlay('/quote9.png')} />
+                  <img src="/quote10.png" onClick={() => this.handleAddOverlay('/quote10.png')} />
+                  <img src="/quote11.png" onClick={() => this.handleAddOverlay('/quote11.png')} />
+                </div>
+              </TabPanel>
+              <TabPanel className="addscene-edit-canvas-tabs-panel">
+                <h4>Size:</h4>
+                <input type="number" min="0" value={this.state.fontSize} onChange={this.handleFontSize} />
+                <h4>Font:</h4>
+                <form onSubmit={this.handleAddText}>
+                  <select defaultValue="Patrick Hand" onChange={this.handleFontFamily}>
+                    <option value="Annie Use Your Telescope">Annie Use Your Telescope</option>
+                    <option value="Coming Soon">Coming Soon</option>
+                    <option value="Dekko">Dekko</option>
+                    <option value="Gloria Hallelujah">Gloria Hallelujah</option>
+                    <option value="Kavivanar">Kavivanar</option>
+                    <option value="Pangolin">Pangolin</option>
+                    <option value="Patrick Hand">Patrick Hand</option>
+                    <option value="Patrick Hand SC">Patrick Hand SC</option>
+                    <option value="Schoolbell">Schoolbell</option>
+                    <option value="Short Stack">Short Stack</option>
+                    <option value="Sriracha">Sriracha</option>
+                    <option value="Walter Turncoat">Walter Turncoat</option>
+                  </select>
+                  <textarea placeholder="Enter text here" rows="4" cols="50" value={this.state.typedText} onChange={this.handleTyping} />
+                  <button type="submit">Submit</button>
+                </form>
+                <div className="text-preview"><p style={{fontSize: `${this.state.fontSize}px`, fontFamily: this.state.fontFamily}}>{this.state.typedText || 'Preview'}</p></div>
+            </TabPanel>
+            </Tabs>
+          </div>
         </div>
-      </div>
+        <div className="addscene-canvas">
+          <Canvas
+            images={this.state.canvasImages}
+            text={this.state.canvasText}
+            currentUser={this.state.user}
+            storyId={this.state.storyId}
+            background={this.state.background}
+          />
+        </div>
+    </div>
     );
   }
 }

@@ -1,16 +1,57 @@
-/* ------------ Editing the Canvas ------------- */
-.addscene-editcanvas {
+
+/* ------------ Editing the Canvas (Desktop) ------------- */
+.addscene {
     display: flex;
+    width: 95%;
 }
 
-.overlay-options {
-    display: flex;
-    flex-wrap: wrap;
+.addscene-edit {
+    width: 50%;
 
-    img {
-        width: 33%;
-        height: 33%;
+    &-dropzone > div {
+        position: relative;
+        margin: auto;
+        width: 90% !important;
+        display: flex;
+        vertical-align: middle;
+        border-color: #FFC107 !important;
     }
+
+    &-dropzone-text {
+        text-align: center;
+        position: relative;
+        margin: auto;
+        color: #FFC107;
+    }
+
+    &-preview {
+
+        img {
+            width: 90%;
+        }
+    }
+
+    &-canvas-tabs {
+        width: 90%;
+
+        &-panel {
+            width: 90%;
+        }
+
+        &-overlay {
+            display: flex;
+            flex-wrap: wrap;
+        
+            img {
+                width: 33%;
+                height: 33%;
+            }
+        }
+    }
+}
+
+.canvas {
+    width: 50%;
 }
 
 /* ------------ Text Fonts & Preview ------------- */

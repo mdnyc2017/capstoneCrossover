@@ -102,9 +102,12 @@ export default class Canvas extends Component {
     const { fireRedirect } = this.state;
     return (
       <div>
+        <button type="submit" onClick={this.uploadToCloudinary}>
+          Submit Image!
+        </button>
         <Stage
-          width={1000}
-          height={500}
+          width={900}
+          height={450}
           className={this.state.background}
           ref={node => {
             this.stageRef = node;
@@ -112,8 +115,8 @@ export default class Canvas extends Component {
         >
           <Layer>
             <Rect
-              width={1000}
-              height={500}
+              width={950}
+              height={450}
               zindex={-1}
               fill={this.props.background} />
             {this.state.canvasImages &&
@@ -139,9 +142,6 @@ export default class Canvas extends Component {
             })}
           </Layer>
         </Stage>
-        <button type="submit" onClick={this.uploadToCloudinary}>
-          Submit Image!
-        </button>
         {fireRedirect && <Redirect to={`/stories/${this.state.storyId}`} />}
       </div>
     );
