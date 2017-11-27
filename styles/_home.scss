@@ -13,12 +13,11 @@ body {
     position: relative;
     border-style: solid;
     border-color: black;
-    background-color:  rgb(253, 252, 252);
+    background-color:  rgb(255, 253, 235);
     margin: 1em auto;
     // height: 85vh;
     width: 60vw;
     &-top, &-create, &-collaborate, &-combine {
-        position: relative;
         vertical-align: middle;
         line-height: 70vh;
         font-size: 3vw;
@@ -36,13 +35,13 @@ body {
         border-top-width: 1em;
     }
     &-create-b {
-        @include b-div(white,left);
+        @include b-div(rgb(255, 253, 235),left);
     }
     &-collaborate-b {
         @include b-div(rgb(0, 162, 255),right);
     }
     &-combine-b {
-        @include b-div(white,left);
+        @include b-div(rgb(255, 253, 235),left);
     }
   }    
 }

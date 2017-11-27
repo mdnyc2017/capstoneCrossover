@@ -46,17 +46,17 @@ export default class Stories extends Component {
       let thumbnail = story.data().thumbnail || "/default.png"; //default image if no scenes exist
 
       return (
-        <div className="story-list" key={id}>
+        <div className="story" key={id}>
           <a href={`/stories/${id}`}>
-            <img className="story-thumbnail" src={thumbnail} width="300px" />
+            <img className="story-thumbnail" src={thumbnail} width="300em" />
           </a>
           <div className="story-content">
-            <h2 className="story-title">
-          <a href={`/stories/${id}`}>
-            {story.data().title}
-          </a>
+            <h2 className="story-content-title">
+              <a className="story-content-title" href={`/stories/${id}`}>
+                {story.data().title}
+              </a>
             </h2>
-            <p className="story-description">{story.data().description}</p>
+            <p className="story-content-description">{story.data().description}</p>
           </div>
         </div>
       );
