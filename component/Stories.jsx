@@ -15,17 +15,6 @@ export default class Stories extends Component {
     };
   }
   componentDidMount(props) {
-    // console.log('this.state.userId is: ', this.state.userId)
-
-    // let self = this;
-    // setTimeout(() => {
-    //       //  let uid = firebase.auth().currentUser.uid
-
-    //   self.setState({
-    //     canvasImages: [...self.state.canvasImages, self.state.previewUrl]
-    //   });
-    // }, 10);
-
     
     // db
     //   .collection("stories")
@@ -48,7 +37,6 @@ export default class Stories extends Component {
   render() {
     console.log('at render, this.state.userId is: ', this.state.userId)
     
-      // console.log('2 this.state.user is: ',this.state.user)
       db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({ 
             stories: snapshot.docs, 
           }));
