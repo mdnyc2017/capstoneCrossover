@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { db } from "~/fire";
+import firebase, { db, auth } from "~/fire";
 import { Redirect } from "react-router"; //allows us to redirect after submit
 
 export default class AddStory extends Component {
@@ -36,6 +36,7 @@ export default class AddStory extends Component {
 
     //Defining our data that we want to submit to the db
     const user = this.state.user;
+    const uid = firebase.auth().currentUser.uid
     const title = event.target.title.value;
     const description = event.target.description.value;
     const key = `${user.user.uid}${Date.now()}`; //Creates a unique ID of user's id + the current time in unix code. Purpose: so we can redirect to "/stories/key" and already have the key available to us
@@ -47,7 +48,8 @@ export default class AddStory extends Component {
       .set({
         id: key,
         title: title,
-        description: description
+        description: description,
+        userId: uid
       })
       //Save story to user>stories collection in db
       .then(() =>
