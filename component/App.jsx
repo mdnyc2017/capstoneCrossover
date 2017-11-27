@@ -3,6 +3,8 @@ import firebase, { auth } from "~/fire";
 import Routes from "./Routes";
 import Login from "./Login";
 import { Navbar } from "./Navbar";
+import Stories from './Stories'
+
 
 export const welcome = user => {
   if (!user) return "";
@@ -19,10 +21,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = auth.onAuthStateChanged(user => {
-      console.log(user);
-      this.setState({ user });
-    });
+    this.unsubscribe = auth.onAuthStateChanged(user => this.setState({ user }));
   }
 
   componentWillUnmount() {
@@ -30,6 +29,7 @@ export default class App extends Component {
   }
 
   render() {
+ 
     const { user } = this.state || {};
     return (
       <div className="page">

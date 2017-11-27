@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { db } from '~/fire';
+import React, { Component } from "react";
+import firebase, { db, auth } from "~/fire";
+
 
 export default class Stories extends Component {
   constructor(props) {
@@ -8,24 +9,42 @@ export default class Stories extends Component {
       user: {},
       stories: [],
       scenes: [],
+      userId: ''
     };
   }
-
-  componentDidMount() {
-    db
-      .collection('stories')
-      .onSnapshot(snapshot => this.setState({ stories: snapshot.docs }));
+  
+  componentDidMount(props) {
+    
+    // db
+    //   .collection("stories")
+    //   .where('userId', '==', this.state.userId)
+    //   .onSnapshot(snapshot => this.setState({ 
+    //     stories: snapshot.docs, 
+    //   }));
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ user: nextProps.currentUser });
+     let uid = firebase.auth().currentUser.uid
+     
+     
+    this.setState({ 
+      user: nextProps.currentUser,
+      userId: uid
+     });    
   }
 
   render() {
-    if (!this.state.stories) return 'Loading...';
-    return this.state.stories.map((story) => {
-      const id = story.data().id;
-      const thumbnail = story.data().thumbnail || '/default.png'; // default image if no scenes exist
+    console.log('at render, this.state.userId is: ', this.state.userId)
+    
+    db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({ 
+            stories: snapshot.docs, 
+          }));
+
+    if (!this.state.stories) return "Loading...";
+    
+    return this.state.stories.map(story => {
+      let id = story.data().id;
+      let thumbnail = story.data().thumbnail || "/default.png"; //default image if no scenes exist
 
       return (
         <div className="story-list" key={id}>
