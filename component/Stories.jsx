@@ -34,7 +34,6 @@ export default class Stories extends Component {
   }
 
   render() {
-    console.log('at render, this.state.userId is: ', this.state.userId)
     
     db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({ 
             stories: snapshot.docs, 
