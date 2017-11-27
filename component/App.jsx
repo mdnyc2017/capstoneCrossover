@@ -3,6 +3,8 @@ import firebase, { auth } from "~/fire";
 import Routes from "./Routes";
 import Login from "./Login";
 import { Navbar } from "./Navbar";
+import Stories from './Stories'
+
 
 export const welcome = user => {
   if (!user) return "";
@@ -27,6 +29,7 @@ export default class App extends Component {
   }
 
   render() {
+ 
     const { user } = this.state || {};
     return (
       <div className="page">
@@ -34,7 +37,6 @@ export default class App extends Component {
           <Navbar user={user} auth={auth} />
         </nav>
         <br />
-        <span className="navBar-user-name">{welcome(user)}</span>
         <Routes user={this.state} />
       </div>
     );

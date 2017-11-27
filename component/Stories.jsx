@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { db } from "~/fire";
+import firebase, { db, auth } from "~/fire";
+
 
 export default class Stories extends Component {
   constructor(props) {
@@ -7,33 +8,56 @@ export default class Stories extends Component {
     this.state = {
       user: {},
       stories: [],
-      scenes: []
+      scenes: [],
+      userId: ''
     };
   }
-
-  componentDidMount() {
-    db
-      .collection("stories")
-      .onSnapshot(snapshot => this.setState({ stories: snapshot.docs }));
+  
+  componentDidMount(props) {
+    
+    // db
+    //   .collection("stories")
+    //   .where('userId', '==', this.state.userId)
+    //   .onSnapshot(snapshot => this.setState({ 
+    //     stories: snapshot.docs, 
+    //   }));
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ user: nextProps.currentUser });
+     let uid = firebase.auth().currentUser.uid
+     
+     
+    this.setState({ 
+      user: nextProps.currentUser,
+      userId: uid
+     });    
   }
 
   render() {
+    
+    db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({ 
+            stories: snapshot.docs, 
+          }));
+
     if (!this.state.stories) return "Loading...";
+    
     return this.state.stories.map(story => {
       let id = story.data().id;
       let thumbnail = story.data().thumbnail || "/default.png"; //default image if no scenes exist
 
       return (
-        <div className="story-thumbnail" key={id}>
-          <img src={thumbnail} width="300px" />
+        <div className="story" key={id}>
           <a href={`/stories/${id}`}>
-            <h2>{story.data().title}</h2>
+            <img className="story-thumbnail" src={thumbnail} width="300em" />
           </a>
-          <p>{story.data().description}</p>
+          <div className="story-content">
+            <h2 className="story-content-title">
+              <a className="story-content-title" href={`/stories/${id}`}>
+                {story.data().title}
+              </a>
+            </h2>
+            <p className="story-content-description">{story.data().description}</p>
+          </div>
         </div>
       );
     });

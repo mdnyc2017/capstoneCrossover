@@ -1,18 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Barrio');
 @import url('https://fonts.googleapis.com/css?family=Passion+One|Permanent+Marker');
+//     font-family: 'Permanent Marker', cursive;
+// 
 @import 'home';
 @import 'navbar';
 @import 'homeImages';
 @import 'canvas';
+@import 'stories';
 // import Canvas.state.color as $selectedColor from './components/Canvas'
 
 body {
     margin: 0;
     background-color: rgb(255, 35, 35);
-    .story-thumbnail {
-        margin-bottom: 50px;
-        margin-top: 25px;
-    }
+    // .story-thumbnail {
+    //     margin-bottom: 50px;
+    //     margin-top: 25px;
+    // }
     .page {
         position: relative;
         margin: 0 auto;
