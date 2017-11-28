@@ -23,13 +23,20 @@ export default class Stories extends Component {
   }
 
   render() {
+    let stories = db.collection('stories')
+    stories.collection('collaborators')
+    .where('uid', '==', this.state.userId)
+    .onSnapshot(snapshot => this.setState({
+              stories: snapshot.docs,
+            }));
+            
 
-    db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({
-            stories: snapshot.docs,
-          }));
+    // db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({
+    //         stories: snapshot.docs,
+    //       }));
 
     if (!this.state.stories) return "Loading...";
-
+    
     return (
       <div className="stories">
         <h1 className="stories-title">Your Stories</h1>

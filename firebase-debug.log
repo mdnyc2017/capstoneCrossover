@@ -1,0 +1,96 @@
+[debug] [2017-11-28T19:52:13.810Z] ----------------------------------------------------------------------
+[debug] [2017-11-28T19:52:13.814Z] Command:       /usr/local/bin/node /Users/michaeldouglas/fullstack_github/capstoneCrossover/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-28T19:52:13.814Z] CLI Version:   3.14.0
+[debug] [2017-11-28T19:52:13.814Z] Platform:      darwin
+[debug] [2017-11-28T19:52:13.814Z] Node Version:  v8.5.0
+[debug] [2017-11-28T19:52:13.817Z] Time:          Tue Nov 28 2017 14:52:13 GMT-0500 (EST)
+[debug] [2017-11-28T19:52:13.818Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-28T19:52:13.834Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-28T19:52:13.834Z] > authorizing via signed-in user
+[debug] [2017-11-28T19:52:13.836Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Tue Nov 28 2017 14:52:13 GMT-0500 (EST)
+[debug] [2017-11-28T19:52:14.262Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T19:52:14.263Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Tue Nov 28 2017 14:52:14 GMT-0500 (EST)
+[debug] [2017-11-28T19:52:14.761Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/michaeldouglas/fullstack_github/capstoneCrossover/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-28T19:52:15.241Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Tue Nov 28 2017 14:52:15 GMT-0500 (EST)
+[debug] [2017-11-28T19:52:15.241Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Tue Nov 28 2017 14:52:15 GMT-0500 (EST)
+[debug] [2017-11-28T19:52:15.242Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Tue Nov 28 2017 14:52:15 GMT-0500 (EST)
+[debug] [2017-11-28T19:52:15.497Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T19:52:15.575Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T19:52:15.575Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Tue Nov 28 2017 14:52:15 GMT-0500 (EST)
+[debug] [2017-11-28T19:52:15.787Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T19:52:15.882Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: uploadCanvas: http://localhost:5001/crossover-cf663/us-central1/uploadCanvas
+[info] ✔  functions: uploadImage: http://localhost:5001/crossover-cf663/us-central1/uploadImage
+[info] Shutting down...
+[debug] [2017-11-28T20:02:00.910Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-28T20:02:00.913Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-28T20:02:04.820Z] ----------------------------------------------------------------------
+[debug] [2017-11-28T20:02:04.823Z] Command:       /usr/local/bin/node /Users/michaeldouglas/fullstack_github/capstoneCrossover/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-28T20:02:04.824Z] CLI Version:   3.14.0
+[debug] [2017-11-28T20:02:04.824Z] Platform:      darwin
+[debug] [2017-11-28T20:02:04.824Z] Node Version:  v8.5.0
+[debug] [2017-11-28T20:02:04.827Z] Time:          Tue Nov 28 2017 15:02:04 GMT-0500 (EST)
+[debug] [2017-11-28T20:02:04.827Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-28T20:02:04.845Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-28T20:02:04.845Z] > authorizing via signed-in user
+[debug] [2017-11-28T20:02:04.848Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Tue Nov 28 2017 15:02:04 GMT-0500 (EST)
+[debug] [2017-11-28T20:02:05.373Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:02:05.374Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Tue Nov 28 2017 15:02:05 GMT-0500 (EST)
+[debug] [2017-11-28T20:02:05.691Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/michaeldouglas/fullstack_github/capstoneCrossover/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-28T20:02:06.227Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Tue Nov 28 2017 15:02:06 GMT-0500 (EST)
+[debug] [2017-11-28T20:02:06.228Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Tue Nov 28 2017 15:02:06 GMT-0500 (EST)
+[debug] [2017-11-28T20:02:06.228Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Tue Nov 28 2017 15:02:06 GMT-0500 (EST)
+[debug] [2017-11-28T20:02:06.554Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:02:06.555Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Tue Nov 28 2017 15:02:06 GMT-0500 (EST)
+[debug] [2017-11-28T20:02:06.560Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:02:06.563Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:02:07.049Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: uploadCanvas: http://localhost:5001/crossover-cf663/us-central1/uploadCanvas
+[info] ✔  functions: uploadImage: http://localhost:5001/crossover-cf663/us-central1/uploadImage
+[info] Shutting down...
+[debug] [2017-11-28T20:29:11.133Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-28T20:29:11.136Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
