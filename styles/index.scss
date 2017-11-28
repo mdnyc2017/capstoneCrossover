@@ -4,7 +4,6 @@
 // font-family: 'Permanent Marker', cursive;
 // font-family: 'Patua One', cursive;
 
-
 @import 'home';
 @import 'navbar';
 @import 'homeImages';
@@ -12,16 +11,17 @@
 @import 'stories';
 @import 'story';
 @import 'single-story';
+@import 'add-story';
+@import 'addscene';
+@import 'addscene-edit';
+@import 'addscene-canvas';
+@import 'addscene-edit-cartoonify';
+@import 'addscene-edit-canvas';
 // import Canvas.state.color as $selectedColor from './components/Canvas'
-
 
 body {
     margin: 0;
     background-color: rgb(235, 2, 2);
-    // .story-thumbnail {
-    //     margin-bottom: 50px;
-    //     margin-top: 25px;
-    // }
     .page {
         position: relative;
         margin: 0 auto;

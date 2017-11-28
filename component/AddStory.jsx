@@ -74,16 +74,16 @@ export default class AddStory extends Component {
     const { fireRedirect } = this.state;
 
     return (
-      <div className="add-story-main">
+      <div className="add-story">
         <form className="add-story-form" onSubmit={this.handleSubmit}>
-          <div className="form-group">
+          <div className="add-story-form-group">
             <label htmlFor="name">
               <h2>Add a Story</h2>
             </label>
             <input
               value={this.state.titleInput}
               onChange={this.handleChangeTitle}
-              className="form-control"
+              className="add-story-form-control"
               type="text"
               name="title"
               placeholder="Enter a title"
@@ -92,13 +92,13 @@ export default class AddStory extends Component {
             <input
               value={this.state.descriptionInput}
               onChange={this.handleChangeDescription}
-              className="form-control"
+              className="add-story-form-control"
               type="text"
               name="description"
               placeholder="Enter a story description (optional)"
             />
           </div>
-          <div className="form-group">
+          <div className="add-story-form-group">
             <button type="submit" className="button-main">
               Create Story
             </button>

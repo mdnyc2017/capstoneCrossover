@@ -1,0 +1,44 @@
+.addscene-edit {
+  overflow: auto;        
+  box-shadow: 0px .5em .5em #000000;        
+  margin: 2em;        
+  width: 30%;
+  background-color: rgb(0, 132, 255);
+  border-color: black;
+  border-style: solid;
+  font-family: 'Patua One', cursive;
+  &-dropzone {
+    & > div {
+        margin: 5%;                    
+        width: 90% !important;
+        display: flex;
+        vertical-align: middle;
+        border-color: rgb(0, 0, 0) !important;
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.301);
+        }
+    }
+    &-text {
+      font-family: 'Permanent Marker', cursive;                    
+      text-align: center;
+      position: relative;
+      margin: auto;
+      color: rgb(255, 255, 255);
+      -webkit-text-stroke: 0.5px #000000;           
+      &:hover {
+          color: red;
+      }
+    }
+  }
+
+  &-preview {
+    margin: auto;            
+    text-align: center;
+    width: 90%;
+    margin-bottom: -4px;
+    img {
+        width: 100%;
+    }
+  }
+}
