@@ -1,50 +1,50 @@
-import React, { Component } from "react";
-import Dropzone from "react-dropzone";
-import superagent from "superagent";
-import { db } from "../fire";
-import { Redirect } from "react-router";
-import sha1 from "sha1";
-import Canvas from "./Canvas";
-import "react-tabs/style/react-tabs.scss";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import WebFont from "webfontloader";
+import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
+import superagent from 'superagent';
+import { db } from '../fire';
+import { Redirect } from 'react-router';
+import sha1 from 'sha1';
+import Canvas from './Canvas';
+import 'react-tabs/style/react-tabs.scss';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
     families: [
-      "Patrick Hand",
-      "Gloria Hallelujah",
-      "Coming Soon",
-      "Annie Use Your Telescope",
-      "Schoolbell",
-      "Patrick Hand SC",
-      "Walter Turncoat",
-      "Short Stack",
-      "Pangolin",
-      "Sriracha",
-      "Dekko",
-      "Kavivanar"
-    ]
-  }
+      'Patrick Hand',
+      'Gloria Hallelujah',
+      'Coming Soon',
+      'Annie Use Your Telescope',
+      'Schoolbell',
+      'Patrick Hand SC',
+      'Walter Turncoat',
+      'Short Stack',
+      'Pangolin',
+      'Sriracha',
+      'Dekko',
+      'Kavivanar',
+    ],
+  },
 });
 
 export default class AddScene extends Component {
   constructor(props) {
     super();
     this.state = {
-      storyId: "",
-      imageUrl: "",
-      previewUrl: "",
+      storyId: '',
+      imageUrl: '',
+      previewUrl: '',
       lineStrength: 20,
       colorReduction: 50,
-      id: "",
+      id: '',
       user: {},
       canvasImages: [],
-      typedText: "",
-      fontFamily: "Patrick Hand",
+      typedText: '',
+      fontFamily: 'Patrick Hand',
       fontSize: 40,
       canvasText: [],
-      background: "#ffffff"
+      background: '#ffffff',
     };
     this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -59,7 +59,7 @@ export default class AddScene extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       user: nextProps.currentUser,
-      storyId: this.props.match.params.id
+      storyId: this.props.match.params.id,
     });
   }
 
@@ -70,63 +70,63 @@ export default class AddScene extends Component {
   uploadFile(files) {
     const image = files[0];
 
-    const url = "http://localhost:5001/crossover-cf663/us-central1/uploadImage"; //cloud func location
+    const url = 'http://localhost:5001/crossover-cf663/us-central1/uploadImage'; // cloud func location
 
-    let uploadRequest = superagent.post(url);
-    uploadRequest.attach("file", image);
+    const uploadRequest = superagent.post(url);
+    uploadRequest.attach('file', image);
 
     uploadRequest.end((err, resp) => {
-      //'end' sends the request to the firebase function which is the backend -- located in index.js
+      // 'end' sends the request to the firebase function which is the backend -- located in index.js
       if (err) {
         return;
       }
       const uploadUrl = JSON.parse(resp.body.text).url;
-      const ind = uploadUrl.indexOf("upload/");
+      const ind = uploadUrl.indexOf('upload/');
       const newUrl = `${uploadUrl.slice(0, ind + 7)}w_500/e_cartoonify:${
         this.state.lineStrength
       }:${this.state.colorReduction}${uploadUrl.slice(ind + 7)}`;
       this.setState({
         imageUrl: uploadUrl,
-        previewUrl: newUrl
+        previewUrl: newUrl,
       });
     });
   }
 
-  //delay in loading image in chrome and firefox but not in safari
+  // delay in loading image in chrome and firefox but not in safari
   handleSubmitPreview(evt) {
     evt.preventDefault();
-    let self = this;
+    const self = this;
     setTimeout(() => {
       self.setState({
-        canvasImages: [...self.state.canvasImages, self.state.previewUrl]
+        canvasImages: [...self.state.canvasImages, self.state.previewUrl],
       });
     }, 10);
   }
 
   handleAddOverlay(imageUrl) {
-    let self = this;
+    const self = this;
     setTimeout(() => {
       self.setState({
-        canvasImages: [...self.state.canvasImages, imageUrl]
+        canvasImages: [...self.state.canvasImages, imageUrl],
       });
     }, 10);
   }
 
   handleTyping(event) {
     this.setState({
-      typedText: event.target.value
+      typedText: event.target.value,
     });
   }
 
   handleFontFamily(event) {
     this.setState({
-      fontFamily: event.target.value
+      fontFamily: event.target.value,
     });
   }
 
   handleFontSize(event) {
     this.setState({
-      fontSize: event.target.value
+      fontSize: event.target.value,
     });
   }
 
@@ -138,26 +138,26 @@ export default class AddScene extends Component {
         {
           text: this.state.typedText,
           fontFamily: this.state.fontFamily,
-          fontSize: this.state.fontSize
-        }
-      ]
+          fontSize: this.state.fontSize,
+        },
+      ],
     });
   }
 
   handleChange(evt) {
     // evt.preventDefault();
     const url = this.state.imageUrl;
-    const ind = url.indexOf("upload/");
+    const ind = url.indexOf('upload/');
     this.setState({
       [evt.target.name]: evt.target.value,
       previewUrl: `${url.slice(0, ind + 7)}w_500/e_cartoonify:${
         this.state.lineStrength
-      }:${this.state.colorReduction}${url.slice(ind + 7)}`
+      }:${this.state.colorReduction}${url.slice(ind + 7)}`,
     });
   }
 
   render() {
-    const image = this.state.previewUrl; //If there is a previewUrl we will render it below and supply a form to edit degree of cartoonify effect
+    const image = this.state.previewUrl; // If there is a previewUrl we will render it below and supply a form to edit degree of cartoonify effect
     console.log(this.state.fontSize);
     return (
       <div className="addscene">
@@ -255,14 +255,16 @@ export default class AddScene extends Component {
                     <option value="Walter Turncoat">Walter Turncoat</option>
                   </select>
                   <textarea placeholder="Enter text here" rows="4" cols="50" value={this.state.typedText} onChange={this.handleTyping} />
-                  <button type="submit">Submit</button>
+                  <div>
+                    <button type="submit">Submit</button>
+                  </div>
                 </form>
-                <div className="text-preview"><p style={{fontSize: `${this.state.fontSize}px`, fontFamily: this.state.fontFamily}}>{this.state.typedText || 'Preview'}</p></div>
+                <div className="text-preview"><p style={{ fontSize: `${this.state.fontSize}px`, fontFamily: this.state.fontFamily }}>{this.state.typedText || 'Preview'}</p></div>
               </TabPanel>
             </Tabs>
           </div>
         </div>
-        
+
         <div className="addscene-canvas">
           <div className="addscene-canvas-container">
             <Canvas
@@ -273,7 +275,7 @@ export default class AddScene extends Component {
               background={this.state.background}
             />
           </div>
-          <p className="addscene-canvas-remover">To remove an item from the canvas, simply drag it out of view!</p>
+            <p className="addscene-canvas-remover">To remove an item from the canvas, simply drag it out of view!</p>
         </div>
       </div>
     );
