@@ -242,15 +242,18 @@ export default class AddScene extends Component {
             </Tabs>
           </div>
         </div>
-
+        
         <div className="addscene-canvas">
-          <Canvas
-            images={this.state.canvasImages}
-            text={this.state.canvasText}
-            currentUser={this.state.user}
-            storyId={this.state.storyId}
-            background={this.state.background}
-          />
+          <div className="addscene-canvas-container">
+            <Canvas
+              images={this.state.canvasImages}
+              text={this.state.canvasText}
+              currentUser={this.state.user}
+              storyId={this.state.storyId}
+              background={this.state.background}
+            />
+          </div>
+          <p>To remove an item from the canvas, simply drag it out of view!</p>
         </div>
     </div>
     );
