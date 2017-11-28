@@ -81,17 +81,23 @@ export default class Canvas extends Component {
   }
 
   uploadToCloudinary() {
+    let confirmation = confirm("Are you sure you're ready to add your scene?")
     const image = this.stageRef.getStage().toDataURL("image/png");
-    this.uploadFile(image);
+    if (confirmation) {
+      this.uploadFile(image);
+    }
   }
 
   render() {
     const { fireRedirect } = this.state;
     return (
       <div>
+        <button className="canvas-button" type="submit" onClick={this.uploadToCloudinary}>
+          Add Scene to Story
+        </button>
         <Stage
-          width={1000}
-          height={500}
+          width={900}
+          height={450}
           className={this.state.background}
           ref={node => {
             this.stageRef = node;
@@ -99,8 +105,8 @@ export default class Canvas extends Component {
         >
           <Layer>
             <Rect
-              width={1000}
-              height={500}
+              width={950}
+              height={450}
               zindex={-1}
               fill={this.props.background}
             />
@@ -126,9 +132,6 @@ export default class Canvas extends Component {
               })}
           </Layer>
         </Stage>
-        <button type="submit" onClick={this.uploadToCloudinary}>
-          Submit Image!
-        </button>
         {fireRedirect && <Redirect to={`/stories/${this.state.storyId}`} />}
       </div>
     );
