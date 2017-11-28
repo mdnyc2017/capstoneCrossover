@@ -6,8 +6,9 @@ const superagent = require("superagent");
 var fs = require("fs");
 const cors = require("cors")({ origin: true });
 const sha1 = require("sha1");
+const cloudinary = require("cloudinary");
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
+exports.uploadImage = functions.https.onRequest((request, response) => {
   //request includes file and form fields - to read it we are using formidable
   cors(request, response, () => {
     // by default cant request an endpt outside of domain
@@ -72,6 +73,31 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
           response.status(500).send(err);
         }
         response.json(resp); //resp.body.text
+      });
+    });
+  });
+});
+
+exports.uploadCanvas = functions.https.onRequest((request, response) => {
+  cors(request, response, () => {
+    // by default cant request an endpt outside of domain
+    //cors is a middleware that turns on the header to allow cross origins
+    //grabs the response and adds header that says 'allow origin *'
+    const form = new formidable.IncomingForm(); //formidable pulls out the fields and the files
+    form.parse(request, function(err, fields, files) {
+      //console.log(fields.file);
+      //const image = fs.createReadStream(fields.file);
+      const field = fields.file;
+      const image = field;
+
+      cloudinary.config({
+        cloud_name: "noorulain",
+        api_key: "493184569883823",
+        api_secret: "ZoD3Vr3GEPRLq3dZdZCaiJbuwCY"
+      });
+
+      cloudinary.v2.uploader.upload(image, function(error, result) {
+        response.json(result.url);
       });
     });
   });

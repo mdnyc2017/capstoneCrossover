@@ -3,15 +3,28 @@ import Dropzone from "react-dropzone";
 import superagent from "superagent";
 import { db } from "../fire";
 import { Redirect } from "react-router";
-import sha1 from 'sha1';
-import Canvas from './Canvas';
-import 'react-tabs/style/react-tabs.scss';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import WebFont from 'webfontloader';
+import sha1 from "sha1";
+import Canvas from "./Canvas";
+import "react-tabs/style/react-tabs.scss";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import WebFont from "webfontloader";
 
 WebFont.load({
   google: {
-    families: ['Patrick Hand', 'Gloria Hallelujah', 'Coming Soon', 'Annie Use Your Telescope', 'Schoolbell', 'Patrick Hand SC', 'Walter Turncoat', 'Short Stack', 'Pangolin', 'Sriracha', 'Dekko', 'Kavivanar']
+    families: [
+      "Patrick Hand",
+      "Gloria Hallelujah",
+      "Coming Soon",
+      "Annie Use Your Telescope",
+      "Schoolbell",
+      "Patrick Hand SC",
+      "Walter Turncoat",
+      "Short Stack",
+      "Pangolin",
+      "Sriracha",
+      "Dekko",
+      "Kavivanar"
+    ]
   }
 });
 
@@ -27,11 +40,11 @@ export default class AddScene extends Component {
       id: "",
       user: {},
       canvasImages: [],
-      typedText: '',
-      fontFamily: 'Patrick Hand',
+      typedText: "",
+      fontFamily: "Patrick Hand",
       fontSize: 40,
       canvasText: [],
-      background: '#ffffff'
+      background: "#ffffff"
     };
     this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -51,13 +64,13 @@ export default class AddScene extends Component {
   }
 
   changeBackgroundColor(event) {
-    this.setState({background: event.target.value})
+    this.setState({ background: event.target.value });
   }
 
   uploadFile(files) {
     const image = files[0];
 
-    const url = "http://localhost:5001/crossover-cf663/us-central1/helloWorld"; //cloud func location
+    const url = "http://localhost:5001/crossover-cf663/us-central1/uploadImage"; //cloud func location
 
     let uploadRequest = superagent.post(url);
     uploadRequest.attach("file", image);
@@ -102,26 +115,33 @@ export default class AddScene extends Component {
   handleTyping(event) {
     this.setState({
       typedText: event.target.value
-    })
+    });
   }
 
   handleFontFamily(event) {
     this.setState({
       fontFamily: event.target.value
-    })
+    });
   }
 
   handleFontSize(event) {
     this.setState({
       fontSize: event.target.value
-    })
+    });
   }
 
   handleAddText(event) {
     event.preventDefault();
     this.setState({
-        canvasText: [...this.state.canvasText, {text: this.state.typedText, fontFamily: this.state.fontFamily, fontSize: this.state.fontSize}]
-    })
+      canvasText: [
+        ...this.state.canvasText,
+        {
+          text: this.state.typedText,
+          fontFamily: this.state.fontFamily,
+          fontSize: this.state.fontSize
+        }
+      ]
+    });
   }
 
   handleChange(evt) {
@@ -138,7 +158,7 @@ export default class AddScene extends Component {
 
   render() {
     const image = this.state.previewUrl; //If there is a previewUrl we will render it below and supply a form to edit degree of cartoonify effect
-    console.log(this.state.fontSize)
+    console.log(this.state.fontSize);
     return (
       <div className="addscene">
         <div className="addscene-edit">

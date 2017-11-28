@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { Layer, Stage, Image, Rect } from 'react-konva';
-import Konva from 'konva';
-import Photo from './Photo';
-import TextField from './TextField';
-import axios from 'axios';
-import { db } from '../fire';
-import { Redirect } from 'react-router';
+import React, { Component } from "react";
+import { Layer, Stage, Image, Rect } from "react-konva";
+import Konva from "konva";
+import Photo from "./Photo";
+import TextField from "./TextField";
+import superagent from "superagent";
+import { db } from "../fire";
+import { Redirect } from "react-router";
+import axios from "axios";
 
 export default class Canvas extends Component {
   constructor(props) {
@@ -13,10 +14,10 @@ export default class Canvas extends Component {
     this.state = {
       canvasImages: [],
       canvasText: [],
-      canvasUrl: '',
+      canvasUrl: "",
       user: {},
-      storyId: '',
-      background: '#ffffff',
+      storyId: "",
+      background: "#ffffff",
       fireRedirect: false
     };
     this.uploadToCloudinary = this.uploadToCloudinary.bind(this);
@@ -32,43 +33,29 @@ export default class Canvas extends Component {
     });
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   let imageUrl = nextProps.images[nextProps.images.length]
-  //   const img = new window.Image();
-  //   img.crossOrigin = "Anonymous";
-  //   img.onload = () =>
-  //       this.setState({
-  //         canvasImages: [...this.state.canvasImages, img]
-  //       });
-  //   img.src = imageUrl;
-  //   this.setState({
-  //     user: nextProps.currentUser,
-  //     storyId: nextProps.storyId
-  //   });
-  // }
-
   uploadFile(dataUrl) {
     const user = this.state.user;
     const key = `${user.user.uid}${Date.now()}`;
     const storyId = this.state.storyId;
-    //this function uploads image to cloudinary
-    const cloudName = "noorulain";
-    const cloudPreset = "pvfhdtk2";
-    var url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+
+    const url =
+      "http://localhost:5001/crossover-cf663/us-central1/uploadCanvas";
+
     //construct a set of key/value pairs representing form fields and their values -- which can then be easily sent
     //with the request.
     const fd = new FormData();
-    fd.append("upload_preset", cloudPreset);
     fd.append("file", dataUrl);
+
     return axios
       .post(url, fd, {
         headers: { "X-Requested-With": "XMLHttpRequest" }
       })
-      .then(response =>
+      .then(response => {
+        console.log(response);
         this.setState({
-          canvasUrl: response.data.url
-        })
-      )
+          canvasUrl: response.data
+        });
+      })
       .then(() =>
         db
           .collection("scenes")
@@ -121,28 +108,28 @@ export default class Canvas extends Component {
               width={950}
               height={450}
               zindex={-1}
-              fill={this.props.background} />
+              fill={this.props.background}
+            />
             {this.state.canvasImages &&
               this.state.canvasImages.map((imageUrl, index) => {
                 const image = new window.Image();
                 const arrIndex = index;
                 image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tainted canvas error.
                 image.src = imageUrl;
-                return (<Photo
-                  key={`${image.src}${arrIndex}`}
-                  imageUrl={image.src}
-                  image={image}
-                  zindex={index}
-                   />)
-            })}
+                return (
+                  <Photo
+                    key={`${image.src}${arrIndex}`}
+                    imageUrl={image.src}
+                    image={image}
+                    zindex={index}
+                  />
+                );
+              })}
             {this.state.canvasText &&
               this.state.canvasText.map((text, index) => {
                 const arrIndex = index;
-                return (<TextField
-                  key={`${text}${arrIndex}`}
-                  text={text}
-                   />)
-            })}
+                return <TextField key={`${text}${arrIndex}`} text={text} />;
+              })}
           </Layer>
         </Stage>
         {fireRedirect && <Redirect to={`/stories/${this.state.storyId}`} />}
@@ -150,4 +137,3 @@ export default class Canvas extends Component {
     );
   }
 }
-
