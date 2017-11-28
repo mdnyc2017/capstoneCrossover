@@ -81,7 +81,7 @@ export default class Canvas extends Component {
   }
 
   uploadToCloudinary() {
-    let confirmation = confirm("Are you sure you're ready to add your scene?")
+    let confirmation = confirm("Are you sure you're ready to add your scene?");
     const image = this.stageRef.getStage().toDataURL("image/png");
     if (confirmation) {
       this.uploadFile(image);
@@ -92,7 +92,11 @@ export default class Canvas extends Component {
     const { fireRedirect } = this.state;
     return (
       <div>
-        <button className="canvas-button" type="submit" onClick={this.uploadToCloudinary}>
+        <button
+          className="canvas-button"
+          type="submit"
+          onClick={this.uploadToCloudinary}
+        >
           Add Scene to Story
         </button>
         <Stage
@@ -114,7 +118,7 @@ export default class Canvas extends Component {
               this.state.canvasImages.map((imageUrl, index) => {
                 const image = new window.Image();
                 const arrIndex = index;
-                image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tainted canvas error.
+                //image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tainted canvas error.
                 image.src = imageUrl;
                 return (
                   <Photo
