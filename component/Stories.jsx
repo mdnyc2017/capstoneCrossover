@@ -12,35 +12,24 @@ export default class Stories extends Component {
       userId: ''
     };
   }
-  
-  componentDidMount(props) {
-    
-    // db
-    //   .collection("stories")
-    //   .where('userId', '==', this.state.userId)
-    //   .onSnapshot(snapshot => this.setState({ 
-    //     stories: snapshot.docs, 
-    //   }));
-  }
 
   componentWillReceiveProps(nextProps) {
-     let uid = firebase.auth().currentUser.uid
-     
-     
-    this.setState({ 
+    let uid = firebase.auth().currentUser.uid
+
+    this.setState({
       user: nextProps.currentUser,
       userId: uid
-     });    
+     });
   }
 
   render() {
-    
-    db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({ 
-            stories: snapshot.docs, 
+
+    db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({
+            stories: snapshot.docs,
           }));
 
     if (!this.state.stories) return "Loading...";
-    
+
     return (
       <div className="stories">
         <h1 className="stories-title">Your Stories</h1>
@@ -48,7 +37,7 @@ export default class Stories extends Component {
           {this.state.stories.map(story => {
             let id = story.data().id;
             let thumbnail = story.data().thumbnail || "/default.png"; //default image if no scenes exist
-    
+
             return (
                 <div className="stories-story" key={id}>
                   <a href={`/stories/${id}`}>
@@ -67,6 +56,6 @@ export default class Stories extends Component {
           })}
         </div>
       </div>
-    )  
+    )
   }
 }

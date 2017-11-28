@@ -1,0 +1,25 @@
+[debug] [2017-11-28T00:20:03.278Z] ----------------------------------------------------------------------
+[debug] [2017-11-28T00:20:03.280Z] Command:       /usr/local/bin/node /usr/local/bin/firebase experimental:functions:shell
+[debug] [2017-11-28T00:20:03.281Z] CLI Version:   3.15.0
+[debug] [2017-11-28T00:20:03.281Z] Platform:      darwin
+[debug] [2017-11-28T00:20:03.281Z] Node Version:  v8.6.0
+[debug] [2017-11-28T00:20:03.287Z] Time:          Mon Nov 27 2017 19:20:03 GMT-0500 (EST)
+[debug] [2017-11-28T00:20:03.287Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-28T00:20:03.311Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-28T00:20:03.311Z] > authorizing via signed-in user
+[debug] [2017-11-28T00:20:03.327Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Mon Nov 27 2017 19:20:03 GMT-0500 (EST)
+[debug] [2017-11-28T00:20:03.775Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T00:20:03.776Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Mon Nov 27 2017 19:20:03 GMT-0500 (EST)
+[debug] [2017-11-28T00:20:04.346Z] <<< HTTP RESPONSE 200
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-28T00:20:05.302Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Mon Nov 27 2017 19:20:05 GMT-0500 (EST)
+[debug] [2017-11-28T00:20:05.303Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Mon Nov 27 2017 19:20:05 GMT-0500 (EST)
+[debug] [2017-11-28T00:20:07.684Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T00:20:07.845Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: uploadImage
+[info] ✔  functions: uploadCanvas
