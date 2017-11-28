@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Barrio');
-@import url('https://fonts.googleapis.com/css?family=Passion+One|Permanent+Marker');
-@import url('https://fonts.googleapis.com/css?family=Patua+One');
-// font-family: 'Patua One', cursive;
+@import url('https://fonts.googleapis.com/css?family=Barrio|Passion+One|Patua+One|Permanent+Marker|Poller+One');
+// font-family: 'Poller One', cursive;
+// font-family: 'Barrio', cursive;
 // font-family: 'Permanent Marker', cursive;
+// font-family: 'Patua One', cursive;
+
 
 @import 'home';
 @import 'navbar';
@@ -10,11 +11,13 @@
 @import 'canvas';
 @import 'stories';
 @import 'story';
+@import 'single-story';
 // import Canvas.state.color as $selectedColor from './components/Canvas'
+
 
 body {
     margin: 0;
-    background-color: rgb(255, 35, 35);
+    background-color: rgb(235, 2, 2);
     // .story-thumbnail {
     //     margin-bottom: 50px;
     //     margin-top: 25px;
