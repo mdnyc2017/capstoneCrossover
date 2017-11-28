@@ -157,8 +157,10 @@ export default class AddScene extends Component {
   }
 
   render() {
+
     const image = this.state.previewUrl; // If there is a previewUrl we will render it below and supply a form to edit degree of cartoonify effect
     console.log(this.state.fontSize);
+
     return (
       <div className="addscene">
         <div className="addscene-edit">
