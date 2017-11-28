@@ -94,3 +94,115 @@
     at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2017-11-28T20:36:14.612Z] ----------------------------------------------------------------------
+[debug] [2017-11-28T20:36:14.617Z] Command:       /usr/local/bin/node /Users/michaeldouglas/fullstack_github/capstoneCrossover/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-28T20:36:14.618Z] CLI Version:   3.14.0
+[debug] [2017-11-28T20:36:14.618Z] Platform:      darwin
+[debug] [2017-11-28T20:36:14.618Z] Node Version:  v8.5.0
+[debug] [2017-11-28T20:36:14.619Z] Time:          Tue Nov 28 2017 15:36:14 GMT-0500 (EST)
+[debug] [2017-11-28T20:36:14.619Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-28T20:36:14.644Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-28T20:36:14.644Z] > authorizing via signed-in user
+[debug] [2017-11-28T20:36:14.649Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-11-28T20:36:14.650Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/ypAtQvYmhpFzVpSDrPCoVNCWUj_Q1uGz6ZFQ8vCsJLs',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Nov 28 2017 15:36:14 GMT-0500 (EST)
+[debug] [2017-11-28T20:36:14.881Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:36:14.909Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Tue Nov 28 2017 15:36:14 GMT-0500 (EST)
+[debug] [2017-11-28T20:36:15.235Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:36:15.236Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Tue Nov 28 2017 15:36:15 GMT-0500 (EST)
+[debug] [2017-11-28T20:36:15.716Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/michaeldouglas/fullstack_github/capstoneCrossover/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-28T20:36:16.429Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Tue Nov 28 2017 15:36:16 GMT-0500 (EST)
+[debug] [2017-11-28T20:36:16.430Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Tue Nov 28 2017 15:36:16 GMT-0500 (EST)
+[debug] [2017-11-28T20:36:16.431Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Tue Nov 28 2017 15:36:16 GMT-0500 (EST)
+[debug] [2017-11-28T20:36:16.706Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:36:16.707Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Tue Nov 28 2017 15:36:16 GMT-0500 (EST)
+[debug] [2017-11-28T20:36:16.775Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:36:16.794Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T20:36:17.021Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: uploadCanvas: http://localhost:5001/crossover-cf663/us-central1/uploadCanvas
+[info] ✔  functions: uploadImage: http://localhost:5001/crossover-cf663/us-central1/uploadImage
+[info] Shutting down...
+[debug] [2017-11-28T20:45:19.185Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-28T20:45:19.188Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-28T22:02:10.243Z] ----------------------------------------------------------------------
+[debug] [2017-11-28T22:02:10.259Z] Command:       /usr/local/bin/node /Users/michaeldouglas/fullstack_github/capstoneCrossover/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-28T22:02:10.262Z] CLI Version:   3.14.0
+[debug] [2017-11-28T22:02:10.262Z] Platform:      darwin
+[debug] [2017-11-28T22:02:10.262Z] Node Version:  v8.5.0
+[debug] [2017-11-28T22:02:10.263Z] Time:          Tue Nov 28 2017 17:02:10 GMT-0500 (EST)
+[debug] [2017-11-28T22:02:10.263Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-28T22:02:10.566Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-28T22:02:10.566Z] > authorizing via signed-in user
+[debug] [2017-11-28T22:02:10.576Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-11-28T22:02:10.577Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/ypAtQvYmhpFzVpSDrPCoVNCWUj_Q1uGz6ZFQ8vCsJLs',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Nov 28 2017 17:02:10 GMT-0500 (EST)
+[debug] [2017-11-28T22:02:10.964Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T22:02:10.990Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Tue Nov 28 2017 17:02:10 GMT-0500 (EST)
+[debug] [2017-11-28T22:02:11.401Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T22:02:11.402Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Tue Nov 28 2017 17:02:11 GMT-0500 (EST)
+[debug] [2017-11-28T22:02:11.936Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/michaeldouglas/fullstack_github/capstoneCrossover/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-28T22:02:12.716Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Tue Nov 28 2017 17:02:12 GMT-0500 (EST)
+[debug] [2017-11-28T22:02:12.717Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Tue Nov 28 2017 17:02:12 GMT-0500 (EST)
+[debug] [2017-11-28T22:02:12.717Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Tue Nov 28 2017 17:02:12 GMT-0500 (EST)
+[debug] [2017-11-28T22:02:13.022Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T22:02:13.023Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Tue Nov 28 2017 17:02:13 GMT-0500 (EST)
+[debug] [2017-11-28T22:02:13.051Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T22:02:13.082Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T22:02:13.375Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: uploadImage: http://localhost:5001/crossover-cf663/us-central1/uploadImage
+[info] ✔  functions: uploadCanvas: http://localhost:5001/crossover-cf663/us-central1/uploadCanvas
+[info] Shutting down...
+[debug] [2017-11-28T22:27:18.928Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-28T22:27:18.930Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.

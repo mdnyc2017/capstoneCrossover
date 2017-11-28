@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase, { db, auth } from "~/fire";
 
-
+let uid 
 export default class Stories extends Component {
   constructor(props) {
     super();
@@ -14,7 +14,7 @@ export default class Stories extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let uid = firebase.auth().currentUser.uid
+     let uid = firebase.auth().currentUser.uid
 
     this.setState({
       user: nextProps.currentUser,
@@ -23,10 +23,10 @@ export default class Stories extends Component {
   }
 
   render() {
-    let stories = db.collection('stories')
-    stories.collection('collaborators')
-    .where('uid', '==', this.state.userId)
-    .onSnapshot(snapshot => this.setState({
+   db
+  //  .collection('stories')
+   .collection('collaborators').where('userId', '==', this.state.userId)
+   .onSnapshot(snapshot => this.setState({
               stories: snapshot.docs,
             }));
             
