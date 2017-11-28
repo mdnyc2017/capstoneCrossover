@@ -1,0 +1,32 @@
+
+.addscene-edit-canvas {
+  width: 100%;
+  &-tabs {
+    &-panel {
+      margin-top: 2em;
+      margin-bottom: 2em;
+      width: 100%;
+      text-align: center;
+    }
+
+    &-overlay {
+      display: flex;
+      flex-wrap: wrap;
+      img {
+        width: 33%;
+        height: 33%;
+      }
+    }
+
+    &-list {
+      // width: 100%;
+      border-bottom: black 2px solid;
+    }
+
+    &-title {
+      display: inline-block;
+      margin: 0em 1em;
+      padding: 0.5em;
+    }
+  }
+}
