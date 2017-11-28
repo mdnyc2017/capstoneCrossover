@@ -78,11 +78,11 @@ export default class AddStory extends Component {
     })
 
     let redirect = new Promise((resolve, reject) => {
+    //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
         this.setState({ fireRedirect: true })
     })
 
     Promise.all([findorCreateUser, saveToStories, saveToUsers, redirect])
-    //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
   }
 
   render() {
