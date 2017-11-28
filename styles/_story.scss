@@ -1,11 +1,9 @@
 .stories-story {
   display: flex;    
-  box-shadow: 0px .5em .5em #000000;        
   font-family: 'Permanent Marker', cursive;
   text-align: center;
   position: relative;
-  border-style: solid;
-  border-color: black;
+  @include border-style;  
   background-color:  rgb(255, 253, 235);
   margin: 1em auto;
   // height: 85vh;

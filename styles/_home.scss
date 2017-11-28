@@ -1,47 +1,43 @@
-@mixin b-div($color,$direction){
-    background-color: $color;
-    width: 60%;
-    height: 100%;
-    float: $direction;
-}
+.home-page {
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  position: relative;
+  @include border-style;
+  
+  background-color:  rgb(255, 253, 235);
+  margin: 1em auto;
+  // height: 85vh;
+  width: 60vw;
+  &-top {
+      transition: opacity 0.75s ease-out;        
+  }
+  &-top, &-create, &-collaborate, &-combine {
+      vertical-align: middle;
+      line-height: 70vh;
+      font-size: 3vw;
+      height: 70vh;
+      color: white;
+      -webkit-text-stroke: 1.5px #000000;        
+      &:hover {
+          color: rgb(255, 16, 16); 
+          text-shadow: 0px 5px #000000;            
+      }
+  }
+  &-create, &-collaborate, &-combine {
+      border-top-style: solid;
+      border-top-color: black;
+      border-top-width: 1em;
+  }
+  &-create-b {
+      @include b-div(rgb(255, 253, 235),left);
+  }
+  &-collaborate-b {
+      @include b-div(rgb(0, 162, 255),right);
+  }
+  &-combine-b {
+      @include b-div(rgb(255, 253, 235),left);
+  }
+}    
 
-body {
-  .home-page {
-    box-shadow: 0px 8px 5px #000000;        
-    font-family: 'Permanent Marker', cursive;
-    text-align: center;
-    position: relative;
-    border-style: solid;
-    border-color: black;
-    background-color:  rgb(255, 253, 235);
-    margin: 1em auto;
-    // height: 85vh;
-    width: 60vw;
-    &-top, &-create, &-collaborate, &-combine {
-        vertical-align: middle;
-        line-height: 70vh;
-        font-size: 3vw;
-        height: 70vh;
-        color: white;
-        -webkit-text-stroke: 1.5px #000000;        
-        &:hover {
-            color: rgb(255, 16, 16); 
-            text-shadow: 0px 5px #000000;            
-        }
-    }
-    &-create, &-collaborate, &-combine {
-        border-top-style: solid;
-        border-top-color: black;
-        border-top-width: 1em;
-    }
-    &-create-b {
-        @include b-div(rgb(255, 253, 235),left);
-    }
-    &-collaborate-b {
-        @include b-div(rgb(0, 162, 255),right);
-    }
-    &-combine-b {
-        @include b-div(rgb(255, 253, 235),left);
-    }
-  }    
-}
+
+

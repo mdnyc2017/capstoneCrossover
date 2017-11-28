@@ -1,11 +1,11 @@
+
+
 .addscene-edit {
   overflow: auto;        
-  box-shadow: 0px .5em .5em #000000;        
   margin: 2em;        
   width: 30%;
   background-color: rgb(0, 132, 255);
-  border-color: black;
-  border-style: solid;
+  @include border-style;
   font-family: 'Patua One', cursive;
   &-dropzone {
     & > div {
