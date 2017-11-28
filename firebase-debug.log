@@ -1,0 +1,55 @@
+[debug] [2017-11-27T22:35:49.557Z] ----------------------------------------------------------------------
+[debug] [2017-11-27T22:35:49.558Z] Command:       /usr/bin/node /home/mario/Fullstack/FS-Senior/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-27T22:35:49.559Z] CLI Version:   3.14.0
+[debug] [2017-11-27T22:35:49.559Z] Platform:      linux
+[debug] [2017-11-27T22:35:49.559Z] Node Version:  v8.5.0
+[debug] [2017-11-27T22:35:49.559Z] Time:          Mon Nov 27 2017 17:35:49 GMT-0500 (EST)
+[debug] [2017-11-27T22:35:49.559Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-27T22:35:49.568Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-27T22:35:49.568Z] > authorizing via signed-in user
+[debug] [2017-11-27T22:35:49.570Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-11-27T22:35:49.570Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/d7ke8y3l2kw02gqy9X-QTrZwoKBZ0zu_VsQ-UVOyHws',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Mon Nov 27 2017 17:35:49 GMT-0500 (EST)
+[debug] [2017-11-27T22:35:49.776Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T22:35:49.783Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Mon Nov 27 2017 17:35:49 GMT-0500 (EST)
+[debug] [2017-11-27T22:35:50.897Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T22:35:50.900Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Mon Nov 27 2017 17:35:50 GMT-0500 (EST)
+[debug] [2017-11-27T22:35:51.401Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/mario/Fullstack/FS-Senior/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-27T22:35:51.671Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Mon Nov 27 2017 17:35:51 GMT-0500 (EST)
+[debug] [2017-11-27T22:35:51.671Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Mon Nov 27 2017 17:35:51 GMT-0500 (EST)
+[debug] [2017-11-27T22:35:51.672Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Mon Nov 27 2017 17:35:51 GMT-0500 (EST)
+[debug] [2017-11-27T22:35:52.020Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T22:35:52.102Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T22:35:52.104Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Mon Nov 27 2017 17:35:52 GMT-0500 (EST)
+[debug] [2017-11-27T22:35:52.187Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-27T22:35:52.936Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: helloWorld: http://localhost:5001/crossover-cf663/us-central1/helloWorld
+[info] Shutting down...
+[debug] [2017-11-28T00:03:28.399Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-11-28T00:03:28.405Z] Error: write EPIPE
+    at _errnoException (util.js:1026:11)
+    at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
+[error] 
+[error] Error: An unexpected error has occurred.
