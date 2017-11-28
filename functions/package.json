@@ -9,8 +9,15 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "cloudinary": "^1.9.1",
+    "cors": "^2.8.4",
     "firebase-admin": "~5.4.2",
-    "firebase-functions": "^0.7.1"
+    "firebase-functions": "^0.7.1",
+    "formidable": "^1.1.1",
+    "fs": "0.0.1-security",
+    "sha1": "^1.1.1",
+    "superagent": "^3.8.1",
+    "util": "^0.10.3"
   },
   "private": true
 }
