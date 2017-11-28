@@ -1,7 +1,6 @@
 .addscene-canvas {
-  position: absolute;
-  right: 2em;
-  margin: 2em;
+  margin-right: 2em;
+  margin: 2em auto;
   &-container {
       overflow-x: auto;
       border-color: black;
