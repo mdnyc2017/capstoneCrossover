@@ -1,11 +1,8 @@
-@mixin margin-left-right ($size) {
-  margin-left: $size;
-  margin-right: $size;
-}
+
 
 .stories {
   &-title {
-    font-family: 'Poller One', cursive;
+    font-family: 'Patua One', cursive;
     font-size: 5vh;    
     color: rgb(255, 217, 0);
     -webkit-text-stroke: .025em #000000;        
@@ -15,8 +12,7 @@
   &-container {
     max-height: 75vh;
     overflow: auto;    
-    border-color: black;
-    border-style: solid;
+    @include border-style;    
     background-image: url("https://i.imgur.com/Ug6SeRg.jpg");
     background-color: gray;
     @include margin-left-right(20em);
