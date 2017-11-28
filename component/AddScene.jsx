@@ -258,7 +258,7 @@ export default class AddScene extends Component {
                   <button type="submit">Submit</button>
                 </form>
                 <div className="text-preview"><p style={{fontSize: `${this.state.fontSize}px`, fontFamily: this.state.fontFamily}}>{this.state.typedText || 'Preview'}</p></div>
-            </TabPanel>
+              </TabPanel>
             </Tabs>
           </div>
         </div>
@@ -273,9 +273,9 @@ export default class AddScene extends Component {
               background={this.state.background}
             />
           </div>
-          <p>To remove an item from the canvas, simply drag it out of view!</p>
+          <p className="addscene-canvas-remover">To remove an item from the canvas, simply drag it out of view!</p>
         </div>
-    </div>
+      </div>
     );
   }
 }

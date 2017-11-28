@@ -3,72 +3,84 @@
 .addscene {
     display: flex;
     width: 95%;
+    height: 80vh;
     margin-top: 2em;
     position: relative;
     margin: auto;
     margin-top: 2em;
-
-    &-canvas {
-        position: fixed;
-        right: 2em;
-
-        &-container {
-            box-shadow: 0px 8px 5px #000000;        
-            border-style: solid;
-            border-color: black;
-        }
-    }
-
+    background-image: url("https://i.imgur.com/lFeOTKS.jpg");
+    background-color: rgb(48, 48, 48);
+    border-color: black;
+    border-style: solid;
+    box-shadow: 0px .125em .125em #000000;        
+    
     &-edit {
-        width: 30%;
-
-        &-dropzone > div {
-            width: 90% !important;
-            display: flex;
-            vertical-align: middle;
-            border-color: #FFC107 !important;
-
-            &:hover {
-                cursor: pointer;
-                background-color: rgba(203, 135, 135, 0.16);
+        overflow: auto;        
+        box-shadow: 0px .5em .5em #000000;        
+        margin: 2em;        
+        width: 35%;
+        background-color: rgb(0, 132, 255);
+        border-color: black;
+        border-style: solid;
+    
+        &-dropzone {
+            & > div {
+                margin: 5%;                    
+                width: 90% !important;
+                display: flex;
+                vertical-align: middle;
+                border-color: rgb(0, 0, 0) !important;
+                &:hover {
+                    cursor: pointer;
+                    background-color: rgba(0, 0, 0, 0.301);
+                }
+    
+            }
+            &-text {
+                font-family: 'Permanent Marker', cursive;                    
+                text-align: center;
+                position: relative;
+                margin: auto;
+                color: rgb(255, 255, 255);
+                -webkit-text-stroke: 0.5px #000000;           
+                &:hover {
+                    color: red;
+                }
             }
         }
 
-        &-dropzone-text {
-            text-align: center;
-            position: relative;
-            margin: auto;
-            color: #FFC107;
-        }
-
         &-preview {
+            margin: auto;            
+            text-align: center;
             width: 90%;
             margin-bottom: -4px;
-
             img {
                 width: 100%;
             }
         }
 
         &-cartoonify {
-
+            margin: auto;
+            
             form {
+                margin: auto;
                 display: flex;
                 flex-direction: column;
                 width: 90%;
-                background-color: black;
+                background-color: rgb(255, 255, 255);
+
             }
 
             &-fields {
                 display: flex;
-
+                margin: auto;
                 div {
                     padding: .5em;
                     text-align: center;
                 }
 
                 span {
-                    color: white;
+                    color: rgb(0, 0, 0);
                     text-transform: uppercase;
                     font-family: sans-serif;
                 }
@@ -82,7 +94,7 @@
             &-button {
                 width: 100%;
                 height: 3em;
-                background-color: #f9900d;
+                background-color: #f90d0d;
                 border: none;
                 border-radius: 0px;
                 font-size: 13px;
@@ -90,56 +102,80 @@
 
                 &:hover {
                     cursor: pointer;
-                    background-color: #EFAF5F;
+                    background-color: rgba(236, 8, 8, 0.397);
                 }
             }
         }
 
-        &-canvas-tabs {
-            width: 90%;
+        &-canvas {
+            width: 100%;
+            &-tabs {
+                
+                &-panel {
+                    margin-top: 2em;
+                    margin-bottom: 2em;
+                    width: 100%;
+                    text-align: center;
+                }
 
-            &-panel {
-                width: 90%;
-            }
+                &-overlay {
+                    display: flex;
+                    flex-wrap: wrap;
+                    img {
+                        width: 33%;
+                        height: 33%;
+                    }
+                }
 
-            &-overlay {
-                display: flex;
-                flex-wrap: wrap;
-            
-                img {
-                    width: 33%;
-                    height: 33%;
+                &-list {
+                    // width: 100%;
+                    border-bottom: black 2px solid;
+                }
+
+                &-title {
+                    display: inline-block;
+                    margin: 0em 1em;
+                    padding: 0.5em;
                 }
             }
+        }
+    }
 
-            &-list {
-                border-bottom: black 2px solid;
-            }
+    &-canvas {
+        position: fixed;
+        right: 2em;
+        margin: 2em;
+        
+        &-container {
+            box-shadow: 0px .5em .5em #000000;        
+            border-style: solid;
+            border-color: black;
+        }
 
-            &-title {
-                display: inline-block;
-                margin: 0em 1em;
-                padding: 0.5em;
-            }
+        &-remover {
+            text-align: center;
+            color: white;
         }
     }
 }
 
 .canvas {
     width: 50%;
-
     &-button {
+        padding: .5em;
+        font-family: 'Permanent Marker', cursive; 
+        color: rgb(255, 255, 255);
+        -webkit-text-stroke: 0.5px #000000;           
+        font-size: 1.5em;
         width: 100%;
-        height: 4em;
-        background-color: #f9900d;
-        border: none;
-        border-radius: 0px;
-        font-size: 13px;
+        // height: 4em;
+        background-color: rgb(0, 132, 255);
+        // font-size: 13px;
         font-weight: 600;
-
+        border-style: none;
         &:hover {
             cursor: pointer;
-            background-color: #EFAF5F;
+            background-color: rgba(0, 136, 255, 0.301);
         }
     }
 }
