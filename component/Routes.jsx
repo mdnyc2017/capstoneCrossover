@@ -7,6 +7,7 @@ import Stories from './Stories';
 import AddStory from './AddStory';
 import SingleStory from './SingleStory';
 import AddScene from './AddScene';
+import AddCollaborator from './AddCollaborator';
 import Home from './Home';
 import AuthRoute from './AuthRoute';
 
@@ -22,6 +23,7 @@ const Routes = props => {
       <AuthRoute authed={props.user} path="/stories/new" component={AddStory} user={props.user} />
       <AuthRoute authed={props.user} exact path="/stories/:id" component={SingleStory} user={props.user} />
       <AuthRoute authed={props.user} exact path="/stories/:id/addscene" component={AddScene} user={props.user} />
+      <AuthRoute authed={props.user} exact path="/stories/:id/collaborate" component={AddCollaborator} user={props.user} />
     </Switch>
   </Router>)
 };

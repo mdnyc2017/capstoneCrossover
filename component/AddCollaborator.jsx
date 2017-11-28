@@ -6,10 +6,11 @@ export default class AddStory extends Component {
   constructor(props) {
     super();
     this.state = {
-      collaborator: [], //ID of the collaborator
+      emailInput: "", //email field input
       user: {}, //current logged in user
       storyId: "", 
-      collaboratorEmail: "", //email field input
+      email: "", //email of collaborator
+      id: "", //firestore id of collaborator
       fireRedirect: false //sets to true after submit to allow redirect
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -21,49 +22,67 @@ export default class AddStory extends Component {
   }
 
   handleChangeEmail(event) {
-    //Changes the state's collaboratorEmail as user types
-    this.setState({ collaboratorEmail: event.target.value });
+    //Changes the state's email as user types
+    this.setState({ emailInput: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    // const email = event.target.email.value;
+    const email = this.state.emailInput.toLowerCase();
     const uid = firebase.auth().currentUser.uid
 
-    //then:
-    db.collection('users').where('email', '==', this.state.collaboratorEmail).onSnapshot(snapshot => this.setState({ 
-        collaborator: snapshot.docs
-      }))
-    //save collaborator in stories collection in db
-    .then(() =>
-        db
-        .collection("stories")
-        .doc(this.state.storyId)
-        .collection("collaborators")
-        .doc(this.state.collaborator[0].data().userId)
-        .set({
-        id: this.state.collaborator[0].data().userId,
-        isOwner: false
-        })
-    )
+    let findorCreateUser = new Promise((resolve, reject) => {
+      //find or create user in users
+      return db
+      .collection('users')
+      .where('userEmail', '==', email)
+      .onSnapshot(snapshot => {
+        if (snapshot.docs.length) {
+          this.setState({email: snapshot.docs[0].data().userEmail, id: snapshot.docs[0].data().uid})
+        } else {
+          db.collection('users').doc(email).set({userEmail: email})
+          this.setState({email, id: email})
+        }
+      })
+    })
+
+    let saveToStories = new Promise((resolve, reject) => {
+      //save collaborator in stories collection in db
+      return db
+      .collection("stories")
+      .doc(this.state.storyId)
+      .collection("collaborators")
+      .doc(email)
+      .set({
+      userEmail: email,
+      isOwner: false,
+      storyId: this.state.storyId
+      })
+    })
+
+    let saveToUsers = new Promise((resolve, reject) => {
     //save collaborator in user > stories collection in db
-    .then(() =>
-        db
-          .collection("users")
-          .doc(uid)
-          .collection("stories")
-          .doc(this.state.storyId)
-          .collection("collaborators")
-          .doc(this.state.id)
-          .set({
-            id: this.state.id,
-            isOwner: false
-          })
-      )
-      //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
-      .then(() => this.setState({ fireRedirect: true }))
-      .catch(error => console.error("Error adding collaborator: ", error));
+      return db
+      .collection("users")
+      .doc(uid)
+      .collection("stories")
+      .doc(this.state.storyId)
+      .collection("collaborators")
+      .doc(email)
+      .set({
+        userEmail: email,
+        isOwner: false,
+        storyId: this.state.storyId
+      })
+    })
+
+    let redirect = new Promise((resolve, reject) => {
+        this.setState({ fireRedirect: true })
+    })
+
+    Promise.all([findorCreateUser, saveToStories, saveToUsers, redirect])
+    //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
   }
 
   render() {
@@ -75,7 +94,7 @@ export default class AddStory extends Component {
         <form className="add-collaborator-form" onSubmit={this.handleSubmit}>
           <div className="add-collaborator-form-group">
             <label htmlFor="name">
-              <h2>Add a Story</h2>
+              <h2>Add a Collaborator</h2>
             </label>
             <input
               value={this.state.collaboratorEmail}
