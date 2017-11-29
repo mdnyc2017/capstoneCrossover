@@ -16,12 +16,19 @@ export default class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      user: {}
+      user: {},
+      userName: '',
+      userEmail: '',
+      uid: ''
     };
   }
 
   componentDidMount() {
-    this.unsubscribe = auth.onAuthStateChanged(user => this.setState({ user }));
+    // let user = firebase.auth().currentUser
+    // let uid = firebase.auth().currentUser.uid
+    this.unsubscribe = auth.onAuthStateChanged(user => this.setState({ 
+      user
+    }));
   }
 
   componentWillUnmount() {
@@ -29,16 +36,15 @@ export default class App extends Component {
   }
 
   render() {
- 
-    const { user } = this.state || {};
+    
     return (
       <div className="page">
         <nav>
-          <Navbar user={user} auth={auth} />
+          <Navbar user={this.state.user} />
         </nav>
         <div className="page-icon" />
         <br />
-        <Routes user={this.state} />
+        <Routes user={this.state.user} />
       </div>
     );
   }

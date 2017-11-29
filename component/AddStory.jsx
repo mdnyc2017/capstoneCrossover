@@ -69,6 +69,7 @@ export default class AddStory extends Component {
   }
 
   render() {
+
     // Grab current status of fireRedirect (true or false)
     const { fireRedirect } = this.state;
 
