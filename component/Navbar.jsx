@@ -1,8 +1,9 @@
 import React from 'react';
 import Login from './Login';
+import { auth } from '~/fire'
 
+export const Navbar = ({ user }) =>  
 
-export const Navbar = ({ user, auth }) =>  
 (  
   <div>
     <div className="navbar">
@@ -40,3 +41,4 @@ export const Navbar = ({ user, auth }) =>
     </div>
   </div>
 );
+

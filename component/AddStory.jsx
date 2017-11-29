@@ -71,6 +71,7 @@ export default class AddStory extends Component {
 
   render() {
     //Grab current status of fireRedirect (true or false)
+    console.log('in AddStory, user is: ', this.props.currentUser)
     const { fireRedirect } = this.state;
 
     return (
