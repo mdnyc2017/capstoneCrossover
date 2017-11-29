@@ -13,10 +13,11 @@ import AuthRoute from './AuthRoute';
 const history = createHistory();
 
 const Routes = props => {
-  console.log("in Routes, props is: ", props)
   
   return (
+  
   <Router history={history}>
+  {props !== null &&
     <Switch>
       <Route exact path="/" render={() => <Home currentUser={props} />} />
       <AuthRoute authed={props} exact path="/stories" component={Stories} user={props} />
@@ -24,6 +25,7 @@ const Routes = props => {
       <AuthRoute authed={props} exact path="/stories/:id" component={SingleStory} user={props} />
       <AuthRoute authed={props} exact path="/stories/:id/addscene" component={AddScene} user={props} />
     </Switch>
+  }
   </Router>)
 };
 

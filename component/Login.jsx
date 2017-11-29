@@ -6,7 +6,7 @@ const google = new firebase.auth.GoogleAuthProvider();
 
 
 function Login(provider) {
-  auth.signInWithPopup(provider)
+  let result = auth.signInWithPopup(provider)
     .then(result =>{
       console.log('!!! result is: ', result)
       const userName = result.user.displayName
