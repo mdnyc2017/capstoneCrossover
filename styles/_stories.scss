@@ -13,7 +13,7 @@
     max-height: 75vh;
     overflow: auto;    
     @include border-style;    
-    background-image: url("https://i.imgur.com/Ug6SeRg.jpg");
+    background-image: url("/background-images/stories.jpg");
     background-color: gray;
     @include margin-left-right(20em);
   }

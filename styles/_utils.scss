@@ -6,9 +6,12 @@
 
 @mixin b-div($color,$direction){
   background-color: $color;
-  width: 60%;
-  height: 100%;
+  line-height: 55vh;
+  width: 30vw;
+  height: 55vh;
+  margin: 2vw;
   float: $direction;
+  @include border-style();
 }
 
 @mixin margin-left-right ($size) {

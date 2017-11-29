@@ -1,16 +1,14 @@
-body {
-  .home-page {
-    &-top {
-      background-image: url("https://www.verdict.co.uk/wp-content/uploads/2017/09/get-into-comic-books.jpg");        
-    }
-    &-create {
-        background-image: url("https://s-media-cache-ak0.pinimg.com/originals/36/55/c0/3655c05ea175c4ff4d291eee771bfdcc.jpg");
-    }
-    &-collaborate {
-        background-image: url("https://i.kinja-img.com/gawker-media/image/upload/s--nuSkmSdp--/c_scale,fl_progressive,q_80,w_800/rgvyhu6nipx8azgbozkt.png");
-    }
-    &-combine {
-        background-image: url("https://images.fastcompany.net/image/upload/w_1280,f_auto,q_auto,fl_lossy/fc/3053666-poster-p-1-general-electric-teams-with-wattpad-to-combine-new-science-with-old-school-sci-fi.jpg");
-    }
+.home-page {
+  &-top {
+    background-image: url("/background-images/homepage-top.jpg");        
+  }
+  &-create {
+      background-image: url("/background-images/homepage-body-a.jpg");
+  }
+  &-collaborate {
+      background-image: url("/background-images/homepage-body-b.png");
+  }
+  &-combine {
+      background-image: url("/background-images/homepage-body-c.jpg");
   }
 }
