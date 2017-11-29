@@ -218,7 +218,9 @@ export default class AddScene extends Component {
               </TabList>
 
               <TabPanel className="addscene-edit-canvas-tabs-panel">
-                <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} /><span>Select a background color</span>
+                <div className="background-panel">
+                  <input type="color" value={this.state.background} onChange={this.changeBackgroundColor} /><span>Select a background color</span>
+              </div>
               </TabPanel>
               <TabPanel className="addscene-edit-canvas-tabs-panel">
                 <div className="addscene-edit-canvas-tabs-overlay">
