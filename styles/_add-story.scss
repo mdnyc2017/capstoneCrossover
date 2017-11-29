@@ -1,11 +1,20 @@
 .add-story {
   font-family: 'Permanent Marker', cursive;
   text-align: center;
-  position: relative;
+  // position: relative;
   @include border-style;
-  background-color:  rgb(255, 253, 235);
   margin: 1em auto;
   // height: 85vh;
   width: 60vw;
   height: 80vh;
+  background-image: url("/background-images/addstory.jpg");
+  @include comic-title;
+  &-form-group-b {
+    vertical-align: middle;
+    margin: 0 auto;
+    width: 50vw;
+    height: 40vh;
+    background-color: white;
+    @include border-style;
+  }
 }

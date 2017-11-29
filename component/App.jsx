@@ -42,6 +42,7 @@ export default class App extends Component {
         <nav>
           <Navbar user={this.state.user} />
         </nav>
+        <div className="page-icon" />
         <br />
         <Routes user={this.state.user} />
       </div>

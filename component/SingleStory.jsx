@@ -84,7 +84,7 @@ export default class SingleStory extends Component {
           ))}
         </div>
         <a className="single-story-add-link" href={`/stories/${this.props.match.params.id}/addscene`}>
-          <div className="single-story-add">Add Scene</div>
+          <div className="single-story-add">+ Add Scene</div>
         </a>
       </div>
     );
