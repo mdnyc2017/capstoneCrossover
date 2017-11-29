@@ -46,3 +46,40 @@
     at WriteWrap.afterWrite [as oncomplete] (net.js:858:14)
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2017-11-29T21:33:12.214Z] ----------------------------------------------------------------------
+[debug] [2017-11-29T21:33:12.218Z] Command:       /usr/local/bin/node /Users/fullstackacademy/Documents/WDF/Projects/Capstone/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-11-29T21:33:12.218Z] CLI Version:   3.14.0
+[debug] [2017-11-29T21:33:12.218Z] Platform:      darwin
+[debug] [2017-11-29T21:33:12.218Z] Node Version:  v8.6.0
+[debug] [2017-11-29T21:33:12.219Z] Time:          Wed Nov 29 2017 16:33:12 GMT-0500 (EST)
+[debug] [2017-11-29T21:33:12.219Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-29T21:33:12.254Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-29T21:33:12.254Z] > authorizing via signed-in user
+[debug] [2017-11-29T21:33:12.257Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Wed Nov 29 2017 16:33:12 GMT-0500 (EST)
+[debug] [2017-11-29T21:33:13.794Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-29T21:33:13.796Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Wed Nov 29 2017 16:33:13 GMT-0500 (EST)
+[debug] [2017-11-29T21:33:14.363Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/fullstackacademy/Documents/WDF/Projects/Capstone/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-29T21:33:15.166Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Wed Nov 29 2017 16:33:15 GMT-0500 (EST)
+[debug] [2017-11-29T21:33:15.166Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Wed Nov 29 2017 16:33:15 GMT-0500 (EST)
+[debug] [2017-11-29T21:33:15.167Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Wed Nov 29 2017 16:33:15 GMT-0500 (EST)
+[debug] [2017-11-29T21:33:15.527Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-29T21:33:15.545Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-29T21:33:15.546Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Wed Nov 29 2017 16:33:15 GMT-0500 (EST)
+[debug] [2017-11-29T21:33:15.615Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-29T21:33:16.334Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] ✔  functions: uploadCanvas: http://localhost:5001/crossover-cf663/us-central1/uploadCanvas
+[info] ✔  functions: uploadImage: http://localhost:5001/crossover-cf663/us-central1/uploadImage

@@ -98,6 +98,7 @@ export default class AddStory extends Component {
                 type="text"
                 name="description"
                 placeholder="Enter a story description (optional)"
+                size="100"
               />
               <div className="add-story-form-group">
                 <button type="submit" className="button-main">
