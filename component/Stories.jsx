@@ -64,8 +64,6 @@ export default class Stories extends Component {
   render() {
     console.log("state", this.state.stories);
 
-    // if (!this.state.stories.length) return <h1 className="stories-title">Loading...</h1>;
-
     return (
       <div className="stories">
         <h1 className="stories-title">Your Stories</h1>

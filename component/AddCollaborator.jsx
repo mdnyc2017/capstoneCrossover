@@ -42,9 +42,13 @@ export default class AddStory extends Component {
         .where('userEmail', '==', email)
         .get()
         .then(snapshot => {
-            console.log("findUser", snapshot.docs[0].data().uid)
-            userId = snapshot.docs[0].data().uid
-            return userId;
+            if (snapshot.docs[0] !== undefined) {
+              console.log("findUser", snapshot.docs[0].data().uid)
+              userId = snapshot.docs[0].data().uid
+              return userId;
+            } else {
+              return undefined;
+            }
         }))
       })
     }
@@ -109,22 +113,35 @@ export default class AddStory extends Component {
         })
     } 
 
-    let redirect = new Promise((resolve, reject) => {
+    let redirect = function() {
+      return new Promise((resolve, reject) => {
     //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
-        this.setState({ fireRedirect: true })
-    })
+        self.setState({ fireRedirect: true })
+      })
+    }
 
     findUser().then(function(id) {
-      return saveToStories(id);
+      if (id !== undefined) {
+        return saveToStories(id);
+      } else {
+        alert("Please enter an existing user, or ask your intended collaborator to create an account.")
+      }
     })
     .then(function(id) {
-      return saveToUsers(id);
+      if (id !== undefined) {
+        return saveToUsers(id);
+      }
     })
     .then(function(id) {
-      return addToUserStories(id);
+      if (id !== undefined) {
+        return addToUserStories(id);
+      }
     })
-
-    Promise.all([findUser, saveToStories, saveToUsers, addToUserStories])
+    .then(function(id) {
+      if (id !== undefined) {
+        redirect()
+      }
+    })
   }
 
   render() {

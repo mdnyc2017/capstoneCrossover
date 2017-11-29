@@ -35,7 +35,7 @@ export default class Canvas extends Component {
 
   uploadFile(dataUrl) {
     const user = this.state.user;
-    const key = `${user.user.uid}${Date.now()}`;
+    const key = `${user.uid}${Date.now()}`;
     const storyId = this.state.storyId;
 
     const url =

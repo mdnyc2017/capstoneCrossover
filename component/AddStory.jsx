@@ -39,7 +39,7 @@ export default class AddStory extends Component {
     const uid = firebase.auth().currentUser.uid
     const title = event.target.title.value;
     const description = event.target.description.value;
-    const key = `${user.user.uid}${Date.now()}`; //Creates a unique ID of user's id + the current time in unix code. Purpose: so we can redirect to "/stories/key" and already have the key available to us
+    const key = `${user.uid}${Date.now()}`; //Creates a unique ID of user's id + the current time in unix code. Purpose: so we can redirect to "/stories/key" and already have the key available to us
     this.setState({id: key})
     //Save story to stories collection in db
     db
@@ -55,7 +55,7 @@ export default class AddStory extends Component {
       .then(() =>
         db
           .collection("users")
-          .doc(user.user.uid)
+          .doc(user.uid)
           .collection("stories")
           .doc(key)
           .set({
