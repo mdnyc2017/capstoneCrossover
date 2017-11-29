@@ -23,9 +23,9 @@ WebFont.load({
       'Pangolin',
       'Sriracha',
       'Dekko',
-      'Kavivanar',
-    ],
-  },
+      'Kavivanar'
+    ]
+  }
 });
 
 export default class AddScene extends Component {
@@ -44,7 +44,7 @@ export default class AddScene extends Component {
       fontFamily: 'Patrick Hand',
       fontSize: 40,
       canvasText: [],
-      background: '#ffffff',
+      background: '#ffffff'
     };
     this.handleSubmitPreview = this.handleSubmitPreview.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -98,7 +98,7 @@ export default class AddScene extends Component {
     const self = this;
     setTimeout(() => {
       self.setState({
-        canvasImages: [...self.state.canvasImages, self.state.previewUrl],
+        canvasImages: [...self.state.canvasImages, self.state.previewUrl]
       });
     }, 10);
   }
@@ -107,26 +107,26 @@ export default class AddScene extends Component {
     const self = this;
     setTimeout(() => {
       self.setState({
-        canvasImages: [...self.state.canvasImages, imageUrl],
+        canvasImages: [...self.state.canvasImages, imageUrl]
       });
     }, 10);
   }
 
   handleTyping(event) {
     this.setState({
-      typedText: event.target.value,
+      typedText: event.target.value
     });
   }
 
   handleFontFamily(event) {
     this.setState({
-      fontFamily: event.target.value,
+      fontFamily: event.target.value
     });
   }
 
   handleFontSize(event) {
     this.setState({
-      fontSize: event.target.value,
+      fontSize: event.target.value
     });
   }
 
@@ -139,8 +139,8 @@ export default class AddScene extends Component {
           text: this.state.typedText,
           fontFamily: this.state.fontFamily,
           fontSize: this.state.fontSize,
-        },
-      ],
+        }
+      ]
     });
   }
 
@@ -152,14 +152,13 @@ export default class AddScene extends Component {
       [evt.target.name]: evt.target.value,
       previewUrl: `${url.slice(0, ind + 7)}w_500/e_cartoonify:${
         this.state.lineStrength
-      }:${this.state.colorReduction}${url.slice(ind + 7)}`,
+      }:${this.state.colorReduction}${url.slice(ind + 7)}`
     });
   }
 
   render() {
 
     const image = this.state.previewUrl; // If there is a previewUrl we will render it below and supply a form to edit degree of cartoonify effect
-    console.log(this.state.fontSize);
 
     return (
       <div className="addscene">

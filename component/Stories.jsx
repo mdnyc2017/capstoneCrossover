@@ -15,7 +15,6 @@ export default class Stories extends Component {
 
   componentWillReceiveProps(nextProps) {
     let self = this;
-    console.log("stories nextProps ", nextProps)
 
     if (nextProps.currentUser && nextProps.currentUser !== {} ) {
       let getCurrentUser = function() {
