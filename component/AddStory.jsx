@@ -50,6 +50,7 @@ export default class AddStory extends Component {
         title,
         description,
         userId: uid,
+        createdAt: firebase.database.ServerValue.TIMESTAMP
       })
       // Save story to user>stories collection in db
       .then(() =>
