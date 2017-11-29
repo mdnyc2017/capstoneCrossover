@@ -21,7 +21,8 @@ export default class Canvas extends Component {
   }
 
   uploadFile(dataUrl) {
-    const user = this.props.user;
+    const user = this.props.currentUser;
+    console.log("canvas user", user);
     const key = `${user.uid}${Date.now()}`;
     const storyId = this.props.storyId;
 
