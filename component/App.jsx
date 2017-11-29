@@ -36,6 +36,7 @@ export default class App extends Component {
         <nav>
           <Navbar user={user} auth={auth} />
         </nav>
+        <div className="page-icon" />
         <br />
         <Routes user={this.state} />
       </div>

@@ -2,12 +2,7 @@
 
 .stories {
   &-title {
-    font-family: 'Patua One', cursive;
-    font-size: 5vh;    
-    color: rgb(255, 217, 0);
-    -webkit-text-stroke: .025em #000000;        
-    text-shadow: .08em .08em rgb(0, 204, 255);    
-    text-align: center;
+    @include comic-title;
   }
   &-container {
     max-height: 75vh;

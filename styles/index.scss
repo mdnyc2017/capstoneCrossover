@@ -20,6 +20,7 @@
 @import 'addscene-canvas';
 @import 'addscene-edit-cartoonify';
 @import 'addscene-edit-canvas';
+@import 'background-icon';
 // import Canvas.state.color as $selectedColor from './components/Canvas'
 
 body {
@@ -30,6 +31,16 @@ body {
         margin: 0 auto;
         height: 100%;
         width: 100%;
+        &-icon {
+            background-image: url(/crossover-logo2.svg);
+            margin: 0 auto;
+            z-index: -1;
+            width: 30vw;
+            height: 40vh;
+            position: fixed;
+            bottom: 2vh;
+            left: -10vw;
+        }
     }
 }
 
