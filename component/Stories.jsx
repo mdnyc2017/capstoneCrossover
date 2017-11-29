@@ -68,7 +68,7 @@ export default class Stories extends Component {
       <div className="stories">
         <h1 className="stories-title">Your Stories</h1>
         <div className="stories-container">
-          {this.state.stories.length ? this.state.stories.map(story => {
+          {this.state.stories.map(story => {
             let id = story.id;
             let thumbnail = story.thumbnail || "/default.png"; //default image if no scenes exist
 
@@ -87,7 +87,7 @@ export default class Stories extends Component {
                   </div>
                 </div>
             );
-          }): <h1 className="stories-title">Loading...</h1>}
+          })}
         </div>
       </div>
     )
