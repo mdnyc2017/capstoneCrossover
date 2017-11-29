@@ -42,7 +42,10 @@ export default class Stories extends Component {
         return new Promise((resolve, reject) => {
           let filteredStories = stories.filter(story => story.id)
           filteredStories.map(story => {
-            db.collection('stories').where('id', '==', story.id)
+            db.collection('stories')
+            .where('id', '==', story.id)
+            .orderBy('id')
+            .orderBy('createdAt', 'asc')
             .get()
             .then((snapshot) => {
               snapshot.forEach(doc => {
@@ -87,7 +90,12 @@ export default class Stories extends Component {
                   </div>
                 </div>
             );
-          }): <h1 className="stories-title">Loading...</h1>}
+          })
+          //chain a forEach and a .sort
+          // .sort(function(a,b){
+          //   return this.state.stories
+          // })
+          : <h1 className="stories-title">Loading...</h1>}
         </div>
       </div>
     )
