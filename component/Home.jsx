@@ -33,9 +33,9 @@ export default class Home extends Component {
         <div className="home-page-create">
           <div className="home-page-create-b">CREATE</div>
         </div>
-        <div className="home-page-collaborate">
+        {/* <div className="home-page-collaborate">
           <div className="home-page-collaborate-b">COLLABORATE</div>
-        </div>
+        </div> */}
         {/* <div className="home-page-combine">
           <div className="home-page-combine-b">COMBINE</div>
         </div> */}
