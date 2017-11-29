@@ -93,7 +93,7 @@ export default class Canvas extends Component {
     return (
       <div>
         <button className="canvas-button" type="submit" onClick={this.uploadToCloudinary}>
-          Add Scene to Story
+          + Add Scene to Story
         </button>
         <Stage
           width={900}

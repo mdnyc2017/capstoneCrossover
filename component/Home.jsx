@@ -10,6 +10,7 @@ export default class Home extends Component {
       "url('/background-images/homepage-body-a.jpg')",
       "url('/background-images/homepage-body-b.png')",
       "url('/background-images/homepage-body-c.jpg')",
+      "url('/background-images/doctor-doom-squirrel.jpg')",
       "url('/background-images/addstory.jpg')",
       "url('/background-images/stories.jpg')",
       "url('/background-images/addstory.png')",
