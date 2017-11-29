@@ -1,6 +1,9 @@
 .addscene-canvas {
   margin-right: 2em;
   margin: 2em auto;
+  &-tabs {
+      background-color: white;
+  }
   &-container {
       overflow-x: auto;
       @include border-style;      
