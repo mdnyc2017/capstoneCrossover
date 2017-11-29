@@ -15,6 +15,7 @@ export default class SingleStory extends Component {
   }
 
   componentDidMount() {
+    console.log("this.props ", this.props)
     //Get Scenes
     db
       .collection("stories")
@@ -39,6 +40,7 @@ export default class SingleStory extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log("nextProps ", nextProps)
     //We set the user on state to the current user & the storyId to the id in the URL path
     this.setState({
       user: nextProps.currentUser,
@@ -69,6 +71,7 @@ export default class SingleStory extends Component {
   }
 
   render() {
+    console.log("this.props in render", this.props)
     return (
       <div className="single-story">
         <h4 className="single-story-title">{this.state.storyTitle}</h4>
