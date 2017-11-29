@@ -13,14 +13,14 @@ function Login(provider) {
       const userEmail = result.user.email
       const uid = result.user.uid
 
-      // db.
-      //   collection('users')
-      //   .doc(uid)
-      //   .set({
-      //     userName: userName,
-      //     userEmail: userEmail,
-      //     uid: uid
-      //   })
+      db.
+        collection('users')
+        .doc(uid)
+        .set({
+          userName: userName,
+          userEmail: userEmail,
+          uid: uid
+        })
 
 
     })
