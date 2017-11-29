@@ -1,9 +1,8 @@
 .add-story {
   font-family: 'Permanent Marker', cursive;
   text-align: center;
-  position: relative;
+  // position: relative;
   @include border-style;
-  background-color:  rgb(255, 253, 235);
   margin: 1em auto;
   // height: 85vh;
   width: 60vw;
