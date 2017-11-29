@@ -33,10 +33,6 @@ export default class Photo extends Component {
     this.updateXandY()
   }
 
-  componentWillReceiveProps() {
-    this.updateXandY()
-  }
-
   //Resizing Options:
   handleDragMoveTopLeft(e) {
     const { x, y } =

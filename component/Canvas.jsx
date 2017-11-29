@@ -12,11 +12,7 @@ export default class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      canvasImages: [],
-      canvasText: [],
       canvasUrl: "",
-      user: {},
-      storyId: "",
       background: "#ffffff",
       fireRedirect: false
     };
@@ -24,19 +20,10 @@ export default class Canvas extends Component {
     this.uploadFile = this.uploadFile.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      canvasText: nextProps.text,
-      canvasImages: nextProps.images, //these are images URLs
-      user: nextProps.currentUser,
-      storyId: nextProps.storyId
-    });
-  }
-
   uploadFile(dataUrl) {
-    const user = this.state.user;
+    const user = this.props.user;
     const key = `${user.uid}${Date.now()}`;
-    const storyId = this.state.storyId;
+    const storyId = this.props.storyId;
 
     const url =
       "http://localhost:5001/crossover-cf663/us-central1/uploadCanvas";
@@ -51,7 +38,6 @@ export default class Canvas extends Component {
         headers: { "X-Requested-With": "XMLHttpRequest" }
       })
       .then(response => {
-        console.log(response);
         this.setState({
           canvasUrl: response.data
         });
@@ -110,8 +96,8 @@ export default class Canvas extends Component {
               zindex={-1}
               fill={this.props.background}
             />
-            {this.state.canvasImages &&
-              this.state.canvasImages.map((imageUrl, index) => {
+            {this.props.images &&
+              this.props.images.map((imageUrl, index) => {
                 const image = new window.Image();
                 const arrIndex = index;
                 image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tainted canvas error.
@@ -125,14 +111,14 @@ export default class Canvas extends Component {
                   />
                 );
               })}
-            {this.state.canvasText &&
-              this.state.canvasText.map((text, index) => {
+            {this.props.text &&
+              this.props.text.map((text, index) => {
                 const arrIndex = index;
                 return <TextField key={`${text}${arrIndex}`} text={text} />;
               })}
           </Layer>
         </Stage>
-        {fireRedirect && <Redirect to={`/stories/${this.state.storyId}`} />}
+        {fireRedirect && <Redirect to={`/stories/${this.props.storyId}`} />}
       </div>
     );
   }
