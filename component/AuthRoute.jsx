@@ -4,6 +4,7 @@ import { Router } from 'react-router';
 import { Redirect } from "react-router";
 
 export default function AuthRoute ({component: Component, authed, user, path}) {
+    console.log("auth", user)
     return (
       <Route
         path={path}

@@ -7,29 +7,26 @@ const google = new firebase.auth.GoogleAuthProvider();
 
 function Login(provider) {
   auth.signInWithPopup(provider)
-    .then(result =>{
-      console.log('!!! result is: ', result)
-      const userName = result.user.displayName
-      const userEmail = result.user.email
-      const uid = result.user.uid
+    // .then(result =>{
+    //   console.log('!!! result is: ', result)
+    //   const userName = result.user.displayName
+    //   const userEmail = result.user.email
+    //   const uid = result.user.uid
 
-      db.
-        collection('users')
-        .doc(uid)
-        .set({
-          userName: userName,
-          userEmail: userEmail,
-          uid: uid
-        })
+    //   db.
+    //     collection('users')
+    //     .doc(uid)
+    //     .set({
+    //       userName: userName,
+    //       userEmail: userEmail,
+    //       uid: uid
+    //     })
 
 
-    })
+    // })
 
 
 }
-
-
-
 
 auth.onAuthStateChanged(console.log);
 

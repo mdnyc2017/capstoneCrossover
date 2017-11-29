@@ -29,15 +29,14 @@ export default class App extends Component {
   }
 
   render() {
- 
-    const { user } = this.state || {};
+    const {user} = this.state;
     return (
       <div className="page">
         <nav>
           <Navbar user={user} auth={auth} />
         </nav>
         <br />
-        <Routes user={this.state} />
+        <Routes user={user} />
       </div>
     );
   }

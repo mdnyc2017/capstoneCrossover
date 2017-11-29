@@ -77,6 +77,18 @@ export default class AddStory extends Component {
       })
     })
 
+    // let addtoUserStories = new Promise((resolve, reject) => {
+    // //save story to user's stories
+    //   return db
+    //   .collection("users")
+    //   .doc(email)
+    //   .collection("stories")
+    //   .doc(this.state.storyId)
+    //   .set({
+    //     id: this.state.storyId
+    //   })
+    // })
+
     let redirect = new Promise((resolve, reject) => {
     //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
         this.setState({ fireRedirect: true })

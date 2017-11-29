@@ -14,7 +14,7 @@ import AuthRoute from './AuthRoute';
 const history = createHistory();
 
 const Routes = props => {
-  // console.log("Routes", props.user)
+  console.log("Routes", props.user)
   return (
   <Router history={history}>
     <Switch>
