@@ -7,12 +7,10 @@ const google = new firebase.auth.GoogleAuthProvider();
 
 function Login(provider) {
   let result = auth.signInWithPopup(provider)
-    .then(result =>{
-      console.log('!!! result is: ', result)
+    .then(result => {
       const userName = result.user.displayName
       const userEmail = result.user.email
       const uid = result.user.uid
-
       db.
         collection('users')
         .doc(uid)
@@ -27,9 +25,6 @@ function Login(provider) {
 
 
 }
-
-
-
 
 auth.onAuthStateChanged(console.log);
 

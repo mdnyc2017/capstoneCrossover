@@ -4,17 +4,16 @@ import { Router } from 'react-router';
 import { Redirect } from "react-router";
 import firebase, { auth } from "~/fire";
 
-export default function AuthRoute ({component: Component, authed, path, userProps}) {
-  // const user = firebase.auth().currentUser  
-  console.log('in authRoute, user is: ', userProps)
+export default function AuthRoute ({component: Component, authed, path, user}) {
+  console.log("authroute user", user);
     return (
       <Route
         path={path}
-        render={(user) => authed.user !== null
-          ? <Component currentUser={userProps} 
-          // {...props} 
+        render={(props) => authed.user !== null
+          ? <Component currentUser={user} 
+          {...props} 
           />
-          : <Redirect to={{pathname: '/', state: {from: user.location}}} />}
+          : <Redirect to={{pathname: '/', state: {from: props.location}}} />}
       />
     )
   }

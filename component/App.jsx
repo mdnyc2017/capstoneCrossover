@@ -36,16 +36,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log('2. in app.jsx, this.state is: ', this.state)
-    
-    // console.log('!1 at login, current user is: ', user)
-    
-    // const { user } = this.state || {};
-
-    //making a call to firebase to grab the currently logged in user's data
-    // const user = firebase.auth().currentUser
-    // console.log('APP logged in user is: ', user)
-    
     
     return (
       <div className="page">
