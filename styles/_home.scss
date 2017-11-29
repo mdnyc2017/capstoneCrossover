@@ -17,6 +17,8 @@
       height: 65vh;
       color: white;
       -webkit-text-stroke: 1.5px #000000;      
+      transition: background-image 2s;
+      
       &:hover {
           opacity: 50%;
           color: rgb(255, 16, 16); 

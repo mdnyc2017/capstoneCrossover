@@ -1,10 +1,14 @@
 .addscene-edit {
+  @include comic-title();
+  font-size: 2.5vh;
+  -webkit-text-stroke: .0275em #000000;          
   overflow: auto;        
   margin: 2em;        
   width: 30%;
-  background-color: rgb(0, 132, 255);
+  background-color: rgb(0, 225, 255);
   @include border-style;
   font-family: 'Patua One', cursive;
+  background-image: url("/background-images/addscene-edit-background-b.jpg");
   &-dropzone {
     & > div {
         margin: 5%;                    
@@ -14,11 +18,11 @@
         border-color: rgb(0, 0, 0) !important;
         &:hover {
             cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.301);
+            background-color: rgba(0, 0, 0, 0.657);
         }
     }
     &-text {
-      font-family: 'Permanent Marker', cursive;                    
+      @include comic-title();
       text-align: center;
       position: relative;
       margin: auto;
@@ -39,4 +43,6 @@
         width: 100%;
     }
   }
+
+
 }
