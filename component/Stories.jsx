@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase, { db, auth } from "~/fire";
 
-
+let uid 
 export default class Stories extends Component {
   constructor(props) {
     super();
@@ -14,7 +14,7 @@ export default class Stories extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let uid = firebase.auth().currentUser.uid
+     let uid = firebase.auth().currentUser.uid
 
     this.setState({
       user: nextProps.currentUser,
@@ -23,13 +23,20 @@ export default class Stories extends Component {
   }
 
   render() {
+   db
+  //  .collection('stories')
+   .collection('collaborators').where('userId', '==', this.state.userId)
+   .onSnapshot(snapshot => this.setState({
+              stories: snapshot.docs,
+            }));
+            
 
-    db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({
-            stories: snapshot.docs,
-          }));
+    // db.collection('stories').where('userId', '==', this.state.userId).onSnapshot(snapshot => this.setState({
+    //         stories: snapshot.docs,
+    //       }));
 
     if (!this.state.stories) return "Loading...";
-
+    
     return (
       <div className="stories">
         <h1 className="stories-title">Your Stories</h1>
