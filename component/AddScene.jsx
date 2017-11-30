@@ -226,7 +226,7 @@ export default class AddScene extends Component {
                 <div className="addscene-edit-canvas-tabs-overlay">
                   <img src="/captionbox.png" onClick={() => this.handleAddOverlay('/captionbox.png')} />
                   <img src="/quote1.png" onClick={() => this.handleAddOverlay('/quote1.png')} />
-                  <img src="/quote2.png" onClick={() => this.handleAddOverlay('/quote2copy.svg')} />
+                  <img src="/quote2.png" onClick={() => this.handleAddOverlay('/quote2.png')} />
                   <img src="/quote3.png" onClick={() => this.handleAddOverlay('/quote3.png')} />
                   <img src="/quote4.png" onClick={() => this.handleAddOverlay('/quote4.png')} />
                   <img src="/quote5.png" onClick={() => this.handleAddOverlay('/quote5.png')} />
