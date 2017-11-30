@@ -24,14 +24,17 @@
 // import Canvas.state.color as $selectedColor from './components/Canvas'
 
 body {
+    #main {
+        height: 100vh;
+    }
     height: 100%;
     margin: 0;
-    margin-bottom: 2em;
+    // margin-bottom: 2em;
     background: linear-gradient(rgb(235, 2, 2),rgb(61, 0, 0));
     .page {
         position: relative;
         margin: 0 auto;
-        height: 100vh;
+        height: 100%;
         width: 100%;
         &-icon {
             background-image: url(/crossover-logo2.svg);
