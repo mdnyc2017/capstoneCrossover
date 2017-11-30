@@ -146,11 +146,11 @@ export default class AddStory extends Component {
 
     return (
       <div className="add-collaborator">
+        <label htmlFor="name">
+          <h2>Add a Collaborator</h2>
+        </label>
         <form className="add-collaborator-form" onSubmit={this.handleSubmit}>
           <div className="add-collaborator-form-group">
-            <label htmlFor="name">
-              <h2>Add a Collaborator</h2>
-            </label>
             <input
               value={this.state.collaboratorEmail}
               onChange={this.handleChangeEmail}
