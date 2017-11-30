@@ -107,7 +107,6 @@ export default class SingleStory extends Component {
 
   render() {
 
->>>>>>> origin/master
     return (
       <div className="single-story">
 
