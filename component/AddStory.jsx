@@ -85,7 +85,7 @@ export default class AddStory extends Component {
               <input
                 value={this.state.titleInput}
                 onChange={this.handleChangeTitle}
-                className="add-story-form-control"
+                className="add-story-form-control-title"
                 type="text"
                 name="title"
                 placeholder="Enter a title"
@@ -94,11 +94,10 @@ export default class AddStory extends Component {
               <input
                 value={this.state.descriptionInput}
                 onChange={this.handleChangeDescription}
-                className="add-story-form-control"
+                className="add-story-form-control-description"
                 type="text"
                 name="description"
                 placeholder="Enter a story description (optional)"
-                size="100"
               />
               <div className="add-story-form-group">
                 <button type="submit" className="button-main">
