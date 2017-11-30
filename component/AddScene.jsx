@@ -57,9 +57,8 @@ export default class AddScene extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("addscene user", this.props.currentUser)
     this.setState({
-      user: this.props.currentUser,
+      user: nextProps.currentUser,
       storyId: this.props.match.params.id,
     });
   }

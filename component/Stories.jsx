@@ -9,12 +9,14 @@ export default class Stories extends Component {
       user: {},
       stories: [],
       scenes: [],
-      userId: ''
+      userId: '',
+      collaborator : []
     };
   }
 
   componentWillReceiveProps(nextProps) {
     let self = this;
+
 
     if (nextProps.currentUser && nextProps.currentUser !== {} ) {
       let getCurrentUser = function() {
@@ -41,16 +43,39 @@ export default class Stories extends Component {
         return new Promise((resolve, reject) => {
           let filteredStories = stories.filter(story => story.id)
           filteredStories.map(story => {
-            db.collection('stories').where('id', '==', story.id)
+            db.collection('stories')
+            .where('id', '==', story.id)
             .get()
             .then((snapshot) => {
               snapshot.forEach(doc => {
-                self.setState({stories: [...self.state.stories, doc.data()]})
+                self.setState({
+                  stories: [...self.state.stories, doc.data()],
+
+                })
               })
             })
           })
         })
       }
+
+  //     let getCollaboratorsFromStories = function(stories){
+  //       return new Promise((resolve, reject) =>{
+  //         let filteredStories = stories.filter(story => story.id)
+
+  //         db.collection('collaborators')
+  //         .where('storyId', '==', story.id)
+  //         .get()
+  //         .then((snapshot) => {
+  //           snapshot.forEach(doc => {
+  //             self.setState({
+  //               collaborator: [...self.state.collaborator, doc.data()]
+  //             })
+  //       })
+  //     })
+  //   })
+  // }
+      
+
 
       getCurrentUser().then(function(id) {
         return getUserStories(id)
@@ -58,6 +83,10 @@ export default class Stories extends Component {
       .then(function(stories) {
         return getStories(stories)
       })
+      // .then(function(stories){
+      //   return getCollaboratorsFromStories(stories)
+      // })
+
     }
   }
 
