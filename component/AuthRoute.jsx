@@ -5,7 +5,6 @@ import { Redirect } from "react-router";
 import firebase, { auth } from "~/fire";
 
 export default function AuthRoute ({component: Component, authed, path, user}) {
-  console.log("authroute user", user);
     return (
       <Route
         path={path}

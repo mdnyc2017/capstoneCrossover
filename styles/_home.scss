@@ -12,9 +12,9 @@
     //   position: relative;
     //   vertical-align: middle;
     background-color: white;
-    line-height: 64vh;
-      font-size: 3vw;
-      height: 65vh;
+    line-height: 75vh;
+      font-size: 5vw;
+      height: 75vh;
       color: white;
       -webkit-text-stroke: 1.5px #000000;      
       transition: background-image 2s;
@@ -22,7 +22,7 @@
       &:hover {
           opacity: 50%;
           color: rgb(255, 16, 16); 
-          text-shadow: 0px 5px #000000;            
+          text-shadow: 0px 5px #000000;    
       }
   }
 

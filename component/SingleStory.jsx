@@ -17,7 +17,6 @@ export default class SingleStory extends Component {
   }
 
   componentDidMount() {
-    console.log("this.props ", this.props)
     //Get Scenes
     db
       .collection("stories")
@@ -52,7 +51,6 @@ export default class SingleStory extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("nextProps ", nextProps)
     //We set the user on state to the current user & the storyId to the id in the URL path
     this.setState({
       user: nextProps.currentUser,
@@ -108,15 +106,16 @@ export default class SingleStory extends Component {
   }
 
   render() {
-    // console.log("this.props in render", this.props)
-    // console.log('collaborator is: ', this.state.collaboratorName)
+
+>>>>>>> origin/master
     return (
       <div className="single-story">
+
         <h4 className="single-story-title">{this.state.storyTitle}</h4>
         <p className="single-story-description">{this.state.storyDescription && this.state.storyDescription}</p>
         
         {this.state.collaboratorName.length ?
-        <div>
+        <div className="single-story-collaborating">
           collaborating with{
             this.state.collaboratorName.map(collaborator=>(
               <div key={collaborator+Date.now()}>
@@ -146,6 +145,8 @@ export default class SingleStory extends Component {
         <a className="single-story-add-link" href={`/stories/${this.props.match.params.id}/collaborate`}>
           <div className="single-story-add">+ Add A Collaborator</div>
         </a>
+
+
       </div>
     );
   }

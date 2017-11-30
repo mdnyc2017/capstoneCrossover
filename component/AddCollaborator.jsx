@@ -52,7 +52,6 @@ export default class AddStory extends Component {
         .get()
         .then(snapshot => {
             if (snapshot.docs[0] !== undefined) {
-              console.log("findUser", snapshot.docs[0].data().uid)
               userId = snapshot.docs[0].data().uid
               return userId;
             } else {
@@ -63,7 +62,6 @@ export default class AddStory extends Component {
     }
 
     let saveToStories = function(id) {
-      console.log("saveToStories", id)
       return new Promise((resolve, reject) => {
         //save collaborator in stories collection in db
         return resolve(db
@@ -85,7 +83,6 @@ export default class AddStory extends Component {
     
 
     let saveToUsers = function(id) {
-      console.log("saveToUsers", id)
       return new Promise((resolve, reject) => {
         //save collaborator in user > stories collection in db
           return resolve(db
@@ -106,7 +103,6 @@ export default class AddStory extends Component {
     }
 
     let addToUserStories = function(id) {
-      console.log("addToUserStories", id)
       return new Promise((resolve, reject) => {
         //save story to collaborator's stories
 
@@ -160,11 +156,11 @@ export default class AddStory extends Component {
 
     return (
       <div className="add-collaborator">
+        <label htmlFor="name">
+          <h2>Add a Collaborator</h2>
+        </label>
         <form className="add-collaborator-form" onSubmit={this.handleSubmit}>
           <div className="add-collaborator-form-group">
-            <label htmlFor="name">
-              <h2>Add a Collaborator</h2>
-            </label>
             <input
               value={this.state.collaboratorEmail}
               onChange={this.handleChangeEmail}

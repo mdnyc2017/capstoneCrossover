@@ -10,7 +10,9 @@
   font-family: 'Patua One', cursive;
   background-image: url("/background-images/addscene-edit-background-b.jpg");
   &-dropzone {
+    // background-color: rgba(0, 0, 0, 0.562);
     & > div {
+        background-color: rgba(0, 0, 0, 0.562);
         margin: 5%;                    
         width: 90% !important;
         display: flex;
@@ -18,7 +20,7 @@
         border-color: rgb(0, 0, 0) !important;
         &:hover {
             cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.657);
+            background-color: rgba(0, 0, 0, 0.712);
         }
     }
     &-text {
