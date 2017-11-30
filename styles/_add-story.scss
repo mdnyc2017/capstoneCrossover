@@ -9,6 +9,9 @@
   height: 80vh;
   background-image: url("/background-images/addstory.jpg");
   @include comic-title;
+  &-form-control-description {
+    width: 90%;
+  }
   &-form-group-b {
     vertical-align: middle;
     margin: 0 auto;
