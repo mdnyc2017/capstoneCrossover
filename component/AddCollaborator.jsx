@@ -9,12 +9,14 @@ export default class AddStory extends Component {
       emailInput: "", //email field input
       user: {}, //current logged in user
       storyId: "", 
-      email: "", //email of collaborator
+      email: "", //email of collaborator,
+      collabName: '', //name of collaborator
       id: "", //firestore id of collaborator
       fireRedirect: false //sets to true after submit to allow redirect
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeName = this.handleChangeName.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,10 +28,17 @@ export default class AddStory extends Component {
     this.setState({ emailInput: event.target.value });
   }
 
+  handleChangeName(event){
+    this.setState({
+      collabName: event.target.value
+    })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
     const email = this.state.emailInput.toLowerCase();
+    const collabName = this.state.collabName;
     const uid = firebase.auth().currentUser.uid;
     let self = this;
 
@@ -64,7 +73,8 @@ export default class AddStory extends Component {
         userEmail: email,
         isOwner: false,
         storyId: self.state.storyId,
-        uid: id
+        uid: id,
+        collabName: collabName
         })
         .then(() => id)
         )
@@ -158,6 +168,15 @@ export default class AddStory extends Component {
               type="text"
               name="email"
               placeholder="Enter an email address"
+              required={true}
+            />
+            <input
+              value={this.state.collabName}
+              onChange={this.handleChangeName}
+              className="add-collaborator-form-control"
+              type="text"
+              name="name"
+              placeholder="Enter your collaborator's name"
               required={true}
             />
           </div>

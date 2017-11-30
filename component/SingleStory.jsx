@@ -10,7 +10,9 @@ export default class SingleStory extends Component {
       storyId: "",
       storyTitle: "",
       storyDescription: "",
-      scenes: []
+      scenes: [],
+      collaborator: {},
+      collaboratorName: []
     };
   }
 
@@ -36,6 +38,16 @@ export default class SingleStory extends Component {
           storyDescription: snapshot.data().description
         })
       );
+
+      // //get collaborator
+      // db
+      // .collection('collaborators')
+      // .where('storyId', '==', this.props.match.params.id)
+      // .onSnapshot( snapshot =>{
+      //   this.setState({
+      //     collaboratorName: snapshot.data().collabName
+      //   })
+      // })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,24 +78,67 @@ export default class SingleStory extends Component {
           storyDescription: snapshot.data().description
         })
       );
+
+
+      //get collaborator
+      db
+      .collection('stories')
+      .doc(this.props.match.params.id)
+      .collection('collaborators')
+      .onSnapshot(snapshot =>{
+        console.log('snapshot in collab call is: ', snapshot)
+        this.setState({
+          collaboratorName: snapshot.docs
+        })
+      })
+
+
+
+
+
+      // .where('storyId', '==', this.props.match.params.id)
+      // .onSnapshot( snapshot =>{
+      //   console.log('in single story collab call, snapshot is:', snapshot)
+      //   this.setState({
+      //     collaboratorName: snapshot.data().collabName
+      //   })
+      // })
   }
 
   render() {
+
+>>>>>>> origin/master
     return (
       <div className="single-story">
 
         <h4 className="single-story-title">{this.state.storyTitle}</h4>
         <p className="single-story-description">{this.state.storyDescription && this.state.storyDescription}</p>
-
-        <div className="single-story-container">
-          <div className="single-story-scenes">
-            {this.state.scenes.map(scene => (
-              <div key={scene.data().id}>
-                <img className="single-story-scenes-scene" src={scene.data().imageUrl} />
+        
+        {this.state.collaboratorName.length ?
+        <div className="single-story-collaborating">
+          collaborating with{
+            this.state.collaboratorName.map(collaborator=>(
+              <div key={collaborator+Date.now()}>
+               <li>{collaborator.data().collabName}</li>
               </div>
+
             ))}
-          </div>
+        </div>        
+        :
+        <span> </span>    
+        } 
+
+
+        <div className="single-story-scenes">
+          {this.state.scenes.map(scene => (
+            <div key={scene.data().id}>
+              <img className="single-story-scenes-scene" src={scene.data().imageUrl} />
+            </div>
+          ))}
         </div>
+
+
+
         <a className="single-story-add-link" href={`/stories/${this.props.match.params.id}/addscene`}>
           <div className="single-story-add">+ Add Scene</div>
         </a>
