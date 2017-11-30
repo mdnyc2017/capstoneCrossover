@@ -6,7 +6,10 @@ body {
     font-family: 'Passion One', cursive;        
     text-align: center;  
     border-bottom-style: solid;
-    border-bottom-color: black;          
+    border-bottom-color: black;      
+    &-logo {
+      float: left;
+    }    
     &-ul {
         list-style-type: none;
         margin: auto;

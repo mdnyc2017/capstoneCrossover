@@ -11,8 +11,18 @@
   }
 
   &-description {
+    margin: 0;
+    font-size: 2em;
+    font-family: 'Permanent Marker', cursive;
+  }
+
+  &-collaborating {
     font-size: 1em;
     font-family: 'Permanent Marker', cursive;
+    &-title {
+      @include comic-title();
+      font-size: 2em;
+    }
   }
 
   &-container {
