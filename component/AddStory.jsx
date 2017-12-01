@@ -35,7 +35,8 @@ export default class AddStory extends Component {
     event.preventDefault();
 
     // Defining our data that we want to submit to the db
-    const user = this.state.user;
+    const user = this.props.currentUser;
+    const name = user.user.displayName;
     const uid = firebase.auth().currentUser.uid;
     const title = event.target.title.value;
     const description = event.target.description.value;
@@ -50,6 +51,7 @@ export default class AddStory extends Component {
         title,
         description,
         userId: uid,
+        userName: name,
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       })
       // Save story to user>stories collection in db

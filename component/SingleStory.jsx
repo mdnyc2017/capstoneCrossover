@@ -13,6 +13,7 @@ export default class SingleStory extends Component {
       scenes: [],
       collaborator: {},
       collaboratorName: [],
+      userName: ''
     };
   }
 
@@ -35,6 +36,7 @@ export default class SingleStory extends Component {
         this.setState({
           storyTitle: snapshot.data().title,
           storyDescription: snapshot.data().description,
+          userName: snapshot.data().userName
         }));
 
   }
@@ -81,29 +83,24 @@ export default class SingleStory extends Component {
   }
 
   render() {
-
     return (
       <div className="single-story">
 
         <h4 className="single-story-title">{this.state.storyTitle}</h4>
         <p className="single-story-description">{this.state.storyDescription && this.state.storyDescription}</p>
 
-        {this.state.collaboratorName.length ?
           <div className="single-story-collaborating">
             <div className="single-story-collaborating-title" >Featuring :</div>
-            {
-            this.state.collaboratorName.map(collaborator => (
-              <div key={collaborator + Date.now()}>
+            <div>
+              <div>{this.state.userName}</div>
+            </div>
+            {this.state.collaboratorName.map(collaborator => (
+              <div key={collaborator.data().collabName + Date.now()}>
                 <div>{collaborator.data().collabName}</div>
               </div>
-
             ))
-          }
+            }
           </div>
-        :
-          <span />
-        }
-
 
         <div className="single-story-scenes">
           {this.state.scenes.map(scene => (
