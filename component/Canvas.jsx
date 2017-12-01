@@ -22,25 +22,26 @@ export default class Canvas extends Component {
 
   uploadFile(dataUrl) {
     const user = this.props.currentUser;
-    console.log("canvas user", user);
     const key = `${user.uid}${Date.now()}`;
     const storyId = this.props.storyId;
-
+    const cloudName = "noorulain";
+    const preset = "pvfhdtk2";
+    //const url = "https://us-central1-crossover-cf663.cloudfunctions.net/uploadCanvas";
     const url =
-      "http://localhost:5001/crossover-cf663/us-central1/uploadCanvas";
+      "https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
 
-    //construct a set of key/value pairs representing form fields and their values -- which can then be easily sent
-    //with the request.
     const fd = new FormData();
+    fd.append("upload_preset", preset);
+    fd.append("api_key", "493184569883823");
     fd.append("file", dataUrl);
 
     return axios
       .post(url, fd, {
-        headers: { "X-Requested-With": "XMLHttpRequest" }
+        headers: { "x-requested-with": "XMLHttpRequest" }
       })
       .then(response => {
         this.setState({
-          canvasUrl: response.data
+          canvasUrl: response.data.secure_url
         });
       })
       .then(() =>
@@ -68,7 +69,7 @@ export default class Canvas extends Component {
   }
 
   uploadToCloudinary() {
-    let confirmation = confirm("Are you sure you're ready to add your scene?")
+    let confirmation = confirm("Are you sure you're ready to add your scene?");
     const image = this.stageRef.getStage().toDataURL("image/png");
     if (confirmation) {
       this.uploadFile(image);
@@ -79,7 +80,11 @@ export default class Canvas extends Component {
     const { fireRedirect } = this.state;
     return (
       <div>
-        <button className="canvas-button" type="submit" onClick={this.uploadToCloudinary}>
+        <button
+          className="canvas-button"
+          type="submit"
+          onClick={this.uploadToCloudinary}
+        >
           + Add Scene to Story
         </button>
         <Stage
