@@ -40,7 +40,6 @@ export default class Canvas extends Component {
         headers: { "x-requested-with": "XMLHttpRequest" }
       })
       .then(response => {
-        console.log("from canvas", response.data.secure_url);
         this.setState({
           canvasUrl: response.data.secure_url
         });
