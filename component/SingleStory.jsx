@@ -37,15 +37,6 @@ export default class SingleStory extends Component {
           storyDescription: snapshot.data().description,
         }));
 
-    // //get collaborator
-    // db
-    // .collection('collaborators')
-    // .where('storyId', '==', this.props.match.params.id)
-    // .onSnapshot( snapshot =>{
-    //   this.setState({
-    //     collaboratorName: snapshot.data().collabName
-    //   })
-    // })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -82,20 +73,11 @@ export default class SingleStory extends Component {
       .doc(this.props.match.params.id)
       .collection('collaborators')
       .onSnapshot((snapshot) => {
-        console.log('snapshot in collab call is: ', snapshot);
         this.setState({
           collaboratorName: snapshot.docs,
         });
       });
 
-
-    // .where('storyId', '==', this.props.match.params.id)
-    // .onSnapshot( snapshot =>{
-    //   console.log('in single story collab call, snapshot is:', snapshot)
-    //   this.setState({
-    //     collaboratorName: snapshot.data().collabName
-    //   })
-    // })
   }
 
   render() {
