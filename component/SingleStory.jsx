@@ -101,15 +101,15 @@ export default class SingleStory extends Component {
             ))
             }
           </div>
-
-        <div className="single-story-scenes">
-          {this.state.scenes.map(scene => (
-            <div key={scene.data().id}>
-              <img className="single-story-scenes-scene" src={scene.data().imageUrl} />
-            </div>
-          ))}
+        <div className="single-story-container">
+          <div className="single-story-scenes">
+            {this.state.scenes.map(scene => (
+              <div key={scene.data().id}>
+                <img className="single-story-scenes-scene" src={scene.data().imageUrl} />
+              </div>
+            ))}
+          </div>
         </div>
-
 
         <a className="single-story-add-link" href={`/stories/${this.props.match.params.id}/addscene`}>
           <div className="single-story-add">+ Add Scene</div>
