@@ -13,7 +13,15 @@ const getRawBody = require("raw-body");
 const contentType = require("content-type");
 const path = require("path");
 const os = require("os");
+const env = require("dotenv");
 
+const cloudinaryConfig = functions.config().cloudinary || {};
+if (Object.keys(cloudinaryConfig).length === 0) {
+  env.config();
+  cloudinaryConfig.key = process.env.CLOUDINARY_KEY;
+  cloudinaryConfig.secret = process.env.CLOUDINARY_SECRET;
+  cloudinaryConfig.cloudname = process.env.CLOUDINARY_CLOUDNAME;
+}
 const app = express();
 
 app.use(function(req, res, next) {
@@ -55,7 +63,7 @@ app.use(function(req, res, next) {
 });
 
 app.post("/uploadImage", (req, res) => {
-  console.log("entered base route");
+  console.log(functions.config());
   if (req.method === "POST") {
     // console.log(req);
     var busboy = new Busboy({ headers: req.headers });
@@ -82,9 +90,9 @@ app.post("/uploadImage", (req, res) => {
         const file = upload.file;
         console.log("got a file", file);
         cloudinary.config({
-          cloud_name: "noorulain",
-          api_key: "493184569883823",
-          api_secret: "ZoD3Vr3GEPRLq3dZdZCaiJbuwCY"
+          cloud_name: cloudinaryConfig.cloudname,
+          api_key: cloudinaryConfig.key,
+          api_secret: cloudinaryConfig.secret
         });
 
         cloudinary.v2.uploader.upload(file, function(error, result) {

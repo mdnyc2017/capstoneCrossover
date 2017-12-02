@@ -54,10 +54,9 @@ export default class Canvas extends Component {
     const storyId = this.props.storyId;
     const cloudName = "noorulain";
     const preset = "pvfhdtk2";
+    //const url ="https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
     const url =
-      "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
-    // const url =
-    //   "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
+      "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
     //const url ="https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
 
     let uploadRequest = superagent.post(url);

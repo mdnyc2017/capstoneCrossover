@@ -68,10 +68,9 @@ export default class AddScene extends Component {
   }
 
   uploadFile(files) {
-    console.log(files[0]);
+    //const url ="https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
     const url =
-      "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
-    //const url ="http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
+      "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
     //const url ="https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
     //console.log(Array.isArray(image));
     let uploadRequest = superagent.post(url);
