@@ -68,11 +68,9 @@ export default class AddScene extends Component {
   }
 
   uploadFile(files) {
-    //const url ="https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
     const url =
-      "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
-    //const url ="https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
-    //console.log(Array.isArray(image));
+      "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
+    //const url ="http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
     let uploadRequest = superagent.post(url);
     uploadRequest.attach("file", files[0]);
     uploadRequest.end((err, resp) => {
@@ -100,7 +98,7 @@ export default class AddScene extends Component {
       self.setState({
         canvasImages: [...self.state.canvasImages, self.state.previewUrl]
       });
-    }, 10);
+    }, 5);
   }
 
   handleAddOverlay(imageUrl) {
@@ -109,7 +107,7 @@ export default class AddScene extends Component {
       self.setState({
         canvasImages: [...self.state.canvasImages, imageUrl]
       });
-    }, 10);
+    }, 5);
   }
 
   handleTyping(event) {

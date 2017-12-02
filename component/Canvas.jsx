@@ -48,7 +48,6 @@ export default class Canvas extends Component {
   }
 
   uploadFile(dataUrl) {
-    //onsole.log(dataUrl.src);
     const user = this.props.currentUser;
     const key = `${user.uid}${Date.now()}`;
     const storyId = this.props.storyId;
@@ -57,7 +56,6 @@ export default class Canvas extends Component {
     //const url ="https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
     const url =
       "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
-    //const url ="https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
 
     let uploadRequest = superagent.post(url);
     uploadRequest.attach("file", dataURItoBlob(dataUrl));
@@ -87,41 +85,6 @@ export default class Canvas extends Component {
         .then(() => this.setState({ fireRedirect: true }))
         .catch(error => console.error("Error creating scene: ", error));
     });
-    //const fd = new FormData();
-    //fd.append("file", dataUrl.src);
-
-    // return axios
-    //   .post(url, fd, {
-    //     headers: { "x-requested-with": "XMLHttpRequest" }
-    //   })
-    //   .then(response => {
-    //     console.log(response);
-    //     this.setState({
-    //       canvasUrl: response.data
-    //     });
-    //   })
-    //   .then(() =>
-    //     db
-    //       .collection("scenes")
-    //       .doc(key)
-    //       .set({ imageUrl: this.state.canvasUrl })
-    //   )
-    //   .then(() =>
-    //     db
-    //       .collection("stories")
-    //       .doc(storyId)
-    //       .collection("scenes")
-    //       .doc(key)
-    //       .set({ imageUrl: this.state.canvasUrl, id: key, random: "check" })
-    //   )
-    //   .then(() =>
-    //     db
-    //       .collection("stories")
-    //       .doc(storyId)
-    //       .update({ thumbnail: this.state.canvasUrl })
-    //   )
-    //   .then(() => this.setState({ fireRedirect: true }))
-    //   .catch(error => console.error("Error creating scene: ", error));
   }
 
   uploadToCloudinary() {
