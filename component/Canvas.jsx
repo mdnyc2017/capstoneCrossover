@@ -53,9 +53,9 @@ export default class Canvas extends Component {
     const storyId = this.props.storyId;
     const cloudName = "noorulain";
     const preset = "pvfhdtk2";
-    //const url ="https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
     const url =
-      "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
+      "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
+    //const url ="http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
 
     let uploadRequest = superagent.post(url);
     uploadRequest.attach("file", dataURItoBlob(dataUrl));
@@ -89,13 +89,8 @@ export default class Canvas extends Component {
 
   uploadToCloudinary() {
     let confirmation = confirm("Are you sure you're ready to add your scene?");
-    console.log(this.stageRef.getStage().imageUrl);
-    // console.log(this.stageRef.getStage().toImage("image/png"));
     const image = this.stageRef.getStage().toDataURL("image/png");
     if (confirmation) {
-      // const image = this.stageRef
-      //   .getStage()
-      //   .toImage({ callback: this.uploadFile });
       this.uploadFile(image);
     }
   }
