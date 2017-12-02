@@ -34,7 +34,6 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-  console.log("entered rawBody Middleware");
   if (
     req.rawBody === undefined &&
     req.method === "POST" &&
@@ -53,7 +52,6 @@ app.use(function(req, res, next) {
           return next(err);
         }
         req.rawBody = string;
-        console.log("leaving rawBody Middleware");
         next();
       }
     );
@@ -63,16 +61,13 @@ app.use(function(req, res, next) {
 });
 
 app.post("/uploadImage", (req, res) => {
-  console.log(functions.config());
   if (req.method === "POST") {
-    // console.log(req);
     var busboy = new Busboy({ headers: req.headers });
     // This object will accumulate all the uploaded files, keyed by their name
     const uploads = {};
 
     // This callback will be invoked for each file uploaded
     busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-      console.log("file event fired!!!", file);
       // Note that os.tmpdir() is an in-memory file system, so should only
       // be used for files small enough to fit in memory.
       const filepath = path.join(os.tmpdir(), fieldname);
@@ -82,13 +77,10 @@ app.post("/uploadImage", (req, res) => {
 
     // This callback will be invoked after all uploaded files are saved.
     busboy.on("finish", () => {
-      console.log("busboy finished");
       //assuming we have multiple files
       for (const name in uploads) {
-        console.log("looping through uploads", name);
         const upload = uploads[name];
         const file = upload.file;
-        console.log("got a file", file);
         cloudinary.config({
           cloud_name: cloudinaryConfig.cloudname,
           api_key: cloudinaryConfig.key,
@@ -115,7 +107,6 @@ app.post("/uploadCanvas", (req, res) => {
   const busboy = new Busboy({ headers: req.headers });
   const uploads = {};
   busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-    console.log("file event fired!!!");
     // Note that os.tmpdir() is an in-memory file system, so should only
     // be used for files small enough to fit in memory.
     const filepath = path.join(os.tmpdir(), fieldname);
@@ -123,29 +114,5 @@ app.post("/uploadCanvas", (req, res) => {
     file.pipe(fs.createWriteStream(filepath));
   });
 });
-
-// app.post("/uploadCanvas", (request, response) => {
-//   console.log("upload canvas");
-//   // by default cant request an endpt outside of domain
-//   //cors is a middleware that turns on the header to allow cross origins
-//   //grabs the response and adds header that says 'allow origin *'
-//   const form = new formidable.IncomingForm(); //formidable pulls out the fields and the files
-//   form.parse(request, function(err, fields, files) {
-//     console.log("!!", fields.file);
-//     //const image = fs.createReadStream(fields.file);
-//     const field = fields.file;
-//     const image = field;
-
-//     cloudinary.config({
-//       cloud_name: "noorulain",
-//       api_key: "493184569883823",
-//       api_secret: "ZoD3Vr3GEPRLq3dZdZCaiJbuwCY"
-//     });
-
-//     cloudinary.v2.uploader.upload(image, function(error, result) {
-//       response.json(result.url);
-//     });
-//   });
-// });
 
 exports.api = functions.https.onRequest(app);
