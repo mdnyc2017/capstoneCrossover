@@ -68,31 +68,14 @@ export default class AddScene extends Component {
   }
 
   uploadFile(files) {
-    const image = files[0];
-    const cloudName = "noorulain";
+    console.log(files[0]);
     const url =
-      "https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
-    const timestamp = Date.now() / 1000;
-    const uploadPreset = "pvfhdtk2";
-    const paramStr =
-      "timestamp=" +
-      timestamp +
-      "&upload_preset=" +
-      uploadPreset +
-      "ZoD3Vr3GEPRLq3dZdZCaiJbuwCY";
-    const signature = sha1(paramStr);
-    const params = {
-      api_key: "493184569883823",
-      timestamp: timestamp,
-      upload_preset: "pvfhdtk2",
-      signature: signature
-    };
+      "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
+    //const url ="http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
+    //const url ="https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
+    //console.log(Array.isArray(image));
     let uploadRequest = superagent.post(url);
-    uploadRequest.attach("file", image);
-    Object.keys(params).forEach(key => {
-      uploadRequest.field(key, params[key]);
-    });
-
+    uploadRequest.attach("file", files[0]);
     uploadRequest.end((err, resp) => {
       if (err) {
         console.log(err, null);

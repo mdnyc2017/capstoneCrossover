@@ -8,6 +8,33 @@ import { db } from "../fire";
 import { Redirect } from "react-router";
 import axios from "axios";
 
+function dataURItoBlob(dataURI) {
+  // convert base64 to raw binary data held in a string
+  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  var byteString = atob(dataURI.split(",")[1]);
+
+  // separate out the mime component
+  var mimeString = dataURI
+    .split(",")[0]
+    .split(":")[1]
+    .split(";")[0];
+
+  // write the bytes of the string to an ArrayBuffer
+  var ab = new ArrayBuffer(byteString.length);
+
+  // create a view into the buffer
+  var ia = new Uint8Array(ab);
+
+  // set the bytes of the buffer to the correct values
+  for (var i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  // write the ArrayBuffer to a blob, and you're done
+  var blob = new Blob([ab], { type: mimeString });
+  return blob;
+}
+
 export default class Canvas extends Component {
   constructor(props) {
     super(props);
@@ -21,57 +48,92 @@ export default class Canvas extends Component {
   }
 
   uploadFile(dataUrl) {
+    //onsole.log(dataUrl.src);
     const user = this.props.currentUser;
     const key = `${user.uid}${Date.now()}`;
     const storyId = this.props.storyId;
     const cloudName = "noorulain";
     const preset = "pvfhdtk2";
-    //const url = "https://us-central1-crossover-cf663.cloudfunctions.net/uploadCanvas";
     const url =
-      "https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
+      "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
+    // const url =
+    //   "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
+    //const url ="https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
 
-    const fd = new FormData();
-    fd.append("upload_preset", preset);
-    fd.append("api_key", "493184569883823");
-    fd.append("file", dataUrl);
+    let uploadRequest = superagent.post(url);
+    uploadRequest.attach("file", dataURItoBlob(dataUrl));
+    uploadRequest.end((err, response) => {
+      console.log(response);
+      this.setState({
+        canvasUrl: response.body.secure_url
+      });
+      db
+        .collection("scenes")
+        .doc(key)
+        .set({ imageUrl: this.state.canvasUrl })
+        .then(() =>
+          db
+            .collection("stories")
+            .doc(storyId)
+            .collection("scenes")
+            .doc(key)
+            .set({ imageUrl: this.state.canvasUrl, id: key, random: "check" })
+        )
+        .then(() =>
+          db
+            .collection("stories")
+            .doc(storyId)
+            .update({ thumbnail: this.state.canvasUrl })
+        )
+        .then(() => this.setState({ fireRedirect: true }))
+        .catch(error => console.error("Error creating scene: ", error));
+    });
+    //const fd = new FormData();
+    //fd.append("file", dataUrl.src);
 
-    return axios
-      .post(url, fd, {
-        headers: { "x-requested-with": "XMLHttpRequest" }
-      })
-      .then(response => {
-        this.setState({
-          canvasUrl: response.data.secure_url
-        });
-      })
-      .then(() =>
-        db
-          .collection("scenes")
-          .doc(key)
-          .set({ imageUrl: this.state.canvasUrl })
-      )
-      .then(() =>
-        db
-          .collection("stories")
-          .doc(storyId)
-          .collection("scenes")
-          .doc(key)
-          .set({ imageUrl: this.state.canvasUrl, id: key, random: "check" })
-      )
-      .then(() =>
-        db
-          .collection("stories")
-          .doc(storyId)
-          .update({ thumbnail: this.state.canvasUrl })
-      )
-      .then(() => this.setState({ fireRedirect: true }))
-      .catch(error => console.error("Error creating scene: ", error));
+    // return axios
+    //   .post(url, fd, {
+    //     headers: { "x-requested-with": "XMLHttpRequest" }
+    //   })
+    //   .then(response => {
+    //     console.log(response);
+    //     this.setState({
+    //       canvasUrl: response.data
+    //     });
+    //   })
+    //   .then(() =>
+    //     db
+    //       .collection("scenes")
+    //       .doc(key)
+    //       .set({ imageUrl: this.state.canvasUrl })
+    //   )
+    //   .then(() =>
+    //     db
+    //       .collection("stories")
+    //       .doc(storyId)
+    //       .collection("scenes")
+    //       .doc(key)
+    //       .set({ imageUrl: this.state.canvasUrl, id: key, random: "check" })
+    //   )
+    //   .then(() =>
+    //     db
+    //       .collection("stories")
+    //       .doc(storyId)
+    //       .update({ thumbnail: this.state.canvasUrl })
+    //   )
+    //   .then(() => this.setState({ fireRedirect: true }))
+    //   .catch(error => console.error("Error creating scene: ", error));
   }
 
   uploadToCloudinary() {
     let confirmation = confirm("Are you sure you're ready to add your scene?");
+    console.log(this.stageRef.getStage().imageUrl);
+    // console.log(this.stageRef.getStage().toImage("image/png"));
     const image = this.stageRef.getStage().toDataURL("image/png");
     if (confirmation) {
+      // const image = this.stageRef
+      //   .getStage()
+      //   .toImage({ callback: this.uploadFile });
       this.uploadFile(image);
     }
   }

@@ -23,3 +23,32 @@
 [debug] [2017-11-28T00:20:07.845Z] <<< HTTP RESPONSE 200
 [info] ✔  functions: uploadImage
 [info] ✔  functions: uploadCanvas
+[debug] [2017-12-02T01:22:54.624Z] ----------------------------------------------------------------------
+[debug] [2017-12-02T01:22:54.626Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase experimental:functions:shell
+[debug] [2017-12-02T01:22:54.626Z] CLI Version:   3.15.4
+[debug] [2017-12-02T01:22:54.626Z] Platform:      darwin
+[debug] [2017-12-02T01:22:54.626Z] Node Version:  v8.9.1
+[debug] [2017-12-02T01:22:54.627Z] Time:          Fri Dec 01 2017 20:22:54 GMT-0500 (EST)
+[debug] [2017-12-02T01:22:54.627Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-02T01:22:54.637Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-02T01:22:54.637Z] > authorizing via signed-in user
+[debug] [2017-12-02T01:22:54.639Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-02T01:22:54.639Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/5PpVpmz5EJKBELN8K3g7Fp5lQBDVcPh5bETM8GdOLlI',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Dec 01 2017 20:22:54 GMT-0500 (EST)
+[debug] [2017-12-02T01:22:54.787Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T01:22:54.797Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Fri Dec 01 2017 20:22:54 GMT-0500 (EST)
+[debug] [2017-12-02T01:22:55.096Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T01:22:55.097Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Fri Dec 01 2017 20:22:55 GMT-0500 (EST)
+[debug] [2017-12-02T01:22:55.448Z] <<< HTTP RESPONSE 200
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-12-02T01:22:55.857Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Fri Dec 01 2017 20:22:55 GMT-0500 (EST)
+[debug] [2017-12-02T01:22:55.858Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Fri Dec 01 2017 20:22:55 GMT-0500 (EST)
