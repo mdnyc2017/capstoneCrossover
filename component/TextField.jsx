@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Group, Circle, Text } from "react-konva";
 import Konva from "konva";
-import WebFont from 'webfontloader';
 
-WebFont.load({
-  google: {
-    families: ['Patrick Hand', 'Gloria Hallelujah', 'Coming Soon', 'Annie Use Your Telescope', 'Schoolbell', 'Patrick Hand SC', 'Walter Turncoat', 'Short Stack', 'Pangolin', 'Sriracha', 'Dekko', 'Kavivanar']
-  }
-});
+
+
+  // import WebFont from 'webfontloader';
+  // WebFont.load({
+  //   google: {
+  //     families: ['Patrick Hand', 'Gloria Hallelujah', 'Coming Soon', 'Annie Use Your Telescope', 'Schoolbell', 'Patrick Hand SC', 'Walter Turncoat', 'Short Stack', 'Pangolin', 'Sriracha', 'Dekko', 'Kavivanar']
+  //   }
+  // });
 
 
 export default class Photo extends Component {

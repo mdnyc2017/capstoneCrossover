@@ -80,6 +80,7 @@ const babel = env => ({
       ['env', {modules: false}],
       'stage-2',
       'react',
+      'es2015'
     ],
     plugins: isHot(env) && ['react-hot-loader/babel']
   }

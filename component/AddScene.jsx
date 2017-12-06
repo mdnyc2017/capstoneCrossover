@@ -5,28 +5,30 @@ import { db } from "../fire";
 import { Redirect } from "react-router";
 import sha1 from "sha1";
 import Canvas from "./Canvas";
-import "react-tabs/style/react-tabs.scss";
+// import "react-tabs/style/react-tabs.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import WebFont from "webfontloader";
 
-WebFont.load({
-  google: {
-    families: [
-      "Patrick Hand",
-      "Gloria Hallelujah",
-      "Coming Soon",
-      "Annie Use Your Telescope",
-      "Schoolbell",
-      "Patrick Hand SC",
-      "Walter Turncoat",
-      "Short Stack",
-      "Pangolin",
-      "Sriracha",
-      "Dekko",
-      "Kavivanar"
-    ]
-  }
-});
+
+  // import WebFont from "webfontloader";
+  // WebFont.load({
+  //   google: {
+  //     families: [
+  //       "Patrick Hand",
+  //       "Gloria Hallelujah",
+  //       "Coming Soon",
+  //       "Annie Use Your Telescope",
+  //       "Schoolbell",
+  //       "Patrick Hand SC",
+  //       "Walter Turncoat",
+  //       "Short Stack",
+  //       "Pangolin",
+  //       "Sriracha",
+  //       "Dekko",
+  //       "Kavivanar"
+  //     ]
+  //   }
+  // });
+
 
 export default class AddScene extends Component {
   constructor(props) {
