@@ -17,6 +17,10 @@ cd .. to get back to main folder
 npm start
 ```
 
+# Tests
+
+Run test specs from Tests branch with "npm test"
+
 # Disclaimer
 
 ```
