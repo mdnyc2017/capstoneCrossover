@@ -8,19 +8,22 @@ export default class AddStory extends Component {
     this.state = {
       emailInput: "", //email field input
       user: {}, //current logged in user
-      storyId: "", 
+      storyId: "",
       email: "", //email of collaborator,
-      collabName: '', //name of collaborator
+      collabName: "", //name of collaborator
       id: "", //firestore id of collaborator
       fireRedirect: false //sets to true after submit to allow redirect
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeName = this.handleChangeName.bind(this)
+    this.handleChangeName = this.handleChangeName.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ user: nextProps.currentUser, storyId: this.props.match.params.id });
+    this.setState({
+      user: nextProps.currentUser,
+      storyId: this.props.match.params.id
+    });
   }
 
   handleChangeEmail(event) {
@@ -28,10 +31,10 @@ export default class AddStory extends Component {
     this.setState({ emailInput: event.target.value });
   }
 
-  handleChangeName(event){
+  handleChangeName(event) {
     this.setState({
       collabName: event.target.value
-    })
+    });
   }
 
   handleSubmit(event) {
@@ -46,67 +49,72 @@ export default class AddStory extends Component {
       return new Promise((resolve, reject) => {
         //find user in users
         let userId = "";
-        return resolve(db
-        .collection('users')
-        .where('userEmail', '==', email)
-        .get()
-        .then(snapshot => {
-            if (snapshot.docs[0] !== undefined) {
-              userId = snapshot.docs[0].data().uid
-              return userId;
-            } else {
-              return undefined;
-            }
-        }))
-      })
-    }
+        return resolve(
+          db
+            .collection("users")
+            .where("userEmail", "==", email)
+            .get()
+            .then(snapshot => {
+              if (snapshot.docs[0] !== undefined) {
+                userId = snapshot.docs[0].data().uid;
+                return userId;
+              } else {
+                return undefined;
+              }
+            })
+        );
+      });
+    };
 
     let saveToStories = function(id) {
       return new Promise((resolve, reject) => {
         //save collaborator in stories collection in db
-        return resolve(db
-        .collection("stories")
-        .doc(self.state.storyId)
-        .collection("collaborators")
-        .doc(id)
-        .set({
-        userEmail: email,
-        isOwner: false,
-        storyId: self.state.storyId,
-        uid: id,
-        collabName: collabName
-        })
-        .then(() => id)
-        )
-      })
-    }
-    
+        return resolve(
+          db
+            .collection("stories")
+            .doc(self.state.storyId)
+            .collection("collaborators")
+            .doc(id)
+            .set({
+              userEmail: email,
+              isOwner: false,
+              storyId: self.state.storyId,
+              uid: id,
+              collabName: collabName
+            })
+            .then(() => id)
+        );
+      });
+    };
 
     let saveToUsers = function(id) {
       return new Promise((resolve, reject) => {
         //save collaborator in user > stories collection in db
-          return resolve(db
-          .collection("users")
-          .doc(uid)
-          .collection("stories")
-          .doc(self.state.storyId)
-          .collection("collaborators")
-          .doc(id)
-          .set({
-            userEmail: email,
-            isOwner: false,
-            storyId: self.state.storyId,
-            uid: id
-          })
-          .then(() => id))
-        })
-    }
+        return resolve(
+          db
+            .collection("users")
+            .doc(uid)
+            .collection("stories")
+            .doc(self.state.storyId)
+            .collection("collaborators")
+            .doc(id)
+            .set({
+              userEmail: email,
+              isOwner: false,
+              storyId: self.state.storyId,
+              uid: id
+            })
+            .then(() => id)
+        );
+      });
+    };
 
     let addToUserStories = function(id) {
       return new Promise((resolve, reject) => {
         //save story to collaborator's stories
 
-          return resolve(db
+        return resolve(
+          db
             .collection("users")
             .doc(id)
             .collection("stories")
@@ -115,39 +123,42 @@ export default class AddStory extends Component {
               id: self.state.storyId
             })
             .then(() => id)
-          );
-        })
-    } 
+        );
+      });
+    };
 
     let redirect = function() {
       return new Promise((resolve, reject) => {
-    //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
-        self.setState({ fireRedirect: true })
-      })
-    }
+        //Finally we set redirect to true (redirect happens in render below if fireRedirect on state is true)
+        self.setState({ fireRedirect: true });
+      });
+    };
 
-    findUser().then(function(id) {
-      if (id !== undefined) {
-        return saveToStories(id);
-      } else {
-        alert("Please enter an existing user, or ask your intended collaborator to create an account.")
-      }
-    })
-    .then(function(id) {
-      if (id !== undefined) {
-        return saveToUsers(id);
-      }
-    })
-    .then(function(id) {
-      if (id !== undefined) {
-        return addToUserStories(id);
-      }
-    })
-    .then(function(id) {
-      if (id !== undefined) {
-        redirect()
-      }
-    })
+    findUser()
+      .then(function(id) {
+        if (id !== undefined) {
+          return saveToStories(id);
+        } else {
+          alert(
+            "Please enter an existing user, or ask your intended collaborator to create an account."
+          );
+        }
+      })
+      .then(function(id) {
+        if (id !== undefined) {
+          return saveToUsers(id);
+        }
+      })
+      .then(function(id) {
+        if (id !== undefined) {
+          return addToUserStories(id);
+        }
+      })
+      .then(function(id) {
+        if (id !== undefined) {
+          redirect();
+        }
+      });
   }
 
   render() {

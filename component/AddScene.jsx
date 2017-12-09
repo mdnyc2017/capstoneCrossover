@@ -9,22 +9,25 @@ import "react-tabs/style/react-tabs.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import WebFont from "webfontloader";
 
+//this is the component in which an image is modified to a users preference and then added to the canvas
+const fonts = [
+  "Patrick Hand",
+  "Gloria Hallelujah",
+  "Coming Soon",
+  "Annie Use Your Telescope",
+  "Schoolbell",
+  "Patrick Hand SC",
+  "Walter Turncoat",
+  "Short Stack",
+  "Pangolin",
+  "Sriracha",
+  "Dekko",
+  "Kavivanar"
+];
+
 WebFont.load({
   google: {
-    families: [
-      "Patrick Hand",
-      "Gloria Hallelujah",
-      "Coming Soon",
-      "Annie Use Your Telescope",
-      "Schoolbell",
-      "Patrick Hand SC",
-      "Walter Turncoat",
-      "Short Stack",
-      "Pangolin",
-      "Sriracha",
-      "Dekko",
-      "Kavivanar"
-    ]
+    families: fonts
   }
 });
 
@@ -143,7 +146,6 @@ export default class AddScene extends Component {
   }
 
   handleChange(evt) {
-    // evt.preventDefault();
     const url = this.state.imageUrl;
     const ind = url.indexOf("upload/");
     this.setState({

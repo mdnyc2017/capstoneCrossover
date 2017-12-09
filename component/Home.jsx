@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class Home extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   componentDidMount() {
     const urls = [
       "url('/background-images/homepage-body-a.jpg')",
@@ -13,7 +9,7 @@ export default class Home extends Component {
       "url('/background-images/doctor-doom-squirrel.jpg')",
       "url('/background-images/addstory.jpg')",
       "url('/background-images/stories.jpg')",
-      "url('/background-images/addstory.png')",
+      "url('/background-images/addstory.png')"
     ];
     const img = this.refs.whatever;
     let counter = 0;
@@ -29,20 +25,9 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home-page">
-        <div
-          ref="whatever"
-          className="home-page-top"
-        >Crossover
+        <div ref="whatever" className="home-page-top">
+          Crossover
         </div>
-        {/* <div className="home-page-create">
-          <div className="home-page-create-b">CREATE</div>
-        </div> */}
-        {/* <div className="home-page-collaborate">
-          <div className="home-page-collaborate-b">COLLABORATE</div>
-        </div> */}
-        {/* <div className="home-page-combine">
-          <div className="home-page-combine-b">COMBINE</div>
-        </div> */}
       </div>
     );
   }
