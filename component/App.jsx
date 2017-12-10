@@ -3,8 +3,7 @@ import firebase, { auth } from "~/fire";
 import Routes from "./Routes";
 import Login from "./Login";
 import { Navbar } from "./Navbar";
-import Stories from './Stories'
-
+import Stories from "./Stories";
 
 export const welcome = user => {
   if (!user) return "";
@@ -17,18 +16,18 @@ export default class App extends Component {
     super();
     this.state = {
       user: {},
-      userName: '',
-      userEmail: '',
-      uid: ''
+      userName: "",
+      userEmail: "",
+      uid: ""
     };
   }
 
   componentDidMount() {
-    // let user = firebase.auth().currentUser
-    // let uid = firebase.auth().currentUser.uid
-    this.unsubscribe = auth.onAuthStateChanged(user => this.setState({ 
-      user
-    }));
+    this.unsubscribe = auth.onAuthStateChanged(user =>
+      this.setState({
+        user
+      })
+    );
   }
 
   componentWillUnmount() {
@@ -36,13 +35,11 @@ export default class App extends Component {
   }
 
   render() {
-    
     return (
       <div className="page">
         <nav>
           <Navbar user={this.state.user} />
         </nav>
-        {/* <div className="page-icon" /> */}
         <br />
         <Routes user={this.state.user} />
       </div>

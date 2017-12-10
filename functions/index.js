@@ -15,16 +15,27 @@ const path = require("path");
 const os = require("os");
 const env = require("dotenv");
 
-const cloudinaryConfig = functions.config().cloudinary || {};
+//format of keys stored on firebase fucnctions cli
+// {
+//   "cloudinary": {
+//     "key": "xxxxxxxxx",
+//     "secret": "xxxxxxxxxx",
+//     "cloudname": 'xxx'
+//   }
+// }
+const cloudinaryConfig = functions.config().cloudinary || {}; //local/production
 if (Object.keys(cloudinaryConfig).length === 0) {
+  //local env
   env.config();
   cloudinaryConfig.key = process.env.CLOUDINARY_KEY;
   cloudinaryConfig.secret = process.env.CLOUDINARY_SECRET;
   cloudinaryConfig.cloudname = process.env.CLOUDINARY_CLOUDNAME;
 }
+
 const app = express();
 
 app.use(function(req, res, next) {
+  //add headers
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -68,7 +79,7 @@ app.post("/uploadImage", (req, res) => {
 
     // This callback will be invoked for each file uploaded
     busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-      // Note that os.tmpdir() is an in-memory file system, so should only
+      // os.tmpdir() is an in-memory file system, so should only
       // be used for files small enough to fit in memory.
       const filepath = path.join(os.tmpdir(), fieldname);
       uploads[fieldname] = { file: filepath };
@@ -102,17 +113,4 @@ app.post("/uploadImage", (req, res) => {
     res.status(405).end();
   }
 });
-
-app.post("/uploadCanvas", (req, res) => {
-  const busboy = new Busboy({ headers: req.headers });
-  const uploads = {};
-  busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-    // Note that os.tmpdir() is an in-memory file system, so should only
-    // be used for files small enough to fit in memory.
-    const filepath = path.join(os.tmpdir(), fieldname);
-    uploads[fieldname] = { file: filepath };
-    file.pipe(fs.createWriteStream(filepath));
-  });
-});
-
 exports.api = functions.https.onRequest(app);

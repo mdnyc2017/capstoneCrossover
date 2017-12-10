@@ -2,28 +2,21 @@ import React from "react";
 import firebase, { db, auth } from "~/fire";
 
 const google = new firebase.auth.GoogleAuthProvider();
-//const facebook = new firebase.auth.FacebookAuthProvider();
-
 
 function Login(provider) {
-  let result = auth.signInWithPopup(provider)
-    .then(result => {
-      const userName = result.user.displayName
-      const userEmail = result.user.email
-      const uid = result.user.uid
-      db.
-        collection('users')
-        .doc(uid)
-        .set({
-          userName: userName,
-          userEmail: userEmail,
-          uid: uid
-        })
-
-
-    })
-
-
+  let result = auth.signInWithPopup(provider).then(result => {
+    const userName = result.user.displayName;
+    const userEmail = result.user.email;
+    const uid = result.user.uid;
+    db
+      .collection("users")
+      .doc(uid)
+      .set({
+        userName: userName,
+        userEmail: userEmail,
+        uid: uid
+      });
+  });
 }
 
 auth.onAuthStateChanged(console.log);
