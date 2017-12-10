@@ -16,5 +16,9 @@
       height: 20vh;
       background-color: white;
       @include border-style;
+
+      input {
+        width: 50%;
+      }
     }
 }
