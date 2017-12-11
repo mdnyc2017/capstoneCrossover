@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './Login';
-import { auth } from '~/fire'
+import { auth } from '../fire'
 
 export const Navbar = ({ user }) =>  
 

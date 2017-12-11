@@ -17,6 +17,12 @@ const config = env => ({
     }
   },
   devServer: devServer(env),
+  externals: {
+    'cheerio': 'window',
+    'react/addons': true, // important!!
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+  },
   module: {
     rules: [{
       test: /jsx?$/,

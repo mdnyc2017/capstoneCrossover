@@ -1,27 +1,27 @@
 import React from "react";
-import firebase, { db, auth } from "~/fire";
+import firebase, { db, auth } from "../fire";
 
 const google = new firebase.auth.GoogleAuthProvider();
 //const facebook = new firebase.auth.FacebookAuthProvider();
 
 
-function Login(provider) {
-  let result = auth.signInWithPopup(provider)
-    .then(result => {
-      const userName = result.user.displayName
-      const userEmail = result.user.email
-      const uid = result.user.uid
-      db.
-        collection('users')
-        .doc(uid)
-        .set({
-          userName: userName,
-          userEmail: userEmail,
-          uid: uid
-        })
+function Login(authArg, provider) {
+  let result = authArg.signInWithPopup(provider)
+    // result.then(res => {
+    //   const userName = res.user.displayName
+    //   const userEmail = res.user.email
+    //   const uid = res.user.uid
+    //   db.
+    //     collection('users')
+    //     .doc(uid)
+    //     .set({
+    //       userName: userName,
+    //       userEmail: userEmail,
+    //       uid: uid
+    //     })
 
 
-    })
+    // })
 
 
 }
@@ -30,7 +30,7 @@ auth.onAuthStateChanged(console.log);
 
 export default ({ auth }) => (
   <div className="login">
-    <li className="google login" onClick={() => Login(google)}>
+    <li className="google login" onClick={() => Login(auth, google)}>
       Login with Google
     </li>
   </div>

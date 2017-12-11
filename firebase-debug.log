@@ -1,0 +1,43 @@
+[debug] [2017-12-11T16:20:05.318Z] ----------------------------------------------------------------------
+[debug] [2017-12-11T16:20:05.320Z] Command:       /usr/local/bin/node /Users/fullstackacademy/Documents/WDF/Projects/Capstone/capstoneCrossover/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-12-11T16:20:05.321Z] CLI Version:   3.14.0
+[debug] [2017-12-11T16:20:05.321Z] Platform:      darwin
+[debug] [2017-12-11T16:20:05.321Z] Node Version:  v8.6.0
+[debug] [2017-12-11T16:20:05.322Z] Time:          Mon Dec 11 2017 11:20:05 GMT-0500 (EST)
+[debug] [2017-12-11T16:20:05.322Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-11T16:20:05.343Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-11T16:20:05.344Z] > authorizing via signed-in user
+[debug] [2017-12-11T16:20:05.346Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-11T16:20:05.346Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/KjRCmVaaBa6Qp3-IvM1wZdtzJjM6Uy0T2MYh0wqV1r4',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Mon Dec 11 2017 11:20:05 GMT-0500 (EST)
+[debug] [2017-12-11T16:20:05.567Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-11T16:20:05.583Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/crossover-cf663  
+ Mon Dec 11 2017 11:20:05 GMT-0500 (EST)
+[debug] [2017-12-11T16:20:06.222Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-11T16:20:06.224Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/crossover-cf663/tokens  
+ Mon Dec 11 2017 11:20:06 GMT-0500 (EST)
+[debug] [2017-12-11T16:20:06.770Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/fullstackacademy/Documents/WDF/Projects/Capstone/capstoneCrossover'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-12-11T16:20:07.631Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/crossover-cf663  
+ Mon Dec 11 2017 11:20:07 GMT-0500 (EST)
+[debug] [2017-12-11T16:20:07.632Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/crossover-cf663/apiKeys  
+ Mon Dec 11 2017 11:20:07 GMT-0500 (EST)
+[debug] [2017-12-11T16:20:07.632Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/crossover-cf663  
+ Mon Dec 11 2017 11:20:07 GMT-0500 (EST)
+[debug] [2017-12-11T16:20:08.164Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-11T16:20:08.996Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-11T16:20:08.997Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/311688361311/clients/_:getWebAppConfig  
+ Mon Dec 11 2017 11:20:08 GMT-0500 (EST)
+[debug] [2017-12-11T16:20:09.163Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-11T16:20:09.383Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
