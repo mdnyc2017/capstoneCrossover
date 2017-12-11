@@ -20,14 +20,11 @@ describe('AddScene', () => {
     addScene = shallow(<AddScene currentUser={user} />)
   })
 
+  it('renders the addscene div', () => {
+    expect(addScene.find('.addscene').length).to.be.equal(1)
+  })
+
   it('renders an h2 with text Add An Image', () => {
-    global.window = {
-        location: {
-            href: {
-                value: 'foo'
-            }
-        }
-    }
     expect(addScene.find('h2').text()).to.be.equal('Add an Image')
   })
 })
