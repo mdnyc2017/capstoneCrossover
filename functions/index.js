@@ -34,7 +34,7 @@ if (Object.keys(cloudinaryConfig).length === 0) {
 
 const app = express();
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   //add headers
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   if (
     req.rawBody === undefined &&
     req.method === "POST" &&
@@ -58,7 +58,7 @@ app.use(function(req, res, next) {
         limit: "10mb",
         encoding: contentType.parse(req).parameters.charset
       },
-      function(err, string) {
+      function (err, string) {
         if (err) {
           return next(err);
         }
@@ -98,7 +98,7 @@ app.post("/uploadImage", (req, res) => {
           api_secret: cloudinaryConfig.secret
         });
 
-        cloudinary.v2.uploader.upload(file, function(error, result) {
+        cloudinary.v2.uploader.upload(file, function (error, result) {
           if (error) console.log("ERROR ON UPLOAD", error);
           res.json(result);
         });

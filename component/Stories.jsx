@@ -1,78 +1,24 @@
 import React, { Component } from "react";
 import firebase, { db, auth } from "~/fire";
+import storyService from '../lib/story-service'
 
-let uid;
+
 export default class Stories extends Component {
   constructor(props) {
     super();
     this.state = {
-      user: {},
-      stories: [],
-      scenes: [],
-      userId: "",
-      collaborator: []
+      stories: []
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    let self = this;
-
-    if (nextProps.currentUser && nextProps.currentUser !== {}) {
-      let getCurrentUser = function() {
-        return new Promise((resolve, reject) => {
-          return resolve(nextProps.currentUser.user.uid); //returns userId
-        });
-      };
-
-      //returns all stories associated with the currentUser
-      let getUserStories = function(id) {
-        return new Promise((resolve, reject) => {
-          let stories = []; //stores all stories associated with the user
-          return resolve(
-            db
-              .collection("users")
-              .doc(id)
-              .collection("stories")
-              .get()
-              .then(snapshot => {
-                snapshot.forEach(doc => {
-                  stories.push(doc.data());
-                });
-                return stories;
-              })
-          );
-        });
-      };
-
-      //returns stories within stories -- more like scenes associated with a single story
-      let getStories = function(stories) {
-        return new Promise((resolve, reject) => {
-          let filteredStories = stories.filter(story => story.id);
-          filteredStories.map(story => {
-            db
-              .collection("stories")
-              .where("id", "==", story.id)
-              .get()
-              .then(snapshot => {
-                snapshot.forEach(doc => {
-                  self.setState({
-                    stories: [...self.state.stories, doc.data()]
-                  });
-                });
-              });
-          });
-        });
-      };
-
-      getCurrentUser()
-        .then(function(id) {
-          return getUserStories(id);
-        })
-        .then(function(stories) {
-          return getStories(stories);
-        });
-    }
+  async componentWillReceiveProps(nextProps) {
+    const stories = await storyService.getStoriesByUser(nextProps.currentUser.user.uid)
+    this.setState({
+      ...this.state,
+      stories
+    })
   }
+
 
   render() {
     return (

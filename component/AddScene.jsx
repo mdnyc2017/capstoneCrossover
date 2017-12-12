@@ -71,9 +71,8 @@ export default class AddScene extends Component {
   }
 
   uploadFile(files) {
-    const url =
-      "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
-    //const url ="http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
+    const url = "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/";
+    //const url = "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
     let uploadRequest = superagent.post(url);
     uploadRequest.attach("file", files[0]);
     uploadRequest.end((err, resp) => {
@@ -85,7 +84,7 @@ export default class AddScene extends Component {
       const ind = uploadUrl.indexOf("upload/");
       const newUrl = `${uploadUrl.slice(0, ind + 7)}w_500/e_cartoonify:${
         this.state.lineStrength
-      }:${this.state.colorReduction}${uploadUrl.slice(ind + 7)}`;
+        }:${this.state.colorReduction}${uploadUrl.slice(ind + 7)}`;
       this.setState({
         imageUrl: uploadUrl,
         previewUrl: newUrl
@@ -152,7 +151,7 @@ export default class AddScene extends Component {
       [evt.target.name]: evt.target.value,
       previewUrl: `${url.slice(0, ind + 7)}w_500/e_cartoonify:${
         this.state.lineStrength
-      }:${this.state.colorReduction}${url.slice(ind + 7)}`
+        }:${this.state.colorReduction}${url.slice(ind + 7)}`
     });
   }
 
@@ -211,8 +210,8 @@ export default class AddScene extends Component {
               </form>
             </div>
           ) : (
-            <span />
-          )}
+              <span />
+            )}
 
           <div className="addscene-edit-canvas">
             <Tabs className="addscene-edit-canvas-tabs">

@@ -10,14 +10,15 @@ import axios from "axios";
 
 //this component saves the canvas image
 function dataURItoBlob(dataURI) {
+  //dataUri is a base64 encoded string that represents a file (image from canvas) in ascii str format
   //format of dataURI is data:[<mime type>][;charset=<charset>][;base64],<encoded data>
   //'mime' is the type of file - in our case is it an image/png - default is plain/text
   //charset omitted for images
   //base64 -- our data is grouped into numeric base64 digits
 
   // convert base64 to raw binary data held in a string
-  // asci binary --- converts base64 to ascii
   // atob is function available on the window object
+  // Decodes a string of data which has been encoded using base-64 encoding. 
   var byteString = atob(dataURI.split(",")[1]);
 
   // separate out the mime component
@@ -31,12 +32,13 @@ function dataURItoBlob(dataURI) {
   // buffer is raw binary data
   // a size has to be given to araybuffer - length of byte string
   var ab = new ArrayBuffer(byteString.length);
-
+  console.log('this is ab ', ab)
   // cannot be manipulated directly
   // so we create a view into the buffer
   var ia = new Uint8Array(ab);
 
   // set the bytes of the buffer to the correct values
+  //each charcode will be the value of the byte 
   for (var i = 0; i < byteString.length; i++) {
     ia[i] = byteString.charCodeAt(i);
   }
@@ -62,9 +64,8 @@ export default class Canvas extends Component {
     const user = this.props.currentUser;
     const key = `${user.uid}${Date.now()}`;
     const storyId = this.props.storyId;
-    const url =
-      "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/"; //cloud func location - it acts
-    //const url ="http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
+    const url = "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/"; //cloud func location - it acts
+    //const url = "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
 
     let uploadRequest = superagent.post(url);
     uploadRequest.attach("file", dataURItoBlob(dataUrl)); //Cloudinary requirement to name the file 'file

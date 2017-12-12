@@ -5,6 +5,7 @@ import Login from "./Login";
 import { Navbar } from "./Navbar";
 import Stories from "./Stories";
 
+
 export const welcome = user => {
   if (!user) return "";
   if (user.isAnonymous) return "";
