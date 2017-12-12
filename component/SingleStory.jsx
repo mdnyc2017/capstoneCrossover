@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { db } from "~/fire";
+import sceneService from '../lib/story-service'
 
 export default class SingleStory extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class SingleStory extends Component {
 
   componentDidMount() {
     // Get Scenes
+
     db
       .collection("stories")
       .doc(this.props.match.params.id)
@@ -28,6 +30,7 @@ export default class SingleStory extends Component {
           scenes: snapshot.docs
         })
       );
+
     // Get Story info
     db
       .collection("stories")

@@ -12,13 +12,14 @@ export default class Stories extends Component {
   }
 
   async componentWillReceiveProps(nextProps) {
-    const stories = await storyService.getStoriesByUser(nextProps.currentUser.user.uid)
+    const currentUser = await (nextProps.currentUser.user.uid)
+    const stories = await storyService.getStoriesByUser(currentUser)
+    //console.log('frontend', stories)
     this.setState({
       ...this.state,
       stories
     })
   }
-
 
   render() {
     return (
