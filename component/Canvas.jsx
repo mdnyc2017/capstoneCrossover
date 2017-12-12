@@ -32,7 +32,7 @@ function dataURItoBlob(dataURI) {
   // buffer is raw binary data
   // a size has to be given to araybuffer - length of byte string
   var ab = new ArrayBuffer(byteString.length);
-  console.log('this is ab ', ab)
+
   // cannot be manipulated directly
   // so we create a view into the buffer
   var ia = new Uint8Array(ab);

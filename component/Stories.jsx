@@ -14,7 +14,6 @@ export default class Stories extends Component {
   async componentWillReceiveProps(nextProps) {
     const currentUser = await (nextProps.currentUser.user.uid)
     const stories = await storyService.getStoriesByUser(currentUser)
-    //console.log('frontend', stories)
     this.setState({
       ...this.state,
       stories
