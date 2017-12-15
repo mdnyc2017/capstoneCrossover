@@ -8,6 +8,7 @@ import Canvas from "./Canvas";
 import "react-tabs/style/react-tabs.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import WebFont from "webfontloader";
+import createImageElement from '../lib/create-image-element'
 
 //this is the component in which an image is modified to a users preference and then added to the canvas
 const fonts = [
@@ -57,17 +58,19 @@ export default class AddScene extends Component {
     this.handleTyping = this.handleTyping.bind(this);
     this.handleFontFamily = this.handleFontFamily.bind(this);
     this.handleFontSize = this.handleFontSize.bind(this);
+    this.updateCanvasImages = this.updateCanvasImages.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
+      ...this.state,
       user: nextProps.currentUser,
       storyId: this.props.match.params.id
     });
   }
 
   changeBackgroundColor(event) {
-    this.setState({ background: event.target.value });
+    this.setState({ ...this.state, background: event.target.value });
   }
 
   uploadFile(files) {
@@ -86,6 +89,7 @@ export default class AddScene extends Component {
         this.state.lineStrength
         }:${this.state.colorReduction}${uploadUrl.slice(ind + 7)}`;
       this.setState({
+        ...this.state,
         imageUrl: uploadUrl,
         previewUrl: newUrl
       });
@@ -95,37 +99,38 @@ export default class AddScene extends Component {
   // delay in loading image in chrome and firefox but not in safari
   handleSubmitPreview(evt) {
     evt.preventDefault();
-    const self = this;
-    setTimeout(() => {
-      self.setState({
-        canvasImages: [...self.state.canvasImages, self.state.previewUrl]
-      });
-    }, 5);
+    createImageElement(this.state.previewUrl, this.updateCanvasImages)
+  }
+
+  updateCanvasImages(image) {
+    this.setState({
+      ...this.state,
+      canvasImages: [...this.state.canvasImages, image]
+    })
   }
 
   handleAddOverlay(imageUrl) {
-    const self = this;
-    setTimeout(() => {
-      self.setState({
-        canvasImages: [...self.state.canvasImages, imageUrl]
-      });
-    }, 5);
+    createImageElement(imageUrl, this.updateCanvasImages)
   }
+
 
   handleTyping(event) {
     this.setState({
+      ...this.state,
       typedText: event.target.value
     });
   }
 
   handleFontFamily(event) {
     this.setState({
+      ...this.state,
       fontFamily: event.target.value
     });
   }
 
   handleFontSize(event) {
     this.setState({
+      ...this.state,
       fontSize: event.target.value
     });
   }
@@ -133,10 +138,11 @@ export default class AddScene extends Component {
   handleAddText(event) {
     event.preventDefault();
     this.setState({
+      ...this.state,
       canvasText: [
         ...this.state.canvasText,
         {
-          text: this.state.typedText,
+          text: event.target.typedText.value,
           fontFamily: this.state.fontFamily,
           fontSize: this.state.fontSize
         }
@@ -148,6 +154,7 @@ export default class AddScene extends Component {
     const url = this.state.imageUrl;
     const ind = url.indexOf("upload/");
     this.setState({
+      ...this.state,
       [evt.target.name]: evt.target.value,
       previewUrl: `${url.slice(0, ind + 7)}w_500/e_cartoonify:${
         this.state.lineStrength
@@ -318,8 +325,9 @@ export default class AddScene extends Component {
                     placeholder="Enter text here"
                     rows="4"
                     cols="50"
-                    value={this.state.typedText}
-                    onChange={this.handleTyping}
+                    //value={this.state.typedText}
+                    name="typedText"
+                  //onChange={this.handleTyping}
                   />
                   <div>
                     <button type="submit">Submit</button>

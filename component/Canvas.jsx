@@ -48,13 +48,16 @@ function dataURItoBlob(dataURI) {
   return blob;
 }
 
+
+
 export default class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
       canvasUrl: "",
       background: "#ffffff",
-      fireRedirect: false
+      fireRedirect: false,
+      images: []
     };
     this.uploadToCloudinary = this.uploadToCloudinary.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
@@ -64,14 +67,15 @@ export default class Canvas extends Component {
     const user = this.props.currentUser;
     const key = `${user.uid}${Date.now()}`;
     const storyId = this.props.storyId;
-    const url = "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/"; //cloud func location - it acts
-    //const url = "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
+    //const url = "https://us-central1-crossover-cf663.cloudfunctions.net/api/uploadImage/"; //cloud func location - it acts
+    const url = "http://localhost:5001/crossover-cf663/us-central1/api/uploadImage/";
 
     let uploadRequest = superagent.post(url);
     uploadRequest.attach("file", dataURItoBlob(dataUrl)); //Cloudinary requirement to name the file 'file
     uploadRequest.end((err, response) => {
       // 'ends' -- request sent
       this.setState({
+        ...this.state,
         canvasUrl: response.body.secure_url // cloudniary sends back a url
       });
       db //the canvas image is stored in the scenes collection with a unique key (userId + date now)
@@ -107,6 +111,8 @@ export default class Canvas extends Component {
 
   render() {
     const { fireRedirect } = this.state;
+    const images = this.state.images;
+    //console.log(images)
     return (
       <div>
         <button
@@ -133,15 +139,11 @@ export default class Canvas extends Component {
             />
             {this.props.images &&
               this.props.images.map((imageUrl, index) => {
-                const image = new window.Image(); //image object
-                const arrIndex = index;
-                image.crossOrigin = "Anonymous"; //causing async issues. //must use otherwise tainted canvas error.
-                image.src = imageUrl;
                 return (
                   <Photo
-                    key={`${image.src}${arrIndex}`}
-                    imageUrl={image.src}
-                    image={image}
+                    key={`${imageUrl.src}${index}`}
+                    imageUrl={imageUrl.src}
+                    image={imageUrl}
                     zindex={index}
                   />
                 );
