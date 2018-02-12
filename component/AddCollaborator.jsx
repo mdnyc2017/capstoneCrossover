@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import firebase, { db } from "~/fire";
+// import firebase, { db } from "~/fire";
 import { Redirect } from "react-router";
 
-export default class AddStory extends Component {
+export default class AddCollaborator extends Component {
   constructor(props) {
     super();
     this.state = {
