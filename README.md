@@ -11,11 +11,6 @@ You can view a presentation discussing the inspiration for Crossover, its develo
 
 Crossover was completed over 10 days as the Capstone Project to fulfill the graduation requirements of [Fullstack Academy](https://www.fullstackacademy.com/)
 
-
-
-##Instructions for Installation
-Can't start a fire without a spark.
-
 # Get started:
 
 ```
