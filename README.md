@@ -9,7 +9,7 @@ Crossover was built entirely with React on the front-end, React-Konva to manage 
 
 You can view a presentation discussing the inspiration for Crossover, its development, and its functionality by the engineering team [here](https://goo.gl/yBrzhx).
 
-Crossover was completed over 10 days as the Capstone Project to fulfill the graduation requirements of [Fullstack Academy](https://www.fullstackacademy.com/)
+Crossover was completed over 10 days as the Capstone Project to fulfill the graduation requirements of [Fullstack Academy](https://www.fullstackacademy.com/).
 
 # Get started:
 
